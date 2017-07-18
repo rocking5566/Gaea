@@ -34,10 +34,14 @@ public:
     virtual ~CWorkerThread();
 
 protected:
-    void run();
+    void Start();
+    void Stop();
     void PushRequestToQueue(RequestType type, QVariant iParam1, void *pvParam2);
 
     virtual void HandleRequest(SRequest request);
+
+private:
+    void run();
 
 private:
     bool m_bQuit;

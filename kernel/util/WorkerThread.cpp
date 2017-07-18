@@ -4,7 +4,7 @@ CWorkerThread::CWorkerThread(QObject* parent)
     : QThread(parent)
     , m_bQuit(false)
 {
-    start();
+    Start();
 }
 
 CWorkerThread::~CWorkerThread()
@@ -56,6 +56,21 @@ void CWorkerThread::HandleRequest(SRequest request)
     default:
         break;
     }
+}
+
+void CWorkerThread::Start()
+{
+    if (!isRunning())
+    {
+        m_bQuit = false;
+        start();
+    }
+}
+
+void CWorkerThread::Stop()
+{
+    m_bQuit = true;
+    m_WorkingCondition.wakeOne();
 }
 
 void CWorkerThread::PushRequestToQueue(RequestType type, QVariant iParam1, void *pvParam2)
