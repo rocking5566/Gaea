@@ -8,4 +8,5 @@ SOURCES += $${KERNEL_PATH}/stream/PlayerCtrl.cpp \
 HEADERS += $${KERNEL_PATH}/stream/PlayerCtrl.h \
            $${KERNEL_PATH}/stream/RtspHelper.h \
            $${KERNEL_PATH}/stream/StreamSession.h \
+           $${KERNEL_PATH}/util/Util.h \
            $${KERNEL_PATH}/util/WorkerThread.h
