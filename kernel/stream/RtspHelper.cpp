@@ -1,4 +1,5 @@
 #include "RtspHelper.h"
+#include "util/BufPoolMgr.h"
 #include "util/Util.h"
 
 using namespace std;
@@ -145,7 +146,13 @@ void* CRtspHelper::VideoLockCallback(void *opaque, void **planes)
     Q_UNUSED(opaque);
     Q_UNUSED(planes);
 
-    return NULL;
+    CRtspHelper* This = (CRtspHelper*)opaque;
+    int iWidth = This->m_profile.m_width;
+    int iHeight = This->m_profile.m_height;
+
+    //*planes = CBufPoolMgr::GetSingleTon()->Alloc((iWidth * iHeight) << 2);
+    *planes = NULL;
+    return *planes;
 }
 
 void CRtspHelper::VideoUnlockCallback(void *opaque, void *picture, void *const *planes)
@@ -160,6 +167,7 @@ void CRtspHelper::VideoDisplayCallback(void *opaque, void *picture)
 {
     Q_UNUSED(opaque);
     Q_UNUSED(picture);
+    //CBufPoolMgr::GetSingleTon()->Release((char*)picture);
 }
 
 
