@@ -6,7 +6,8 @@ SOURCES += $${KERNEL_PATH}/stream/PlayerCtrl.cpp \
            $${KERNEL_PATH}/util/BufPoolMgr.cpp \
            $${KERNEL_PATH}/util/WorkerThread.cpp
 
-HEADERS += $${KERNEL_PATH}/stream/PlayerCtrl.h \
+HEADERS += $${KERNEL_PATH}/def/KernelTypes.h \
+           $${KERNEL_PATH}/stream/PlayerCtrl.h \
            $${KERNEL_PATH}/stream/RtspHelper.h \
            $${KERNEL_PATH}/stream/StreamSession.h \
            $${KERNEL_PATH}/util/BufPoolMgr.h \
