@@ -67,7 +67,7 @@ void CRtspHelper::Pause()
     libvlc_media_player_pause(m_vlcMediaPlayer);
 }
 
-void CRtspHelper::TearDown()
+void CRtspHelper::Stop()
 {
     libvlc_media_player_stop(m_vlcMediaPlayer);
 }

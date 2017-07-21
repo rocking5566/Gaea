@@ -22,7 +22,7 @@ public:
     void SetUrl(const char* sUrl);
     void Play();
     void Pause();
-    void TearDown();
+    void Stop();
 
     void RegisterDecodeVideoCallback(DecodeVideoCb videoCb);
 
