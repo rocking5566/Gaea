@@ -1,8 +1,8 @@
-#include "StreamSession.h"
+#include "StreamCtrl.h"
 #include "RtspHelper.h"
 #include "util/Util.h"
 
-CStreamSession::CStreamSession(QObject* parent /*= NULL*/)
+CStreamCtrl::CStreamCtrl(QObject* parent /*= NULL*/)
     : QThread(parent)
     , m_pRtspHelper(NULL)
     , m_SessionType(eNone)
@@ -10,12 +10,12 @@ CStreamSession::CStreamSession(QObject* parent /*= NULL*/)
 
 }
 
-CStreamSession::~CStreamSession()
+CStreamCtrl::~CStreamCtrl()
 {
     SAFE_DELETE(m_pRtspHelper);
 }
 
-bool CStreamSession::Connect(SConnectInfo info)
+bool CStreamCtrl::Connect(SConnectInfo info)
 {
     bool ret = false;
 
@@ -44,12 +44,12 @@ bool CStreamSession::Connect(SConnectInfo info)
     return ret;
 }
 
-void CStreamSession::VideoDecodeCallback(void* context, void* frame)
+void CStreamCtrl::VideoDecodeCallback(void* context, void* frame)
 {
     // TODO - deliver thread
 }
 
-void CStreamSession::DisConnect()
+void CStreamCtrl::DisConnect()
 {
     switch (m_SessionType)
     {

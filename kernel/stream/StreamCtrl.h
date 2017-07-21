@@ -6,13 +6,13 @@
 
 class CRtspHelper;
 
-class CStreamSession : public QThread
+class CStreamCtrl : public QThread
 {
     Q_OBJECT
 
 public:
-    CStreamSession(QObject* parent = NULL);
-    ~CStreamSession();
+    CStreamCtrl(QObject* parent = NULL);
+    ~CStreamCtrl();
 
     bool Connect(SConnectInfo info); // blocking API
     void DisConnect();
