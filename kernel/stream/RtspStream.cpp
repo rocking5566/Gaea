@@ -1,10 +1,10 @@
-#include "RtspHelper.h"
+#include "RtspStream.h"
 #include "util/BufPoolMgr.h"
 #include "util/Util.h"
 
 using namespace std;
 
-CRtspHelper::CRtspHelper()
+CRtspStream::CRtspStream()
     : m_vlcInstance(NULL)
     , m_vlcMediaPlayer(NULL)
     , m_pvlcMedia(NULL)
@@ -22,7 +22,7 @@ CRtspHelper::CRtspHelper()
     memset (&m_profile, 0, sizeof(SVideoProfile));
 }
 
-CRtspHelper::~CRtspHelper()
+CRtspStream::~CRtspStream()
 {
     libvlc_media_release(m_pvlcMedia);
     libvlc_media_player_stop(m_vlcMediaPlayer);
@@ -30,7 +30,7 @@ CRtspHelper::~CRtspHelper()
     libvlc_release(m_vlcInstance);
 }
 
-void CRtspHelper::SetUrl(const char* sUrl)
+void CRtspStream::SetUrl(const char* sUrl)
 {
     if (m_pvlcMedia != NULL)
     {
@@ -41,7 +41,7 @@ void CRtspHelper::SetUrl(const char* sUrl)
     libvlc_media_player_set_media(m_vlcMediaPlayer, m_pvlcMedia);
 }
 
-void CRtspHelper::Play()
+void CRtspStream::Play()
 {
     libvlc_state_t state = libvlc_media_player_get_state(m_vlcMediaPlayer);
 
@@ -62,23 +62,23 @@ void CRtspHelper::Play()
     }
 }
 
-void CRtspHelper::Pause()
+void CRtspStream::Pause()
 {
     libvlc_media_player_pause(m_vlcMediaPlayer);
 }
 
-void CRtspHelper::Stop()
+void CRtspStream::Stop()
 {
     libvlc_media_player_stop(m_vlcMediaPlayer);
 }
 
-void CRtspHelper::RegisterDecodeVideoCallback(DecodeVideoCb videoCb, void* vctx)
+void CRtspStream::RegisterDecodeVideoCallback(DecodeVideoCb videoCb, void* vctx)
 {
     m_CbDecodeVideo = videoCb;
     m_vctx = vctx;
 }
 
-bool CRtspHelper::TestAndGetVlcTrack()
+bool CRtspStream::TestAndGetVlcTrack()
 {
     libvlc_media_track_t **tracks = NULL;
     bool bFindResolution = false;
@@ -116,7 +116,7 @@ bool CRtspHelper::TestAndGetVlcTrack()
     return bFindResolution;
 }
 
-bool CRtspHelper::WaitConnection()
+bool CRtspStream::WaitConnection()
 {
     libvlc_state_t state = libvlc_media_player_get_state(m_vlcMediaPlayer);
     int waitCount = 0;
@@ -141,13 +141,13 @@ bool CRtspHelper::WaitConnection()
     return true;
 }
 
-void* CRtspHelper::VideoLockCallback(void *opaque, void **planes)
+void* CRtspStream::VideoLockCallback(void *opaque, void **planes)
 {
     // TODO - alloc the frame buffer
     Q_UNUSED(opaque);
     Q_UNUSED(planes);
 
-    CRtspHelper* This = (CRtspHelper*)opaque;
+    CRtspStream* This = (CRtspStream*)opaque;
     int iWidth = This->m_profile.m_width;
     int iHeight = This->m_profile.m_height;
 
@@ -156,16 +156,16 @@ void* CRtspHelper::VideoLockCallback(void *opaque, void **planes)
     return *planes;
 }
 
-void CRtspHelper::VideoUnlockCallback(void *opaque, void *picture, void *const *planes)
+void CRtspStream::VideoUnlockCallback(void *opaque, void *picture, void *const *planes)
 {
     // TODO
     Q_UNUSED(picture);
     Q_UNUSED(planes);
-    CRtspHelper* This = (CRtspHelper*)opaque;
+    CRtspStream* This = (CRtspStream*)opaque;
     This->m_CbDecodeVideo(This->m_vctx, picture);
 }
 
-void CRtspHelper::VideoDisplayCallback(void *opaque, void *picture)
+void CRtspStream::VideoDisplayCallback(void *opaque, void *picture)
 {
     Q_UNUSED(opaque);
     Q_UNUSED(picture);

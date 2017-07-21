@@ -4,7 +4,7 @@
 #include <QThread>
 #include "def/KernelTypes.h"
 
-class CRtspHelper;
+class CRtspStream;
 
 class CStreamCtrl : public QThread
 {
@@ -21,7 +21,7 @@ private:
     static void VideoDecodeCallback(void* context, void* frame);
 
 private:
-    CRtspHelper* m_pRtspHelper;
+    CRtspStream* m_pRtspStream;
     EConnectType m_SessionType;
 };
 #endif // StreamSession_h__

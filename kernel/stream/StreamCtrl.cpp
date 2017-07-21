@@ -1,10 +1,10 @@
 #include "StreamCtrl.h"
-#include "RtspHelper.h"
+#include "RtspStream.h"
 #include "util/Util.h"
 
 CStreamCtrl::CStreamCtrl(QObject* parent /*= NULL*/)
     : QThread(parent)
-    , m_pRtspHelper(NULL)
+    , m_pRtspStream(NULL)
     , m_SessionType(eNone)
 {
 
@@ -12,7 +12,7 @@ CStreamCtrl::CStreamCtrl(QObject* parent /*= NULL*/)
 
 CStreamCtrl::~CStreamCtrl()
 {
-    SAFE_DELETE(m_pRtspHelper);
+    SAFE_DELETE(m_pRtspStream);
 }
 
 bool CStreamCtrl::Connect(SConnectInfo info)
@@ -27,10 +27,10 @@ bool CStreamCtrl::Connect(SConnectInfo info)
             if (!info.m_sUrl.isEmpty())
             {
                 m_SessionType = info.m_type;
-                m_pRtspHelper = new CRtspHelper();
-                m_pRtspHelper->RegisterDecodeVideoCallback(VideoDecodeCallback, this);
-                m_pRtspHelper->SetUrl(info.m_sUrl.toStdString().c_str());
-                m_pRtspHelper->Play();
+                m_pRtspStream = new CRtspStream();
+                m_pRtspStream->RegisterDecodeVideoCallback(VideoDecodeCallback, this);
+                m_pRtspStream->SetUrl(info.m_sUrl.toStdString().c_str());
+                m_pRtspStream->Play();
 
                 ret = true;
             }
@@ -54,7 +54,7 @@ void CStreamCtrl::DisConnect()
     switch (m_SessionType)
     {
     case eRTSP:
-        m_pRtspHelper->Stop();
+        m_pRtspStream->Stop();
         break;
 
     default:

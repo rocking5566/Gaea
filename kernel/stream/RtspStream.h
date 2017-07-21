@@ -13,11 +13,11 @@ struct SVideoProfile
     unsigned int m_width;
 };
 
-class CRtspHelper
+class CRtspStream
 {
 public:
-    CRtspHelper();
-    ~CRtspHelper();
+    CRtspStream();
+    ~CRtspStream();
 
     void SetUrl(const char* sUrl);
     void Play();
