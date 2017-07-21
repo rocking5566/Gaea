@@ -4,7 +4,7 @@
 #include <QString>
 #include "vlc/vlc.h"
 
-typedef void *(*DecodeVideoCb)(void *context, void *frame);
+typedef void (*DecodeVideoCb)(void *context, void *frame);
 
 struct SVideoProfile
 {
