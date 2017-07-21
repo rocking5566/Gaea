@@ -24,7 +24,7 @@ public:
     void Pause();
     void Stop();
 
-    void RegisterDecodeVideoCallback(DecodeVideoCb videoCb);
+    void RegisterDecodeVideoCallback(DecodeVideoCb videoCb, void* vctx);
 
 private:
     bool TestAndGetVlcTrack();
@@ -37,6 +37,7 @@ private:
 
 private:
     DecodeVideoCb m_CbDecodeVideo;
+    void* m_vctx;
 
     libvlc_instance_t* m_vlcInstance;
     libvlc_media_player_t* m_vlcMediaPlayer;

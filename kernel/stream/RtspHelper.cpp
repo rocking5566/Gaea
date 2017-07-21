@@ -72,9 +72,10 @@ void CRtspHelper::Stop()
     libvlc_media_player_stop(m_vlcMediaPlayer);
 }
 
-void CRtspHelper::RegisterDecodeVideoCallback(DecodeVideoCb videoCb)
+void CRtspHelper::RegisterDecodeVideoCallback(DecodeVideoCb videoCb, void* vctx)
 {
     m_CbDecodeVideo = videoCb;
+    m_vctx = vctx;
 }
 
 bool CRtspHelper::TestAndGetVlcTrack()
@@ -158,9 +159,10 @@ void* CRtspHelper::VideoLockCallback(void *opaque, void **planes)
 void CRtspHelper::VideoUnlockCallback(void *opaque, void *picture, void *const *planes)
 {
     // TODO
-    Q_UNUSED(opaque);
     Q_UNUSED(picture);
     Q_UNUSED(planes);
+    CRtspHelper* This = (CRtspHelper*)opaque;
+    This->m_CbDecodeVideo(This->m_vctx, picture);
 }
 
 void CRtspHelper::VideoDisplayCallback(void *opaque, void *picture)
