@@ -12,7 +12,7 @@ CStreamCtrl::CStreamCtrl(QObject* parent /*= NULL*/)
 
 CStreamCtrl::~CStreamCtrl()
 {
-    SAFE_DELETE(m_pRtspStream);
+    DisConnect();
 }
 
 bool CStreamCtrl::Connect(SConnectInfo info)
@@ -55,10 +55,14 @@ void CStreamCtrl::DisConnect()
     {
     case eRTSP:
         m_pRtspStream->Stop();
+        m_pRtspStream->UnRegisterDecodeVideoCallback();
+        SAFE_DELETE(m_pRtspStream);
         break;
 
     default:
         break;
     }
+
+    m_SessionType = eNone;
 }
 
