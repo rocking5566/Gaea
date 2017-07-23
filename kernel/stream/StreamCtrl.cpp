@@ -15,21 +15,21 @@ CStreamCtrl::~CStreamCtrl()
     DisConnect();
 }
 
-bool CStreamCtrl::Connect(SConnectInfo info)
+bool CStreamCtrl::Connect(const SConnectInfo& rInfo)
 {
     bool ret = false;
 
     if (m_SessionType == eNone)
     {
-        switch (info.m_type)
+        switch (rInfo.m_type)
         {
         case eRTSP:
-            if (!info.m_sUrl.isEmpty())
+            if (!rInfo.m_sUrl.isEmpty())
             {
-                m_SessionType = info.m_type;
+                m_SessionType = rInfo.m_type;
                 m_pRtspStream = new CRtspStream();
                 m_pRtspStream->RegisterDecodeVideoCallback(VideoDecodeCallback, this);
-                m_pRtspStream->SetUrl(info.m_sUrl.toStdString().c_str());
+                m_pRtspStream->SetUrl(rInfo.m_sUrl.toStdString().c_str());
                 m_pRtspStream->Play();
 
                 ret = true;
@@ -47,6 +47,7 @@ bool CStreamCtrl::Connect(SConnectInfo info)
 void CStreamCtrl::VideoDecodeCallback(void* context, void* frame)
 {
     // TODO - deliver thread
+    int i = 0;
 }
 
 void CStreamCtrl::DisConnect()

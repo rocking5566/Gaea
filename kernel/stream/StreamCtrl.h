@@ -14,7 +14,7 @@ public:
     CStreamCtrl(QObject* parent = NULL);
     ~CStreamCtrl();
 
-    bool Connect(SConnectInfo info); // blocking API
+    bool Connect(const SConnectInfo& rInfo); // blocking API
     void DisConnect();
 
 private:
