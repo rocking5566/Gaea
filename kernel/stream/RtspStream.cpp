@@ -8,6 +8,8 @@ CRtspStream::CRtspStream()
     : m_vlcInstance(NULL)
     , m_vlcMediaPlayer(NULL)
     , m_pvlcMedia(NULL)
+    , m_CbDecodeVideo(NULL)
+    , m_vctx(NULL)
 {
     char const* vlc_args[] =
     {
@@ -149,7 +151,6 @@ bool CRtspStream::WaitConnection()
 
 void* CRtspStream::VideoLockCallback(void *opaque, void **planes)
 {
-    // TODO - alloc the frame buffer
     Q_UNUSED(opaque);
     Q_UNUSED(planes);
 
@@ -157,8 +158,14 @@ void* CRtspStream::VideoLockCallback(void *opaque, void **planes)
     int iWidth = This->m_profile.m_width;
     int iHeight = This->m_profile.m_height;
 
-    //*planes = CBufPoolMgr::GetSingleTon()->Alloc((iWidth * iHeight) << 2);
-    *planes = NULL;
+    if (This->m_CbDecodeVideo)
+    {
+        *planes = CBufPoolMgr::GetSingleTon()->Alloc((iWidth * iHeight) << 2);
+    }
+    else
+    {
+        *planes = NULL;
+    }
     return *planes;
 }
 
@@ -168,14 +175,17 @@ void CRtspStream::VideoUnlockCallback(void *opaque, void *picture, void *const *
     Q_UNUSED(picture);
     Q_UNUSED(planes);
     CRtspStream* This = (CRtspStream*)opaque;
-    This->m_CbDecodeVideo(This->m_vctx, picture);
+
+    if (This->m_CbDecodeVideo)
+    {
+        This->m_CbDecodeVideo(This->m_vctx, picture);
+    }
 }
 
 void CRtspStream::VideoDisplayCallback(void *opaque, void *picture)
 {
     Q_UNUSED(opaque);
     Q_UNUSED(picture);
-    //CBufPoolMgr::GetSingleTon()->Release((char*)picture);
 }
 
 
