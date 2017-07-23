@@ -176,7 +176,7 @@ void CRtspStream::VideoUnlockCallback(void *opaque, void *picture, void *const *
     Q_UNUSED(planes);
     CRtspStream* This = (CRtspStream*)opaque;
 
-    if (This->m_CbDecodeVideo)
+    if (This->m_CbDecodeVideo && picture != NULL)
     {
         This->m_CbDecodeVideo(This->m_vctx, picture);
     }
