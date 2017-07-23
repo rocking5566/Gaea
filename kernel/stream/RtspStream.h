@@ -25,6 +25,7 @@ public:
     void Stop();
 
     void RegisterDecodeVideoCallback(DecodeVideoCb videoCb, void* vctx);
+    void UnRegisterDecodeVideoCallback();
 
 private:
     bool TestAndGetVlcTrack();

@@ -78,6 +78,12 @@ void CRtspStream::RegisterDecodeVideoCallback(DecodeVideoCb videoCb, void* vctx)
     m_vctx = vctx;
 }
 
+void CRtspStream::UnRegisterDecodeVideoCallback()
+{
+    m_CbDecodeVideo = NULL;
+    m_vctx = NULL;
+}
+
 bool CRtspStream::TestAndGetVlcTrack()
 {
     libvlc_media_track_t **tracks = NULL;
