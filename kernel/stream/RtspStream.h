@@ -1,5 +1,5 @@
-#ifndef RtspHelper_h__
-#define RtspHelper_h__
+#ifndef RtspStream_h__
+#define RtspStream_h__
 
 #include <QString>
 #include "vlc/vlc.h"
@@ -45,4 +45,4 @@ private:
     libvlc_media_t* m_pvlcMedia;
     SVideoProfile m_profile;
 };
-#endif // RtspHelper_h__
+#endif // RtspStream_h__

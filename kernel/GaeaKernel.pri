@@ -1,7 +1,7 @@
 KERNEL_PATH = ../kernel
 
 SOURCES += $${KERNEL_PATH}/stream/PlayerCtrl.cpp \
-           $${KERNEL_PATH}/stream/RtspHelper.cpp \
+           $${KERNEL_PATH}/stream/RtspStream.cpp \
            $${KERNEL_PATH}/stream/StreamCtrl.cpp \
            $${KERNEL_PATH}/util/BufPoolMgr.cpp \
            $${KERNEL_PATH}/util/WorkerThread.cpp \
@@ -9,7 +9,7 @@ SOURCES += $${KERNEL_PATH}/stream/PlayerCtrl.cpp \
 
 HEADERS += $${KERNEL_PATH}/def/KernelTypes.h \
            $${KERNEL_PATH}/stream/PlayerCtrl.h \
-           $${KERNEL_PATH}/stream/RtspHelper.h \
+           $${KERNEL_PATH}/stream/RtspStream.h \
            $${KERNEL_PATH}/stream/StreamCtrl.h \
            $${KERNEL_PATH}/util/BufPoolMgr.h \
            $${KERNEL_PATH}/util/Util.h \
