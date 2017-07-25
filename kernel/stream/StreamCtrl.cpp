@@ -6,8 +6,9 @@ CStreamCtrl::CStreamCtrl(QObject* parent /*= NULL*/)
     : QThread(parent)
     , m_pRtspStream(NULL)
     , m_SessionType(eNone)
+    , m_bQuit(false)
 {
-
+    Start();
 }
 
 CStreamCtrl::~CStreamCtrl()
@@ -44,12 +45,6 @@ bool CStreamCtrl::Connect(const SConnectInfo& rInfo)
     return ret;
 }
 
-void CStreamCtrl::VideoDecodeCallback(void* context, void* frame)
-{
-    // TODO - deliver thread
-    int i = 0;
-}
-
 void CStreamCtrl::DisConnect()
 {
     switch (m_SessionType)
@@ -65,5 +60,48 @@ void CStreamCtrl::DisConnect()
     }
 
     m_SessionType = eNone;
+}
+
+void CStreamCtrl::VideoDecodeCallback(void* context, void* frame)
+{
+    // TODO - Congestion control
+
+    CStreamCtrl* This = (CStreamCtrl*)context;
+    This->m_DecodeImgQueueMutex.lock();
+    This->m_DecodeImgQueue.push_back((uchar*)frame);
+    This->m_WorkingCondition.wakeOne();
+    This->m_DecodeImgQueueMutex.unlock();
+}
+
+void CStreamCtrl::run()
+{
+    while (!m_bQuit)
+    {
+        QMutexLocker locker(&m_DecodeImgQueueMutex);
+        while (!m_bQuit && m_DecodeImgQueue.empty())
+        {
+            m_WorkingCondition.wait(&m_DecodeImgQueueMutex);
+        }
+
+        // TODO - Deliver data to callback
+        uchar* pData = m_DecodeImgQueue.front();
+
+        m_DecodeImgQueue.pop_front();
+    }
+}
+
+void CStreamCtrl::Start()
+{
+    if (!isRunning())
+    {
+        m_bQuit = false;
+        start();
+    }
+}
+
+void CStreamCtrl::Stop()
+{
+    m_bQuit = true;
+    m_WorkingCondition.wakeOne();
 }
 
