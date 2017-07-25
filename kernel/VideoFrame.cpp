@@ -24,7 +24,7 @@ CVideoFrame::CVideoFrame(QImage& src)
     : m_width(src.width())
     , m_height(src.height())
     , m_pData(NULL)
-    , m_qKeepRefCount(src)
+    , m_qImgData(src)
     , m_dataType(eQImage)
 {
 
@@ -34,7 +34,7 @@ CVideoFrame::CVideoFrame(cv::Mat& src)
     : m_width(src.cols)
     , m_height(src.rows)
     , m_pData(NULL)
-    , m_cvKeepRefCount(src)
+    , m_cvMatData(src)
     , m_dataType(eMat)
 {
 
@@ -52,19 +52,29 @@ uchar* CVideoFrame::Data()
     case eUCHAR:
         return m_pData.data();
     case eQImage:
-        return const_cast<uchar*>(m_qKeepRefCount.constBits());     // Avoid deep copy
+        return const_cast<uchar*>(m_qImgData.constBits());     // Avoid deep copy
     case eMat:
-        return m_cvKeepRefCount.data;
+        return m_cvMatData.data;
     }
 }
 
 Mat CVideoFrame::ToMat()
 {
+    if (m_dataType == eMat)
+    {
+        return m_cvMatData;
+    }
+
     return Mat(cv::Size(m_width, m_height), CV_8UC4, Data());
 }
 
 QImage CVideoFrame::ToQImage()
 {
+    if (m_dataType == eQImage)
+    {
+        return m_qImgData;
+    }
+
     return QImage(Data(), m_width, m_height, QImage::Format_ARGB32);
 }
 

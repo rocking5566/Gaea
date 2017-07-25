@@ -13,8 +13,11 @@ class CVideoFrame
     };
 public:
     CVideoFrame();
+    //! Data will be deleted at destruction when reference count is zero.
     CVideoFrame(uchar* uData, int iWidth, int iHeight);
+    //! Data will not be deleted at destruction, handle life cycle by outside.
     CVideoFrame(QImage& src);
+    //! Data will not be deleted at destruction, handle life cycle by outside.
     CVideoFrame(cv::Mat& src);
     ~CVideoFrame();
 
@@ -24,15 +27,12 @@ public:
     QImage ToQImage();
 
 private:
-    //=========================================================================
-    // QImage & Mat has its own ref count.
-    // If data come from QImage or Mat, let them keep life cycle of frame data
-    QImage m_qKeepRefCount;
-    cv::Mat m_cvKeepRefCount;
-    //=========================================================================
-
     EDataSrc m_dataType;
+
+    QImage m_qImgData;
+    cv::Mat m_cvMatData;
+    QSharedPointer<uchar> m_pData;
+
     unsigned int m_height;
     unsigned int m_width;
-    QSharedPointer<uchar> m_pData;
 };
