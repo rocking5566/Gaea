@@ -1,13 +1,15 @@
 #ifndef BufMgr_h__
 #define BufMgr_h__
 
+typedef unsigned char uchar;
+
 class CBufPoolMgr
 {
 public:
     static CBufPoolMgr* GetSingleTon();
 
-    char* Alloc(unsigned int size);
-    void Release(char* buf);
+    uchar* Alloc(unsigned int size);
+    void Release(uchar* buf);
 
 private:
     CBufPoolMgr();

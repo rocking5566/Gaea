@@ -23,13 +23,13 @@ CBufPoolMgr::~CBufPoolMgr()
 
 }
 
-char* CBufPoolMgr::Alloc(unsigned int size)
+uchar* CBufPoolMgr::Alloc(unsigned int size)
 {
-    return size > 0 ? new char[size] : NULL;
+    return size > 0 ? new uchar[size] : NULL;
     // TODO - get memory from associate buffer pool
 }
 
-void CBufPoolMgr::Release(char* buf)
+void CBufPoolMgr::Release(uchar* buf)
 {
     delete[] buf;
     // TODO - send memory back to associate buffer pool
