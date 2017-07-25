@@ -21,6 +21,7 @@ public:
     CVideoFrame(cv::Mat& src);
     ~CVideoFrame();
 
+    static CVideoFrame CopyFromMat(const cv::Mat& src);
 
     uchar* Data();
     cv::Mat ToMat();

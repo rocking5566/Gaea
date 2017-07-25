@@ -45,6 +45,12 @@ CVideoFrame::~CVideoFrame()
 
 }
 
+CVideoFrame CVideoFrame::CopyFromMat(const cv::Mat& src)
+{
+    Mat _src = src.clone();
+    return CVideoFrame(_src.data, src.cols, src.rows);
+}
+
 uchar* CVideoFrame::Data()
 {
     switch(m_dataType)
