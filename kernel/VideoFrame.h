@@ -1,3 +1,6 @@
+#ifndef VideoFrame_h__
+#define VideoFrame_h__
+
 #include <opencv2/core/core.hpp>
 #include <QImage>
 #include <QSharedPointer>
@@ -37,3 +40,4 @@ private:
     unsigned int m_height;
     unsigned int m_width;
 };
+#endif // VideoFrame_h__
