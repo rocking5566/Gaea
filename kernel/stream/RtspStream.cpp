@@ -154,6 +154,7 @@ void* CRtspStream::VideoLockCallback(void *opaque, void **planes)
     Q_UNUSED(opaque);
     Q_UNUSED(planes);
 
+    // TODO - Handle changing resolution dynamically
     CRtspStream* This = (CRtspStream*)opaque;
     int iWidth = This->m_profile.m_width;
     int iHeight = This->m_profile.m_height;
