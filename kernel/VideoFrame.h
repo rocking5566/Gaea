@@ -31,7 +31,7 @@ private:
     cv::Mat m_cvKeepRefCount;
     //=========================================================================
 
-    int m_dataType;
+    EDataSrc m_dataType;
     unsigned int m_height;
     unsigned int m_width;
     QSharedPointer<uchar> m_pData;
