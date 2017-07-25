@@ -5,6 +5,11 @@
 #include <QImage>
 #include <QSharedPointer>
 
+/*!
+    This class handle the life cycle of the frame data.
+    In addition, provide adapter for QImage & Mat data type.
+*/
+
 class CVideoFrame
 {
     enum EDataSrc

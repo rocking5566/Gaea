@@ -25,6 +25,10 @@ struct SRequest
     }
 };
 
+/*!
+    This class implement the worker-thread pattern.
+    Just inherit me!
+*/
 class CWorkerThread : public QThread
 {
     Q_OBJECT

@@ -8,6 +8,11 @@
 
 class CRtspStream;
 
+/*!
+    This class responsible for congestion control, error handle for the stream.
+    Compatible with many types of stream.
+    Ex: RTSP, web cam, local file ... etc.
+*/
 class CStreamCtrl : public QThread
 {
     Q_OBJECT

@@ -14,6 +14,10 @@ struct SVideoProfile
     unsigned int m_width;
 };
 
+/*!
+    This class is LibVLC wrapper, use libVlc to handle RTSP protocol and video decoder.
+    Replace with Live555 and ffmpeg in the future.
+*/
 class CRtspStream
 {
 public:

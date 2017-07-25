@@ -3,6 +3,9 @@
 
 #include "util/WorkerThread.h"
 
+/*!
+    This class provide interfaces to play multiple streams simultaneously.
+*/
 class CPlayCtrl : public CWorkerThread
 {
     Q_OBJECT

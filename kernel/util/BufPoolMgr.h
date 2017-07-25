@@ -3,6 +3,10 @@
 
 typedef unsigned char uchar;
 
+/*!
+    CBufPoolMgr manages buffer pool with multiple fix sizes.
+    Use this class to prevent fragmentation for virtual memory.
+*/
 class CBufPoolMgr
 {
 public:
