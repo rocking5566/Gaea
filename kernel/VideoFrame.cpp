@@ -45,21 +45,6 @@ CVideoFrame::~CVideoFrame()
 
 }
 
-CVideoFrame& CVideoFrame::operator=(CVideoFrame other)
-{
-    if (&other != this)
-    {
-        m_qKeepRefCount = other.m_qKeepRefCount;
-        m_cvKeepRefCount = other.m_cvKeepRefCount;
-        m_dataType = other.m_dataType;
-        m_height = other.m_height;
-        m_width = other.m_width;
-        m_pData = other.m_pData;
-    }
-
-    return *this;
-}
-
 uchar* CVideoFrame::Data()
 {
     switch(m_dataType)

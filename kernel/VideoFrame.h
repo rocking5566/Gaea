@@ -18,7 +18,6 @@ public:
     CVideoFrame(cv::Mat& src);
     ~CVideoFrame();
 
-    CVideoFrame& operator=(CVideoFrame other);
 
     uchar* Data();
     cv::Mat ToMat();
