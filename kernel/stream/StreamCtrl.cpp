@@ -62,13 +62,13 @@ void CStreamCtrl::DisConnect()
     m_SessionType = eNone;
 }
 
-void CStreamCtrl::VideoDecodeCallback(void* context, void* frame)
+void CStreamCtrl::VideoDecodeCallback(void* context, CVideoFrame frame)
 {
     // TODO - Congestion control
 
     CStreamCtrl* This = (CStreamCtrl*)context;
     This->m_DecodeImgQueueMutex.lock();
-    This->m_DecodeImgQueue.push_back((uchar*)frame);
+    This->m_DecodeImgQueue.push_back(frame);
     This->m_WorkingCondition.wakeOne();
     This->m_DecodeImgQueueMutex.unlock();
 }
@@ -84,7 +84,7 @@ void CStreamCtrl::run()
         }
 
         // TODO - Deliver data to callback
-        uchar* pData = m_DecodeImgQueue.front();
+        CVideoFrame frame = m_DecodeImgQueue.front();
 
         m_DecodeImgQueue.pop_front();
     }

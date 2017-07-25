@@ -3,8 +3,9 @@
 
 #include <QString>
 #include "vlc/vlc.h"
+#include "VideoFrame.h"
 
-typedef void (*DecodeVideoCb)(void *context, void *frame);
+typedef void (*DecodeVideoCb)(void *context, CVideoFrame frame);
 
 struct SVideoProfile
 {

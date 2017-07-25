@@ -4,6 +4,7 @@
 #include <QThread>
 #include <QWaitCondition>
 #include "def/KernelTypes.h"
+#include "VideoFrame.h"
 
 class CRtspStream;
 
@@ -19,7 +20,7 @@ public:
     void DisConnect();
 
 private:
-    static void VideoDecodeCallback(void* context, void* frame);
+    static void VideoDecodeCallback(void* context, CVideoFrame frame);
 
     void run();
     void Start();
@@ -33,6 +34,6 @@ private:
 
     CRtspStream* m_pRtspStream;
     EConnectType m_SessionType;
-    QList<uchar*> m_DecodeImgQueue;
+    QList<CVideoFrame> m_DecodeImgQueue;
 };
 #endif // StreamSession_h__
