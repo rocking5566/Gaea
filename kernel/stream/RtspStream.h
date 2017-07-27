@@ -29,7 +29,7 @@ public:
     void Pause();
     void Stop();
 
-    void RegisterDecodeVideoCallback(DecodeVideoCb videoCb, void* vctx);    // Caller is responsible for releasing the memory of the frame
+    void RegisterDecodeVideoCallback(DecodeVideoCb videoCb, void* vctx);
     void UnRegisterDecodeVideoCallback();
 
 private:
