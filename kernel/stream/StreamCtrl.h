@@ -26,10 +26,11 @@ public:
 
 private:
     static void VideoDecodeCallback(void* context, CVideoFrame frame);
+    void DeliverData();
 
-    void run();
-    void Start();
-    void Stop();
+    virtual void run();
+    void StartDeliverThread();
+    void StopDeliverThread();
 
 private:
     bool m_bQuit;

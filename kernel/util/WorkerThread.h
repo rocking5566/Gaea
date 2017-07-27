@@ -45,7 +45,7 @@ protected:
     virtual void HandleRequest(SRequest request);
 
 private:
-    void run();
+    virtual void run();
 
 private:
     bool m_bQuit;

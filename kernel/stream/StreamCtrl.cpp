@@ -8,7 +8,7 @@ CStreamCtrl::CStreamCtrl(QObject* parent /*= NULL*/)
     , m_SessionType(eNone)
     , m_bQuit(false)
 {
-    Start();
+    StartDeliverThread();
 }
 
 CStreamCtrl::~CStreamCtrl()
@@ -83,14 +83,19 @@ void CStreamCtrl::run()
             m_WorkingCondition.wait(&m_DecodeImgQueueMutex);
         }
 
-        // TODO - Deliver data to callback
-        CVideoFrame frame = m_DecodeImgQueue.front();
-
-        m_DecodeImgQueue.pop_front();
+        DeliverData();
     }
 }
 
-void CStreamCtrl::Start()
+void CStreamCtrl::DeliverData()
+{
+    // TODO - Deliver data to callback
+    CVideoFrame frame = m_DecodeImgQueue.front();
+
+    m_DecodeImgQueue.pop_front();
+}
+
+void CStreamCtrl::StartDeliverThread()
 {
     if (!isRunning())
     {
@@ -99,7 +104,7 @@ void CStreamCtrl::Start()
     }
 }
 
-void CStreamCtrl::Stop()
+void CStreamCtrl::StopDeliverThread()
 {
     m_bQuit = true;
     m_WorkingCondition.wakeOne();
