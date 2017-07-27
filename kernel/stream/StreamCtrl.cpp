@@ -83,14 +83,20 @@ void CStreamCtrl::run()
             m_WorkingCondition.wait(&m_DecodeImgQueueMutex);
         }
 
-        DeliverData();
+        DeliverVideo();
     }
 }
 
-void CStreamCtrl::DeliverData()
+void CStreamCtrl::DeliverVideo()
 {
-    // TODO - Deliver data to callback
     CVideoFrame frame = m_DecodeImgQueue.front();
+    auto iter = m_mapVideoCb.constBegin();
+
+    while (iter != m_mapVideoCb.constEnd())
+    {
+        DecodeVideoCb videoCb = iter.value();
+        videoCb(iter++.key(), frame);
+    }
 
     m_DecodeImgQueue.pop_front();
 }
@@ -110,3 +116,12 @@ void CStreamCtrl::StopDeliverThread()
     m_WorkingCondition.wakeOne();
 }
 
+void CStreamCtrl::Attach(DecodeVideoCb videoCb, void* ctx)
+{
+    m_mapVideoCb[ctx] = videoCb;
+}
+
+void CStreamCtrl::Detach(void* ctx)
+{
+    m_mapVideoCb.remove(ctx);
+}

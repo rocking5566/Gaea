@@ -3,10 +3,12 @@
 
 #include <QThread>
 #include <QWaitCondition>
+#include <QMap>
 #include "def/KernelTypes.h"
 #include "VideoFrame.h"
 
 class CRtspStream;
+typedef void (*DecodeVideoCb)(void *context, CVideoFrame frame);
 
 /*!
     This class responsible for congestion control, error handle for the stream.
@@ -23,10 +25,12 @@ public:
 
     bool Connect(const SConnectInfo& rInfo); // blocking API
     void DisConnect();
+    void Attach(DecodeVideoCb videoCb, void* ctx);
+    void Detach(void* ctx);
 
 private:
     static void VideoDecodeCallback(void* context, CVideoFrame frame);
-    void DeliverData();
+    void DeliverVideo();
 
     virtual void run();
     void StartDeliverThread();
@@ -41,5 +45,6 @@ private:
     CRtspStream* m_pRtspStream;
     EConnectType m_SessionType;
     QList<CVideoFrame> m_DecodeImgQueue;
+    QMap<void*, DecodeVideoCb> m_mapVideoCb;
 };
 #endif // StreamSession_h__
