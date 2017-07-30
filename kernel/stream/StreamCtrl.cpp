@@ -2,8 +2,9 @@
 #include "RtspStream.h"
 #include "util/Util.h"
 
-CStreamCtrl::CStreamCtrl(QObject* parent /*= NULL*/)
+CStreamCtrl::CStreamCtrl(int streamID, QObject* parent /*= NULL*/)
     : QThread(parent)
+    , m_iStreamID(streamID)
     , m_pRtspStream(NULL)
     , m_SessionType(eNone)
     , m_bQuit(false)
@@ -94,8 +95,8 @@ void CStreamCtrl::DeliverVideo()
 
     while (iter != m_mapVideoCb.constEnd())
     {
-        DecodeVideoCb videoCb = iter.value();
-        videoCb(iter++.key(), frame);
+        StreamCb videoCb = iter.value();
+        videoCb(iter++.key(), this, frame);
     }
 
     m_DecodeImgQueue.pop_front();
@@ -116,7 +117,7 @@ void CStreamCtrl::StopDeliverThread()
     m_WorkingCondition.wakeOne();
 }
 
-void CStreamCtrl::Attach(DecodeVideoCb videoCb, void* ctx)
+void CStreamCtrl::Attach(StreamCb videoCb, void* ctx)
 {
     m_mapVideoCb[ctx] = videoCb;
 }

@@ -8,7 +8,8 @@
 #include "VideoFrame.h"
 
 class CRtspStream;
-typedef void (*DecodeVideoCb)(void *context, CVideoFrame frame);
+class CStreamCtrl;
+typedef void (*StreamCb)(void *context, CStreamCtrl* pSrcStream, CVideoFrame frame);
 
 /*!
     This class responsible for congestion control, error handle for the stream.
@@ -20,12 +21,13 @@ class CStreamCtrl : public QThread
     Q_OBJECT
 
 public:
-    CStreamCtrl(QObject* parent = NULL);
+    CStreamCtrl(int streamID, QObject* parent = NULL);
     ~CStreamCtrl();
 
+    int GetStreamID();
     bool Connect(const SConnectInfo& rInfo); // blocking API
     void DisConnect();
-    void Attach(DecodeVideoCb videoCb, void* ctx);
+    void Attach(StreamCb videoCb, void* ctx);
     void Detach(void* ctx);
 
 private:
@@ -41,10 +43,10 @@ private:
     QMutex m_DecodeImgQueueMutex;
     QWaitCondition m_WorkingCondition;
 
-
+    int m_iStreamID;
     CRtspStream* m_pRtspStream;
     EConnectType m_SessionType;
     QList<CVideoFrame> m_DecodeImgQueue;
-    QMap<void*, DecodeVideoCb> m_mapVideoCb;
+    QMap<void*, StreamCb> m_mapVideoCb;
 };
 #endif // StreamSession_h__
