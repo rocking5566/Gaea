@@ -1,3 +1,6 @@
+#ifndef KernelTypes_h__
+#define KernelTypes_h__
+
 #include <QString>
 
 enum EConnectType
@@ -19,3 +22,4 @@ struct SConnectInfo
     QString m_sUrl;             // eLocalFile or eRTSP
     int m_iWebCamDeviceID;      // eWebCam
 };
+#endif // KernelTypes_h__
