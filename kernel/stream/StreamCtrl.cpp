@@ -17,6 +17,11 @@ CStreamCtrl::~CStreamCtrl()
     DisConnect();
 }
 
+int CStreamCtrl::GetStreamID()
+{
+    return m_iStreamID;
+}
+
 bool CStreamCtrl::Connect(const SConnectInfo& rInfo)
 {
     bool ret = false;
