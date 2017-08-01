@@ -46,18 +46,6 @@ void CWorkerThread::run()
     }
 }
 
-void CWorkerThread::HandleRequest(SRequest request)
-{
-    switch (request.m_RequestType)
-    {
-    case RequestType_None:
-        break;
-
-    default:
-        break;
-    }
-}
-
 void CWorkerThread::Start()
 {
     if (!isRunning())

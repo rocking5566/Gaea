@@ -42,7 +42,7 @@ protected:
     void Stop();
     void PushRequestToQueue(RequestType type, QVariant iParam1, void *pvParam2);
 
-    virtual void HandleRequest(SRequest request);
+    virtual void HandleRequest(SRequest request) = 0;
 
 private:
     virtual void run();
