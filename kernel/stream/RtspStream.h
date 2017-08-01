@@ -5,7 +5,7 @@
 #include "vlc/vlc.h"
 #include "VideoFrame.h"
 
-typedef void (*DecodeVideoCb)(void *context, CVideoFrame frame);
+typedef void (*DecodeVideoCb)(void *pListener, CVideoFrame frame);
 
 struct SVideoProfile
 {
@@ -29,7 +29,7 @@ public:
     void Pause();
     void Stop();
 
-    void RegisterDecodeVideoCallback(DecodeVideoCb videoCb, void* vctx);
+    void RegisterDecodeVideoCallback(DecodeVideoCb videoCb, void* pListener);
     void UnRegisterDecodeVideoCallback();
 
 private:
@@ -43,7 +43,7 @@ private:
 
 private:
     DecodeVideoCb m_CbDecodeVideo;
-    void* m_vctx;
+    void* m_pListener;
 
     libvlc_instance_t* m_vlcInstance;
     libvlc_media_player_t* m_vlcMediaPlayer;

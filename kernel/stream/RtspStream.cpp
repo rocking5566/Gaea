@@ -9,7 +9,7 @@ CRtspStream::CRtspStream()
     , m_vlcMediaPlayer(NULL)
     , m_pvlcMedia(NULL)
     , m_CbDecodeVideo(NULL)
-    , m_vctx(NULL)
+    , m_pListener(NULL)
 {
     char const* vlc_args[] =
     {
@@ -74,16 +74,16 @@ void CRtspStream::Stop()
     libvlc_media_player_stop(m_vlcMediaPlayer);
 }
 
-void CRtspStream::RegisterDecodeVideoCallback(DecodeVideoCb videoCb, void* vctx)
+void CRtspStream::RegisterDecodeVideoCallback(DecodeVideoCb videoCb, void* pListener)
 {
     m_CbDecodeVideo = videoCb;
-    m_vctx = vctx;
+    m_pListener = pListener;
 }
 
 void CRtspStream::UnRegisterDecodeVideoCallback()
 {
     m_CbDecodeVideo = NULL;
-    m_vctx = NULL;
+    m_pListener = NULL;
 }
 
 bool CRtspStream::TestAndGetVlcTrack()
@@ -180,7 +180,7 @@ void CRtspStream::VideoUnlockCallback(void *opaque, void *picture, void *const *
     if (This->m_CbDecodeVideo && picture != NULL)
     {
         CVideoFrame frame((uchar*) picture, This->m_profile.m_width, This->m_profile.m_height);
-        This->m_CbDecodeVideo(This->m_vctx, frame);
+        This->m_CbDecodeVideo(This->m_pListener, frame);
     }
 }
 

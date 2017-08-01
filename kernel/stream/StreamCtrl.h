@@ -9,7 +9,7 @@
 
 class CRtspStream;
 class CStreamCtrl;
-typedef void (*StreamCb)(void *context, CStreamCtrl* pSrcStream, CVideoFrame frame);
+typedef void (*StreamCb)(void *pListener, CStreamCtrl* pSrcStream, CVideoFrame frame);
 
 /*!
     This class responsible for congestion control, error handle for the stream.
@@ -27,11 +27,11 @@ public:
     int GetStreamID();
     bool Connect(const SConnectInfo& rInfo); // blocking API
     void DisConnect();
-    void Attach(StreamCb videoCb, void* ctx);
-    void Detach(void* ctx);
+    void Attach(StreamCb videoCb, void* pListener);
+    void Detach(void* pListener);
 
 private:
-    static void VideoDecodeCallback(void* context, CVideoFrame frame);
+    static void VideoDecodeCallback(void* _this, CVideoFrame frame);
     void DeliverVideo();
 
     virtual void run();
@@ -47,6 +47,6 @@ private:
     CRtspStream* m_pRtspStream;
     EConnectType m_SessionType;
     QList<CVideoFrame> m_DecodeImgQueue;
-    QMap<void*, StreamCb> m_mapVideoCb;
+    QMap<void*, StreamCb> m_mapListenerToVideoCb;
 };
 #endif // StreamSession_h__

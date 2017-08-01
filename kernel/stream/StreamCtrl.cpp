@@ -68,11 +68,11 @@ void CStreamCtrl::DisConnect()
     m_SessionType = eNone;
 }
 
-void CStreamCtrl::VideoDecodeCallback(void* context, CVideoFrame frame)
+void CStreamCtrl::VideoDecodeCallback(void* _this, CVideoFrame frame)
 {
     // TODO - Congestion control
 
-    CStreamCtrl* This = (CStreamCtrl*)context;
+    CStreamCtrl* This = (CStreamCtrl*)_this;
     This->m_DecodeImgQueueMutex.lock();
     This->m_DecodeImgQueue.push_back(frame);
     This->m_WorkingCondition.wakeOne();
@@ -96,9 +96,9 @@ void CStreamCtrl::run()
 void CStreamCtrl::DeliverVideo()
 {
     CVideoFrame frame = m_DecodeImgQueue.front();
-    auto iter = m_mapVideoCb.constBegin();
+    auto iter = m_mapListenerToVideoCb.constBegin();
 
-    while (iter != m_mapVideoCb.constEnd())
+    while (iter != m_mapListenerToVideoCb.constEnd())
     {
         StreamCb videoCb = iter.value();
         videoCb(iter++.key(), this, frame);
@@ -122,12 +122,12 @@ void CStreamCtrl::StopDeliverThread()
     m_WorkingCondition.wakeOne();
 }
 
-void CStreamCtrl::Attach(StreamCb videoCb, void* ctx)
+void CStreamCtrl::Attach(StreamCb videoCb, void* pListener)
 {
-    m_mapVideoCb[ctx] = videoCb;
+    m_mapListenerToVideoCb[pListener] = videoCb;
 }
 
-void CStreamCtrl::Detach(void* ctx)
+void CStreamCtrl::Detach(void* pListener)
 {
-    m_mapVideoCb.remove(ctx);
+    m_mapListenerToVideoCb.remove(pListener);
 }
