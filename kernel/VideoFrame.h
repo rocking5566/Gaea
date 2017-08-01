@@ -31,6 +31,16 @@ public:
 
     static CVideoFrame CopyFromMat(const cv::Mat& src);
 
+    inline unsigned int Height()
+    {
+        return m_height;
+    }
+
+    inline unsigned int Width()
+    {
+        return m_width;
+    }
+
     uchar* Data();
     cv::Mat ToMat();
     QImage ToQImage();
