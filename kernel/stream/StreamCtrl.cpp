@@ -96,12 +96,11 @@ void CStreamCtrl::run()
 void CStreamCtrl::DeliverVideo()
 {
     CVideoFrame frame = m_DecodeImgQueue.front();
-    auto iter = m_mapListenerToVideoCb.constBegin();
 
-    while (iter != m_mapListenerToVideoCb.constEnd())
+    for (auto iter = m_listenerCallbackList.begin(); iter != m_listenerCallbackList.end(); ++iter)
     {
-        StreamCb videoCb = iter.value();
-        videoCb(iter++.key(), this, frame);
+        // StreamCb
+        iter->second(iter->first, this, frame);
     }
 
     m_DecodeImgQueue.pop_front();
@@ -124,10 +123,17 @@ void CStreamCtrl::StopDeliverThread()
 
 void CStreamCtrl::Attach(StreamCb videoCb, void* pListener)
 {
-    m_mapListenerToVideoCb[pListener] = videoCb;
+    m_listenerCallbackList << qMakePair(pListener, videoCb);
 }
 
 void CStreamCtrl::Detach(void* pListener)
 {
-    m_mapListenerToVideoCb.remove(pListener);
+    for (auto iter = m_listenerCallbackList.begin(); iter != m_listenerCallbackList.end(); ++iter)
+    {
+        if(iter->first == pListener)
+        {
+            m_listenerCallbackList.erase(iter);
+            break;
+        }
+    }
 }
