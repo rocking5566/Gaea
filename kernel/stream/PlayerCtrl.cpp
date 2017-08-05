@@ -15,16 +15,22 @@ CPlayerCtrl::CPlayerCtrl(QObject* parent)
 CPlayerCtrl::~CPlayerCtrl()
 {
     Stop();
+
     auto iter = m_mapIdToStreamData.constBegin();
     while (iter != m_mapIdToStreamData.constEnd())
     {
+        iter.value().m_Stream->Detach(this);
         iter.value().m_Stream->DisConnect();
         ++iter;
     }
+
+    m_mapIdToStreamData.clear();
 }
 
 void CPlayerCtrl::AttachStream(int iStreamID, VideoCb videoCb, void* pListener)
 {
+    QMutexLocker locker(&m_StreamsMutex);
+
     if (m_mapIdToStreamData.contains(iStreamID))
     {
         SStreamCallbackData cbData;
@@ -37,6 +43,8 @@ void CPlayerCtrl::AttachStream(int iStreamID, VideoCb videoCb, void* pListener)
 
 void CPlayerCtrl::DetachStream(int iStreamID, void* pListener)
 {
+    QMutexLocker locker(&m_StreamsMutex);
+
     if (m_mapIdToStreamData.contains(iStreamID))
     {
         SPlayerStreamData& rStreamData = m_mapIdToStreamData[iStreamID];
@@ -56,6 +64,8 @@ void CPlayerCtrl::DetachStream(int iStreamID, void* pListener)
 void CPlayerCtrl::StreamCallback(void *_this, CStreamCtrl* pSrcStream, CVideoFrame frame)
 {
     CPlayerCtrl* This = (CPlayerCtrl*)_this;
+    QMutexLocker locker(&This->m_StreamsMutex);
+
     int streamID = pSrcStream->GetStreamID();
 
     if (This->m_mapIdToStreamData.contains(streamID))
@@ -91,7 +101,7 @@ void CPlayerCtrl::HandleRequest(SRequest request)
 
 int CPlayerCtrl::Connect(const SConnectInfo& rInfo)
 {
-    m_StreamsLock.lockForWrite();
+    QMutexLocker locker(&m_StreamsMutex);
 
     int iStreamID = m_iStreamNextID++;
     SPlayerStreamData streamData;
@@ -100,13 +110,13 @@ int CPlayerCtrl::Connect(const SConnectInfo& rInfo)
     m_mapIdToStreamData[iStreamID] = streamData;
     PushRequestToQueue(RequestType_Connect, iStreamID, NULL);
 
-    m_StreamsLock.unlock();
-
     return iStreamID;
 }
 
 void CPlayerCtrl::OnConnect(int iStreamID)
 {
+    QMutexLocker locker(&m_StreamsMutex);
+
     SPlayerStreamData& rStreamData = m_mapIdToStreamData[iStreamID];
     rStreamData.m_Stream->Connect(rStreamData.m_StreamInfo);
     rStreamData.m_Stream->Attach(StreamCallback, this);
@@ -120,6 +130,8 @@ void CPlayerCtrl::DisConnect(int iStreamID, bool bIsAsync)
     }
     else
     {
+        QMutexLocker locker(&m_StreamsMutex);
+
         if (m_mapIdToStreamData.contains(iStreamID))
         {
             m_mapIdToStreamData[iStreamID].m_Stream->Detach(this);

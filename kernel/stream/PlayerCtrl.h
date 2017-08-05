@@ -57,7 +57,7 @@ private:
     };
 
 private:
-    QReadWriteLock m_StreamsLock;
+    QMutex m_StreamsMutex;
     int m_iStreamNextID;
     QMap<int, SPlayerStreamData> m_mapIdToStreamData;   //ID -> SPlayerStreamData
 };
