@@ -9,13 +9,7 @@ CWorkerThread::CWorkerThread(QObject* parent)
 
 CWorkerThread::~CWorkerThread()
 {
-    m_bQuit = true;
-    m_WorkingCondition.wakeOne();
-
-    while (isRunning())
-    {
-        wait(100);
-    }
+    Stop();
 }
 
 void CWorkerThread::run()
@@ -59,6 +53,11 @@ void CWorkerThread::Stop()
 {
     m_bQuit = true;
     m_WorkingCondition.wakeOne();
+
+    while (isRunning())
+    {
+        wait(100);
+    }
 }
 
 void CWorkerThread::PushRequestToQueue(RequestType type, QVariant iParam1, void *pvParam2)
