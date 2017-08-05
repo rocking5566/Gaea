@@ -14,6 +14,7 @@ CPlayerCtrl::CPlayerCtrl(QObject* parent)
 
 CPlayerCtrl::~CPlayerCtrl()
 {
+    Stop();
     auto iter = m_mapIdToStreamData.constBegin();
     while (iter != m_mapIdToStreamData.constEnd())
     {
