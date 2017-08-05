@@ -1,5 +1,6 @@
 #include "PlayerCtrl.h"
 #include "StreamCtrl.h"
+#include "util/Util.h"
 
 #define RequestType_Connect 1
 #define RequestType_DisConnect 2
@@ -13,7 +14,12 @@ CPlayerCtrl::CPlayerCtrl(QObject* parent)
 
 CPlayerCtrl::~CPlayerCtrl()
 {
-
+    auto iter = m_mapIdToStreamData.constBegin();
+    while (iter != m_mapIdToStreamData.constEnd())
+    {
+        iter.value().m_Stream->DisConnect();
+        ++iter;
+    }
 }
 
 void CPlayerCtrl::AttachStream(int iStreamID, VideoCb videoCb, void* pListener)
@@ -117,6 +123,7 @@ void CPlayerCtrl::DisConnect(int iStreamID, bool bIsAsync)
         {
             m_mapIdToStreamData[iStreamID].m_Stream->Detach(this);
             m_mapIdToStreamData[iStreamID].m_Stream->DisConnect();
+            SAFE_DELETE(m_mapIdToStreamData[iStreamID].m_Stream);
             m_mapIdToStreamData.remove(iStreamID);
         }
     }
