@@ -14,6 +14,7 @@ CStreamCtrl::CStreamCtrl(int streamID, QObject* parent /*= NULL*/)
 
 CStreamCtrl::~CStreamCtrl()
 {
+    StopDeliverThread();
     DisConnect();
 }
 
@@ -119,6 +120,11 @@ void CStreamCtrl::StopDeliverThread()
 {
     m_bQuit = true;
     m_WorkingCondition.wakeOne();
+
+    while (isRunning())
+    {
+        wait(100);
+    }
 }
 
 void CStreamCtrl::Attach(StreamCb videoCb, void* pListener)
