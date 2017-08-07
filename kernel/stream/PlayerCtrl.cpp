@@ -130,14 +130,18 @@ void CPlayerCtrl::DisConnect(int iStreamID, bool bIsAsync)
     }
     else
     {
-        QMutexLocker locker(&m_StreamsMutex);
+        CStreamCtrl* pDeleteStream = NULL;
+        m_StreamsMutex.lock();
 
         if (m_mapIdToStreamData.contains(iStreamID))
         {
             m_mapIdToStreamData[iStreamID].m_Stream->Detach(this);
             m_mapIdToStreamData[iStreamID].m_Stream->DisConnect();
-            SAFE_DELETE(m_mapIdToStreamData[iStreamID].m_Stream);
+            pDeleteStream = m_mapIdToStreamData[iStreamID].m_Stream;
             m_mapIdToStreamData.remove(iStreamID);
         }
+
+        m_StreamsMutex.unlock();
+        SAFE_DELETE(pDeleteStream);
     }
 }
