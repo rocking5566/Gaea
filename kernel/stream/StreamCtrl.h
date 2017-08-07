@@ -47,6 +47,7 @@ private:
     CRtspStream* m_pRtspStream;
     EConnectType m_SessionType;
     QList<CVideoFrame> m_DecodeImgQueue;
+    QList<CVideoFrame> m_DeliveringDecodeImgQueue;
     QList<QPair<void*, StreamCb> > m_listenerCallbackList;
 };
 #endif // StreamSession_h__
