@@ -5,11 +5,10 @@
 using namespace std;
 
 CRtspStream::CRtspStream()
-    : m_vlcInstance(NULL)
+    : CStreamClient()
+    , m_vlcInstance(NULL)
     , m_vlcMediaPlayer(NULL)
     , m_pvlcMedia(NULL)
-    , m_CbDecodeVideo(NULL)
-    , m_pListener(NULL)
 {
     char const* vlc_args[] =
     {
@@ -72,18 +71,6 @@ void CRtspStream::Pause()
 void CRtspStream::Stop()
 {
     libvlc_media_player_stop(m_vlcMediaPlayer);
-}
-
-void CRtspStream::RegisterDecodeVideoCallback(DecodeVideoCb videoCb, void* pListener)
-{
-    m_CbDecodeVideo = videoCb;
-    m_pListener = pListener;
-}
-
-void CRtspStream::UnRegisterDecodeVideoCallback()
-{
-    m_CbDecodeVideo = NULL;
-    m_pListener = NULL;
 }
 
 bool CRtspStream::TestAndGetVlcTrack()

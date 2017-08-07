@@ -7,7 +7,7 @@
 #include "def/KernelTypes.h"
 #include "VideoFrame.h"
 
-class CRtspStream;
+class CStreamClient;
 class CStreamCtrl;
 typedef void (*StreamCb)(void *pListener, CStreamCtrl* pSrcStream, CVideoFrame frame);
 
@@ -44,7 +44,7 @@ private:
     QWaitCondition m_WorkingCondition;
 
     int m_iStreamID;
-    CRtspStream* m_pRtspStream;
+    CStreamClient* m_pStreamClient;
     EConnectType m_SessionType;
     QList<CVideoFrame> m_DecodeImgQueue;
     QList<CVideoFrame> m_DeliveringDecodeImgQueue;

@@ -5,7 +5,7 @@
 CStreamCtrl::CStreamCtrl(int streamID, QObject* parent /*= NULL*/)
     : QThread(parent)
     , m_iStreamID(streamID)
-    , m_pRtspStream(NULL)
+    , m_pStreamClient(NULL)
     , m_SessionType(eNone)
     , m_bQuit(false)
 {
@@ -35,10 +35,10 @@ bool CStreamCtrl::Connect(const SConnectInfo& rInfo)
             if (!rInfo.m_sUrl.isEmpty())
             {
                 m_SessionType = rInfo.m_type;
-                m_pRtspStream = new CRtspStream();
-                m_pRtspStream->RegisterDecodeVideoCallback(VideoDecodeCallback, this);
-                m_pRtspStream->SetUrl(rInfo.m_sUrl.toStdString().c_str());
-                m_pRtspStream->Play();
+                m_pStreamClient = new CRtspStream();
+                m_pStreamClient->RegisterDecodeVideoCallback(VideoDecodeCallback, this);
+                m_pStreamClient->SetUrl(rInfo.m_sUrl.toStdString().c_str());
+                m_pStreamClient->Play();
 
                 ret = true;
             }
@@ -57,9 +57,9 @@ void CStreamCtrl::DisConnect()
     switch (m_SessionType)
     {
     case eRTSP:
-        m_pRtspStream->Stop();
-        m_pRtspStream->UnRegisterDecodeVideoCallback();
-        SAFE_DELETE(m_pRtspStream);
+        m_pStreamClient->Stop();
+        m_pStreamClient->UnRegisterDecodeVideoCallback();
+        SAFE_DELETE(m_pStreamClient);
         break;
 
     default:
