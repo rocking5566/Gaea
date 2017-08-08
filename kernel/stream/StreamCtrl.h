@@ -4,6 +4,7 @@
 #include <QThread>
 #include <QWaitCondition>
 #include <QMap>
+#include <QMutex>
 #include "def/KernelTypes.h"
 #include "VideoFrame.h"
 
