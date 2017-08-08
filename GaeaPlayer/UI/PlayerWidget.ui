@@ -83,7 +83,7 @@
   <customwidget>
    <class>CRenderWidget</class>
    <extends>QOpenGLWidget</extends>
-   <header>Renderwidget.h</header>
+   <header location="global">RenderWidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
