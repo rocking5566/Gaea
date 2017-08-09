@@ -5,13 +5,6 @@
 #include "vlc/vlc.h"
 #include "StreamClient.h"
 
-struct SVideoProfile
-{
-    unsigned int m_bitrate;
-    unsigned int m_height;
-    unsigned int m_width;
-};
-
 /*!
     This class is LibVLC wrapper, use libVlc to handle RTSP protocol and video decoder.
     Replace with Live555 and ffmpeg in the future.
@@ -40,6 +33,5 @@ private:
     libvlc_instance_t* m_vlcInstance;
     libvlc_media_player_t* m_vlcMediaPlayer;
     libvlc_media_t* m_pvlcMedia;
-    SVideoProfile m_profile;
 };
 #endif // RtspStream_h__

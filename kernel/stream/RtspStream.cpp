@@ -20,7 +20,6 @@ CRtspStream::CRtspStream()
     m_vlcInstance = libvlc_new(sizeof(vlc_args) / sizeof(vlc_args[0]), vlc_args);
     m_vlcMediaPlayer = libvlc_media_player_new(m_vlcInstance);
     libvlc_video_set_callbacks(m_vlcMediaPlayer, VideoLockCallback, VideoUnlockCallback, VideoDisplayCallback, this);
-    memset (&m_profile, 0, sizeof(SVideoProfile));
 }
 
 CRtspStream::~CRtspStream()

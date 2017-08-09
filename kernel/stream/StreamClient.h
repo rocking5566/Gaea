@@ -5,6 +5,13 @@
 
 typedef void(*DecodeVideoCb)(void *pListener, CVideoFrame frame);
 
+struct SVideoProfile
+{
+    unsigned int m_bitrate;
+    unsigned int m_height;
+    unsigned int m_width;
+};
+
 /*!
     This class is the base class of stream.
 */
@@ -26,5 +33,7 @@ public:
 protected:
     DecodeVideoCb m_CbDecodeVideo;
     void* m_pListener;
+
+    SVideoProfile m_profile;
 };
 #endif // CStreamClient_h__
