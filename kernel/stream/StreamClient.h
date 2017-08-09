@@ -5,6 +5,10 @@
 
 typedef void(*DecodeVideoCb)(void *pListener, CVideoFrame frame);
 
+/*!
+    This class is the base class of stream.
+*/
+
 class CStreamClient
 {
 public:
