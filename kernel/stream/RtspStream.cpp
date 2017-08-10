@@ -32,6 +32,8 @@ CRtspStream::~CRtspStream()
 
 void CRtspStream::SetUrl(const char* sUrl)
 {
+    Stop();
+
     if (m_pvlcMedia != NULL)
     {
         libvlc_media_release(m_pvlcMedia);
