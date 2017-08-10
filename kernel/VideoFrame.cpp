@@ -17,7 +17,8 @@ CVideoFrame::CVideoFrame(uchar* uData, int iWidth, int iHeight)
     , m_pData(uData)
     , m_dataType(eUCHAR)
 {
-
+    // TODO - Support more image formats.
+    // Only support 32-bit ARGB format (0xAARRGGBB) so far.
 }
 
 CVideoFrame::CVideoFrame(QImage& src)
@@ -81,6 +82,32 @@ QImage CVideoFrame::ToQImage()
         return m_qImgData;
     }
 
-    return QImage(Data(), m_width, m_height, QImage::Format_ARGB32);
+    QImage::Format format = QImage::Format_ARGB32;
+
+    if (eMat == m_dataType)
+    {
+        if (CV_8UC3 == m_cvMatData.type())
+        {
+            // OpenCV is BGR by default.
+            QImage ret(Data(), m_width, m_height, QImage::Format_RGB888);
+            return ret.rgbSwapped();
+        }
+
+        switch (m_cvMatData.type())
+        {
+        case CV_8UC1:
+            format = QImage::Format_Indexed8;
+            break;
+        case CV_8UC4:
+            format = QImage::Format_ARGB32;
+            break;
+        }
+    }
+    else if (eUCHAR == m_dataType)
+    {
+        format = QImage::Format_ARGB32;
+    }
+
+    return QImage(Data(), m_width, m_height, format);
 }
 

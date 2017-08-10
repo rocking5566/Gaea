@@ -22,6 +22,7 @@ class CVideoFrame
 public:
     CVideoFrame();
     //! Data will be deleted at destruction when reference count is zero.
+    //! Only support 32-bit ARGB format (0xAARRGGBB).
     CVideoFrame(uchar* uData, int iWidth, int iHeight);
     //! Data will not be deleted at destruction, handle life cycle by outside.
     CVideoFrame(QImage& src);
