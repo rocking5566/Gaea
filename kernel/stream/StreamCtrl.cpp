@@ -1,5 +1,6 @@
 #include "StreamCtrl.h"
 #include "RtspStream.h"
+#include "WebCamStream.h"
 #include "util/Util.h"
 
 CStreamCtrl::CStreamCtrl(int streamID, QObject* parent /*= NULL*/)
@@ -29,12 +30,13 @@ bool CStreamCtrl::Connect(const SConnectInfo& rInfo)
 
     if (m_SessionType == eNone)
     {
+        m_SessionType = rInfo.m_type;
+
         switch (rInfo.m_type)
         {
         case eRTSP:
             if (!rInfo.m_sUrl.isEmpty())
             {
-                m_SessionType = rInfo.m_type;
                 m_pStreamClient = new CRtspStream();
                 m_pStreamClient->RegisterDecodeVideoCallback(VideoDecodeCallback, this);
                 m_pStreamClient->SetUrl(rInfo.m_sUrl.toStdString().c_str());
@@ -43,7 +45,11 @@ bool CStreamCtrl::Connect(const SConnectInfo& rInfo)
                 ret = true;
             }
             break;
-
+        case eWebCam:
+            m_pStreamClient = new CWebCamStream(rInfo.m_iWebCamDeviceID);
+            m_pStreamClient->RegisterDecodeVideoCallback(VideoDecodeCallback, this);
+            m_pStreamClient->Play();
+            break;
         default:
             break;
         }
@@ -57,6 +63,7 @@ void CStreamCtrl::DisConnect()
     switch (m_SessionType)
     {
     case eRTSP:
+    case eWebCam:
         m_pStreamClient->Stop();
         m_pStreamClient->UnRegisterDecodeVideoCallback();
         SAFE_DELETE(m_pStreamClient);
