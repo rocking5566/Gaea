@@ -34,6 +34,10 @@ void CPlayerWidget::OnConnectStream()
             tr("RTSP url:"), QLineEdit::Normal,
             "rtsp://127.0.0.1:8554/test.mkv", &bOk);
     }
+    else if(m_ui.rbWebCam->isChecked())
+    {
+        info.m_type = eWebCam;
+    }
 
     m_id = m_pPlayerCtrl->Connect(info);
     m_pPlayerCtrl->AttachStream(m_id, playerCallback, this);
