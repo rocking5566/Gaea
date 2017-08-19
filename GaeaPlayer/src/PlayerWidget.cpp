@@ -34,6 +34,7 @@ void CPlayerWidget::OnDetachStream()
 
 void CPlayerWidget::playerCallback(void *_this, int id, CVideoFrame frame)
 {
+    Q_UNUSED(id);
     CPlayerWidget* This = (CPlayerWidget*)_this;
     This->m_ui.RenderWidget->Render(frame);
 }
