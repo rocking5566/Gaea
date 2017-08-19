@@ -14,6 +14,7 @@ class CWebCamStream : public QThread, public CStreamClient
     Q_OBJECT
 
 public:
+    //! Do not open same video device
     CWebCamStream(int iWebCamDeviceID);
     virtual ~CWebCamStream();
 
