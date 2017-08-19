@@ -16,7 +16,8 @@ public:
     virtual ~CPlayerWidget();
 
 private slots:
-    void OnConnectStream();
+    void OnAttachStream();
+    void OnDetachStream();
 
 private:
     static void playerCallback(void *_this, int id, CVideoFrame frame);

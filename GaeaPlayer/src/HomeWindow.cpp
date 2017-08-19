@@ -2,12 +2,19 @@
 #include "PlayerWidget.h"
 #include "stream/PlayerCtrl.h"
 #include "util/Util.h"
+#include "ConnectionListDock.h"
 
 CHomeWindow::CHomeWindow(QWidget *parent)
     : QMainWindow(parent)
     , m_pPlayerCtrl(new CPlayerCtrl(this))
+    , m_pConnectionListDock(NULL)
 {
     m_ui.setupUi(this);
+
+    m_pConnectionListDock = new CConnectionListDock(m_pPlayerCtrl, this);
+    addDockWidget(Qt::LeftDockWidgetArea, m_pConnectionListDock);
+    m_pConnectionListDock->setFloating(true);
+
     connect(m_ui.btnAddPlayer, SIGNAL(clicked()), this, SLOT(OnAddPlayer()));
     connect(m_ui.btnRemovePlayer, SIGNAL(clicked()), this, SLOT(OnRemovePlayer()));
 }
@@ -19,6 +26,7 @@ CHomeWindow::~CHomeWindow()
         SAFE_DELETE(pWidget);
     }
 
+    SAFE_DELETE(m_pConnectionListDock);
     SAFE_DELETE(m_pPlayerCtrl);
 }
 

@@ -6,6 +6,7 @@
 
 class CPlayerCtrl;
 class CPlayerWidget;
+class CConnectionListDock;
 
 class CHomeWindow : public QMainWindow
 {
@@ -23,6 +24,7 @@ private:
     Ui::HomeWindow m_ui;
     CPlayerCtrl* m_pPlayerCtrl;
 
+    CConnectionListDock* m_pConnectionListDock;
     QList<CPlayerWidget*> m_PlayerWidgetList;
 };
 

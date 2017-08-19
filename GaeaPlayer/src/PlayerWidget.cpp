@@ -11,36 +11,25 @@ CPlayerWidget::CPlayerWidget(CPlayerCtrl* pPlayerCtrl, QWidget *parent)
     , m_id(-1)
 {
     m_ui.setupUi(this);
-    connect(m_ui.btnConnect, SIGNAL(clicked()), this, SLOT(OnConnectStream()));
+    connect(m_ui.btnAttach, SIGNAL(clicked()), this, SLOT(OnAttachStream()));
+    connect(m_ui.btnDetach, SIGNAL(clicked()), this, SLOT(OnAttachStream()));
 
 }
 
 CPlayerWidget::~CPlayerWidget()
 {
-    m_pPlayerCtrl->DetachStream(m_id, this);
-    m_pPlayerCtrl->DisConnect(m_id, false);
+    OnDetachStream();
 }
 
-void CPlayerWidget::OnConnectStream()
+void CPlayerWidget::OnAttachStream()
 {
-    SConnectInfo info;
-
-    if (m_ui.rbRtsp->isChecked())
-    {
-        bool bOk = false;
-
-        info.m_type = eRTSP;
-        info.m_sUrl = QInputDialog::getText(this, tr("Open RTSP"),
-            tr("RTSP url:"), QLineEdit::Normal,
-            "rtsp://127.0.0.1:8554/test.mkv", &bOk);
-    }
-    else if(m_ui.rbWebCam->isChecked())
-    {
-        info.m_type = eWebCam;
-    }
-
-    m_id = m_pPlayerCtrl->Connect(info);
+    m_id = m_ui.leStreamID->text().toInt();
     m_pPlayerCtrl->AttachStream(m_id, playerCallback, this);
+}
+
+void CPlayerWidget::OnDetachStream()
+{
+    m_pPlayerCtrl->DetachStream(m_id, this);
 }
 
 void CPlayerWidget::playerCallback(void *_this, int id, CVideoFrame frame)

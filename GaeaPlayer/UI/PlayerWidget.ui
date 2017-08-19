@@ -14,19 +14,8 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="2" column="0">
-    <widget class="QPushButton" name="btnConnect">
-     <property name="text">
-      <string>Connect</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="1">
-    <widget class="QPushButton" name="btnDisConnect">
-     <property name="text">
-      <string>Disconnect</string>
-     </property>
-    </widget>
+   <item row="1" column="1">
+    <widget class="QLineEdit" name="leStreamID"/>
    </item>
    <item row="0" column="0" colspan="2">
     <widget class="CRenderWidget" name="RenderWidget">
@@ -38,43 +27,25 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="0" colspan="2">
-    <widget class="QGroupBox" name="groupBox">
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>60</height>
-      </size>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Stream ID</string>
      </property>
-     <property name="title">
-      <string>Type</string>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="2">
+    <widget class="QPushButton" name="btnAttach">
+     <property name="text">
+      <string>Attach</string>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QRadioButton" name="rbRtsp">
-        <property name="text">
-         <string>RTSP</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="rbWebCam">
-        <property name="text">
-         <string>Web Camera</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="rbLocalFile">
-        <property name="text">
-         <string>Local File</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="2">
+    <widget class="QPushButton" name="btnDetach">
+     <property name="text">
+      <string>Detach</string>
+     </property>
     </widget>
    </item>
   </layout>
