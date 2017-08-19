@@ -24,7 +24,6 @@ private:
 
 private:
     Ui::PlayerWidget m_ui;
-    QMutex m_destructorMutex;
     CPlayerCtrl* m_pPlayerCtrl;
     int m_id;
 };
