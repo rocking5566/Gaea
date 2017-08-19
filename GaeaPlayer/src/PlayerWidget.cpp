@@ -12,7 +12,7 @@ CPlayerWidget::CPlayerWidget(CPlayerCtrl* pPlayerCtrl, QWidget *parent)
 {
     m_ui.setupUi(this);
     connect(m_ui.btnAttach, SIGNAL(clicked()), this, SLOT(OnAttachStream()));
-    connect(m_ui.btnDetach, SIGNAL(clicked()), this, SLOT(OnAttachStream()));
+    connect(m_ui.btnDetach, SIGNAL(clicked()), this, SLOT(OnDetachStream()));
 
 }
 
