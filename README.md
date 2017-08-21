@@ -1,8 +1,8 @@
-# libvlc + QT + openCV Demo
+# Gaea Streaming Client
 
-    RtspPlayer is a cross platform desktop-based RTSP client.
-  - We use LibVLC to get RTSP stream and decode the video
-  - Give an example of how to convert the image frame to the OpenCV Mat format to apply computer vision algorithm.
+    Gaea is a cross platform desktop-based Streaming client, which supports RTSP and web cam.
+  - Using LibVLC to get RTSP stream and decode the video
+  - Using OpenCV to get web cam stream and decode the video
   - We use OpenGL to acclerate rendering the video on Qt windows GUI.
 
 ## Dependency Library
