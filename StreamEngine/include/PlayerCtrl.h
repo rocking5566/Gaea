@@ -2,8 +2,8 @@
 #define PlayerCtrl_h__
 
 #include <QReadWriteLock>
-#include "util/WorkerThread.h"
-#include "def/KernelTypes.h"
+#include "Pattern/WorkerThread.h"
+#include "StreamEngineTypes.h"
 #include "VideoFrame.h"
 
 class CStreamCtrl;

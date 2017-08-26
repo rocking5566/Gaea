@@ -5,7 +5,7 @@
 #include <QWaitCondition>
 #include <QMap>
 #include <QMutex>
-#include "def/KernelTypes.h"
+#include "StreamEngineTypes.h"
 #include "VideoFrame.h"
 
 class CStreamClient;

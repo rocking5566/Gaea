@@ -1,6 +1,6 @@
 #include "PlayerCtrl.h"
 #include "StreamCtrl.h"
-#include "util/Util.h"
+#include "Util.h"
 
 #define RequestType_Connect 1
 #define RequestType_DisConnect 2

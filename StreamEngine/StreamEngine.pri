@@ -1,21 +1,22 @@
-KERNEL_PATH = ../StreamEngine
+STREAM_ENGINE_PATH = $${PWD}
 
-SOURCES += $${KERNEL_PATH}/stream/PlayerCtrl.cpp \
-           $${KERNEL_PATH}/stream/RtspStream.cpp \
-           $${KERNEL_PATH}/stream/StreamClient.cpp \
-           $${KERNEL_PATH}/stream/StreamCtrl.cpp \
-           $${KERNEL_PATH}/stream/WebCamStream.cpp \
-           $${KERNEL_PATH}/util/BufPoolMgr.cpp \
-           $${KERNEL_PATH}/util/WorkerThread.cpp \
-           $${KERNEL_PATH}/VideoFrame.cpp
+SOURCES += $${STREAM_ENGINE_PATH}/src/Stream/PlayerCtrl.cpp \
+           $${STREAM_ENGINE_PATH}/src/Stream/RtspStream.cpp \
+           $${STREAM_ENGINE_PATH}/src/Stream/StreamClient.cpp \
+           $${STREAM_ENGINE_PATH}/src/Stream/StreamCtrl.cpp \
+           $${STREAM_ENGINE_PATH}/src/Stream/WebCamStream.cpp \
+           $${STREAM_ENGINE_PATH}/src/MemoryManagement/BufPoolMgr.cpp \
+           $${STREAM_ENGINE_PATH}/src/Pattern/WorkerThread.cpp \
+           $${STREAM_ENGINE_PATH}/src/DataStructure/VideoFrame.cpp
 
-HEADERS += $${KERNEL_PATH}/def/KernelTypes.h \
-           $${KERNEL_PATH}/stream/PlayerCtrl.h \
-           $${KERNEL_PATH}/stream/RtspStream.h \
-           $${KERNEL_PATH}/stream/StreamClient.h \
-           $${KERNEL_PATH}/stream/StreamCtrl.h \
-           $${KERNEL_PATH}/stream/WebCamStream.h \
-           $${KERNEL_PATH}/util/BufPoolMgr.h \
-           $${KERNEL_PATH}/util/Util.h \
-           $${KERNEL_PATH}/util/WorkerThread.h \
-           $${KERNEL_PATH}/VideoFrame.h
+HEADERS += $${STREAM_ENGINE_PATH}/include/StreamEngineTypes.h \
+           $${STREAM_ENGINE_PATH}/include/PlayerCtrl.h \
+           $${STREAM_ENGINE_PATH}/include/Util.h \
+           $${STREAM_ENGINE_PATH}/include/VideoFrame.h \
+           $${STREAM_ENGINE_PATH}/src/MemoryManagement/BufPoolMgr.h \
+           $${STREAM_ENGINE_PATH}/src/Pattern/WorkerThread.h \
+           $${STREAM_ENGINE_PATH}/src/Stream/RtspStream.h \
+           $${STREAM_ENGINE_PATH}/src/Stream/StreamClient.h \
+           $${STREAM_ENGINE_PATH}/src/Stream/StreamCtrl.h \
+           $${STREAM_ENGINE_PATH}/src/Stream/WebCamStream.h
+           

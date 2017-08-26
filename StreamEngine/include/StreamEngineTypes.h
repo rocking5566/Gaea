@@ -1,5 +1,5 @@
-#ifndef KernelTypes_h__
-#define KernelTypes_h__
+#ifndef StreamEngineTypes_h__
+#define StreamEngineTypes_h__
 
 #include <QString>
 
@@ -22,4 +22,4 @@ struct SConnectInfo
     QString m_sUrl;             // eLocalFile or eRTSP
     int m_iWebCamDeviceID;      // eWebCam
 };
-#endif // KernelTypes_h__
+#endif // StreamEngineTypes_h__

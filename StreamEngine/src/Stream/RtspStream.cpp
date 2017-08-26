@@ -1,6 +1,6 @@
 #include "RtspStream.h"
-#include "util/BufPoolMgr.h"
-#include "util/Util.h"
+#include "MemoryManagement/BufPoolMgr.h"
+#include "Util.h"
 
 using namespace std;
 

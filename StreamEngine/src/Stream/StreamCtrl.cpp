@@ -1,7 +1,7 @@
 #include "StreamCtrl.h"
 #include "RtspStream.h"
 #include "WebCamStream.h"
-#include "util/Util.h"
+#include "Util.h"
 
 CStreamCtrl::CStreamCtrl(int streamID, QObject* parent /*= NULL*/)
     : QThread(parent)
