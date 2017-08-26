@@ -1,12 +1,11 @@
-# Gaea Streaming Client
+# Gaea Streaming Engine
 
-    Gaea is a cross platform desktop-based Streaming client, which supports RTSP and web cam.
+    Gaea is a cross platform streaming engine, which supports RTSP and web cam.
   - Using LibVLC to get RTSP stream and decode the video
   - Using OpenCV to get web cam stream and decode the video
-  - We use OpenGL to acclerate rendering the video on Qt windows GUI.
+  - Demo tester uses OpenGL to acclerate rendering the video on Qt windows GUI.
 
 ## Dependency Library
-  - C++ 11
   - QT 5.7.1
   - LibVlc 2.2.2
   - OpenCV 2.4.9
@@ -24,6 +23,15 @@
 ```sh
 $ sudo apt-get install qt5-default
 ```
-
   - Install libvlc-dev on Ubuntu. (http://www.rukspot.com/How_to_install_LibVLC_on_Ubuntu.html)
   - Install OpenCV on Ubuntu. (http://docs.opencv.org/2.4/doc/tutorials/introduction/linux_install/linux_install.html)
+  - Execute StreamEngine Tester by changing ldconfig
+```sh
+$ export LD_LIBRARY_PATH=$(pwd)
+```
+or
+```sh
+$ vim /etc/ld.so.conf.d/libc.conf
+# Write down the absolute build path of libStreamEngine.so
+$ ldconfig
+```
