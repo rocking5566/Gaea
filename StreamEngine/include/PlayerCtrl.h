@@ -2,7 +2,7 @@
 #define PlayerCtrl_h__
 
 #include <QReadWriteLock>
-#include "Pattern/WorkerThread.h"
+#include "WorkerThread.h"
 #include "StreamEngineTypes.h"
 #include "VideoFrame.h"
 

@@ -1,8 +1,8 @@
 #include "PlayerWidget.h"
 #include <QInputDialog>
-#include "stream/PlayerCtrl.h"
+#include "PlayerCtrl.h"
 #include "VideoFrame.h"
-#include "util/Util.h"
+#include "Util.h"
 #include "opencv2/opencv.hpp"
 
 CPlayerWidget::CPlayerWidget(CPlayerCtrl* pPlayerCtrl, QWidget *parent)

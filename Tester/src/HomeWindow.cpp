@@ -1,7 +1,7 @@
 #include "HomeWindow.h"
 #include "PlayerWidget.h"
-#include "stream/PlayerCtrl.h"
-#include "util/Util.h"
+#include "PlayerCtrl.h"
+#include "Util.h"
 #include "ConnectionListDock.h"
 
 CHomeWindow::CHomeWindow(QWidget *parent)

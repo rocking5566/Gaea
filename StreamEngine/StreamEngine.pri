@@ -14,7 +14,7 @@ HEADERS += $${STREAM_ENGINE_PATH}/include/StreamEngineTypes.h \
            $${STREAM_ENGINE_PATH}/include/Util.h \
            $${STREAM_ENGINE_PATH}/include/VideoFrame.h \
            $${STREAM_ENGINE_PATH}/src/MemoryManagement/BufPoolMgr.h \
-           $${STREAM_ENGINE_PATH}/src/Pattern/WorkerThread.h \
+           $${STREAM_ENGINE_PATH}/include/WorkerThread.h \
            $${STREAM_ENGINE_PATH}/src/Stream/RtspStream.h \
            $${STREAM_ENGINE_PATH}/src/Stream/StreamClient.h \
            $${STREAM_ENGINE_PATH}/src/Stream/StreamCtrl.h \

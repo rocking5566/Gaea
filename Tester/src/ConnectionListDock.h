@@ -3,7 +3,7 @@
 
 #include <QDockWidget>
 #include <QStandardItemModel>
-#include "def/KernelTypes.h"
+#include "StreamEngineTypes.h"
 #include "ui_ConnectionListWidget.h"
 
 class CPlayerCtrl;

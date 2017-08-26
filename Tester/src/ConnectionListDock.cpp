@@ -1,5 +1,5 @@
 #include "ConnectionListDock.h"
-#include "stream/PlayerCtrl.h"
+#include "PlayerCtrl.h"
 #include <QInputDialog>
 
 CConnectionListDock::CConnectionListDock(CPlayerCtrl* pPlayerCtrl, QWidget *parent /*= 0*/)
