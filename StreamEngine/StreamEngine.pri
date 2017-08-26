@@ -1,4 +1,4 @@
-KERNEL_PATH = ../kernel
+KERNEL_PATH = ../StreamEngine
 
 SOURCES += $${KERNEL_PATH}/stream/PlayerCtrl.cpp \
            $${KERNEL_PATH}/stream/RtspStream.cpp \
