@@ -1,7 +1,7 @@
 TARGET = Tester
-VLC_PATH = ../packages/libvlc-2.2.2
-OPENCV_PATH = ../packages/opencv249
-STREAM_ENGINE_PATH = ../StreamEngine
+VLC_PATH = $${PWD}/../packages/libvlc-2.2.2
+OPENCV_PATH = $${PWD}/../packages/opencv249
+STREAM_ENGINE_PATH = $${PWD}/../StreamEngine
 
 # Project setting
 QT += core gui opengl network widgets
