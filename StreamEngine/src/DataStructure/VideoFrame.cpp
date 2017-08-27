@@ -7,15 +7,17 @@ CVideoFrame::CVideoFrame()
     , m_height(0)
     , m_pData(NULL)
     , m_dataType(eNoData)
+    , m_uCharFormat(Format_Invalid)
 {
 
 }
 
-CVideoFrame::CVideoFrame(uchar* uData, int iWidth, int iHeight)
+CVideoFrame::CVideoFrame(uchar* uData, int iWidth, int iHeight, Format format)
     : m_width(iWidth)
     , m_height(iHeight)
     , m_pData(uData)
     , m_dataType(eUCHAR)
+    , m_uCharFormat(format)
 {
     // TODO - Support more image formats.
     // Only support 32-bit ARGB format (0xAARRGGBB) so far.
@@ -27,6 +29,7 @@ CVideoFrame::CVideoFrame(QImage& src)
     , m_pData(NULL)
     , m_qImgData(src)
     , m_dataType(eQImage)
+    , m_uCharFormat(Format_Invalid)
 {
 
 }
@@ -37,6 +40,7 @@ CVideoFrame::CVideoFrame(cv::Mat& src)
     , m_pData(NULL)
     , m_cvMatData(src)
     , m_dataType(eMat)
+    , m_uCharFormat(Format_Invalid)
 {
 
 }
@@ -49,7 +53,7 @@ CVideoFrame::~CVideoFrame()
 CVideoFrame CVideoFrame::CopyFromMat(const cv::Mat& src)
 {
     Mat _src = src.clone();
-    return CVideoFrame(_src.data, src.cols, src.rows);
+    return CVideoFrame(_src);
 }
 
 uchar* CVideoFrame::Data()
@@ -62,6 +66,8 @@ uchar* CVideoFrame::Data()
         return const_cast<uchar*>(m_qImgData.constBits());     // Avoid deep copy
     case eMat:
         return m_cvMatData.data;
+    default:
+        return NULL;
     }
 }
 

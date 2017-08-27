@@ -167,7 +167,7 @@ void CRtspStream::VideoUnlockCallback(void *opaque, void *picture, void *const *
 
     if (This->m_CbDecodeVideo && picture != NULL)
     {
-        CVideoFrame frame((uchar*) picture, This->m_profile.m_width, This->m_profile.m_height);
+        CVideoFrame frame((uchar*) picture, This->m_profile.m_width, This->m_profile.m_height, CVideoFrame::Format_ARGB32);
         This->m_CbDecodeVideo(This->m_pListener, frame);
     }
 }

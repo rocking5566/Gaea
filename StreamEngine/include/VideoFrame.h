@@ -20,11 +20,18 @@ class GAEA_EXPORTS CVideoFrame
         eQImage,
         eMat
     };
+
 public:
+    enum Format
+    {
+        Format_Invalid,
+        Format_ARGB32   // (0xAARRGGBB)
+    };
+
     CVideoFrame();
     //! Data will be deleted at destruction when reference count is zero.
     //! Only support 32-bit ARGB format (0xAARRGGBB).
-    CVideoFrame(uchar* uData, int iWidth, int iHeight);
+    CVideoFrame(uchar* uData, int iWidth, int iHeight, Format format);
     //! Data will not be deleted at destruction, handle life cycle by outside.
     CVideoFrame(QImage& src);
     //! Data will not be deleted at destruction, handle life cycle by outside.
@@ -49,6 +56,7 @@ public:
 
 private:
     EDataSrc m_dataType;
+    Format m_uCharFormat;
 
     QImage m_qImgData;
     cv::Mat m_cvMatData;
