@@ -52,7 +52,14 @@ win32 {
 }
 
 linux-g++ {
+    CONFIG(debug, debug|release) {
+        DESTDIR = $${HOME_PATH}/build/StreamEngine/Debug
+    }
+    else {
+        DESTDIR = $${HOME_PATH}/build/StreamEngine/Release
+    }
+
     LIBS += -L/usr/lib/ -lvlc
     LIBS += -L/usr/local/lib -lopencv_highgui -lopencv_core -lopencv_imgproc
-    LIBS += -L$${PWD} -lStreamEngine
+    LIBS += -L$${DESTDIR} -lStreamEngine
 }
