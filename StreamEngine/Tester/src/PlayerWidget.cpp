@@ -8,28 +8,34 @@
 CPlayerWidget::CPlayerWidget(CPlayerCtrl* pPlayerCtrl, QWidget *parent)
     : QWidget(parent)
     , m_pPlayerCtrl(pPlayerCtrl)
-    , m_id(-1)
 {
     m_ui.setupUi(this);
     connect(m_ui.btnAttach, SIGNAL(clicked()), this, SLOT(OnAttachStream()));
-    connect(m_ui.btnDetach, SIGNAL(clicked()), this, SLOT(OnDetachStream()));
+    connect(m_ui.btnDetachAll, SIGNAL(clicked()), this, SLOT(OnDetachAllStream()));
 
 }
 
 CPlayerWidget::~CPlayerWidget()
 {
-    OnDetachStream();
+    OnDetachAllStream();
 }
 
 void CPlayerWidget::OnAttachStream()
 {
-    m_id = m_ui.leStreamID->text().toInt();
-    m_pPlayerCtrl->AttachStream(m_id, playerCallback, this);
+    if (!m_ui.leStreamID->text().isEmpty())
+    {
+        int id = m_ui.leStreamID->text().toInt();
+        m_pPlayerCtrl->AttachStream(id, playerCallback, this);
+        m_idList << id;
+    }
 }
 
-void CPlayerWidget::OnDetachStream()
+void CPlayerWidget::OnDetachAllStream()
 {
-    m_pPlayerCtrl->DetachStream(m_id, this);
+    foreach (int id, m_idList)
+    {
+        m_pPlayerCtrl->DetachStream(id, this);
+    }
 }
 
 void CPlayerWidget::playerCallback(void *_this, int id, CVideoFrame frame)

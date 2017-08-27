@@ -42,9 +42,9 @@
     </widget>
    </item>
    <item row="3" column="0" colspan="2">
-    <widget class="QPushButton" name="btnDetach">
+    <widget class="QPushButton" name="btnDetachAll">
      <property name="text">
-      <string>Detach</string>
+      <string>Detach All</string>
      </property>
     </widget>
    </item>

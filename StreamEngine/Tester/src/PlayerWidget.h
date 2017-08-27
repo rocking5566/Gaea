@@ -17,7 +17,7 @@ public:
 
 private slots:
     void OnAttachStream();
-    void OnDetachStream();
+    void OnDetachAllStream();
 
 private:
     static void playerCallback(void *_this, int id, CVideoFrame frame);
@@ -25,6 +25,6 @@ private:
 private:
     Ui::PlayerWidget m_ui;
     CPlayerCtrl* m_pPlayerCtrl;
-    int m_id;
+    QList<int> m_idList;
 };
 #endif // PlayerWidget_h__
