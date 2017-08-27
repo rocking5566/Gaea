@@ -1,6 +1,6 @@
 TARGET = Tester
-VLC_PATH = $${PWD}/../packages/libvlc-2.2.2
-OPENCV_PATH = $${PWD}/../packages/opencv249
+VLC_PATH = $${PWD}/../../packages/libvlc-2.2.2
+OPENCV_PATH = $${PWD}/../../packages/opencv249
 STREAM_ENGINE_PATH = $${PWD}/..
 
 # Project setting
