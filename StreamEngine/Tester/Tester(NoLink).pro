@@ -1,4 +1,4 @@
-TARGET = Tester
+TARGET = TesterNoLink
 HOME_PATH = $${PWD}/../..
 VLC_PATH = $${PWD}/../../packages/libvlc-2.2.2
 OPENCV_PATH = $${PWD}/../../packages/opencv249
