@@ -7,6 +7,7 @@
 #include <QWaitCondition>
 #include <QWaitCondition>
 #include <list>
+#include "Util.h"
 
 #define RequestType_None 0
 typedef int RequestType;
@@ -29,7 +30,7 @@ struct SRequest
     This class implement the worker-thread pattern.
     Just inherit me!
 */
-class CWorkerThread : public QThread
+class GAEA_EXPORTS CWorkerThread : public QThread
 {
     Q_OBJECT
 

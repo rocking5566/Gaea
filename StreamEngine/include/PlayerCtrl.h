@@ -12,7 +12,7 @@ typedef void(*VideoCb)(void *pListener, int streamId, CVideoFrame frame);
 /*!
     This class provide interfaces to play multiple streams simultaneously.
 */
-class CPlayerCtrl : public CWorkerThread
+class GAEA_EXPORTS CPlayerCtrl : public CWorkerThread
 {
     Q_OBJECT
 

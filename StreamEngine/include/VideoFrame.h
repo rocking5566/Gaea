@@ -4,13 +4,14 @@
 #include <opencv2/core/core.hpp>
 #include <QImage>
 #include <QSharedPointer>
+#include "Util.h"
 
 /*!
     This class handle the life cycle of the frame data.
     In addition, provide adapter for QImage & Mat data type.
 */
 
-class CVideoFrame
+class GAEA_EXPORTS CVideoFrame
 {
     enum EDataSrc
     {
