@@ -59,9 +59,9 @@ linux-g++ {
     LIBS += -L/usr/local/lib -lopencv_highgui -lopencv_core -lopencv_imgproc
 
     CONFIG(debug, debug|release) {
-        DESTDIR = $${HOME_PATH}/build/StreamEngine/Debug
+        DESTDIR = $${HOME_PATH}/build/Debug
     }
     else {
-        DESTDIR = $${HOME_PATH}/build/StreamEngine/Release
+        DESTDIR = $${HOME_PATH}/build/Release
     }
 }

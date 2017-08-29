@@ -26,12 +26,12 @@ win32 {
         LIBS += -L$${VLC_PATH}/lib -llibvlc.x64 -llibvlccore.x64
         
         CONFIG(debug, debug|release) {
-            DESTDIR = $${HOME_PATH}/build/StreamEngine/bin/x64/Debug
+            DESTDIR = $${HOME_PATH}/build/bin/x64/Debug
             LIBS += -L$${OPENCV_PATH}/lib -lopencv_core249d -lopencv_highgui249d
             QMAKE_LFLAGS_WINDOWS += /LARGEADDRESSAWARE
         }
         else {
-            DESTDIR = $${HOME_PATH}/build/StreamEngine/bin/x64/Release
+            DESTDIR = $${HOME_PATH}/build/bin/x64/Release
             LIBS += -L$${OPENCV_PATH}/lib -lopencv_core249 -lopencv_highgui249
             QMAKE_LFLAGS_WINDOWS += /debug /opt:ref /MAP /MAPINFO:EXPORTS /LARGEADDRESSAWARE
         }
@@ -41,17 +41,24 @@ win32 {
         #Require x86 lib
         #LIBS +=
 		CONFIG(debug, debug|release) {
-            DESTDIR = $${HOME_PATH}/build/StreamEngine/bin/Win32/Debug
+            DESTDIR = $${HOME_PATH}/build/bin/Win32/Debug
             QMAKE_LFLAGS_WINDOWS += /LARGEADDRESSAWARE
         }
         else {
-            DESTDIR = $${HOME_PATH}/build/StreamEngine/bin/Win32/Release
+            DESTDIR = $${HOME_PATH}/build/bin/Win32/Release
             QMAKE_LFLAGS_WINDOWS += /debug /opt:ref /MAP /MAPINFO:EXPORTS /LARGEADDRESSAWARE
         }
     }
 }
 
 linux-g++ {
+    CONFIG(debug, debug|release) {
+        DESTDIR = $${HOME_PATH}/build/Debug
+    }
+    else {
+        DESTDIR = $${HOME_PATH}/build/Release
+    }
+
     LIBS += -L/usr/lib/ -lvlc
     LIBS += -L/usr/local/lib -lopencv_highgui -lopencv_core -lopencv_imgproc
 }

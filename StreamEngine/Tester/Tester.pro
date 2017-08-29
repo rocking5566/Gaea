@@ -53,10 +53,10 @@ win32 {
 
 linux-g++ {
     CONFIG(debug, debug|release) {
-        DESTDIR = $${HOME_PATH}/build/StreamEngine/Debug
+        DESTDIR = $${HOME_PATH}/build/Debug
     }
     else {
-        DESTDIR = $${HOME_PATH}/build/StreamEngine/Release
+        DESTDIR = $${HOME_PATH}/build/Release
     }
 
     LIBS += -L/usr/lib/ -lvlc
