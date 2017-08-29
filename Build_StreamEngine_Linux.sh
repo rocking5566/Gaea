@@ -8,3 +8,5 @@ make
 # Stream Engine Tester
 /usr/bin/qmake ../../StreamEngine/Tester/Tester.pro -r -spec  linux-g++
 make
+
+cd ../..
