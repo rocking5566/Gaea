@@ -24,15 +24,15 @@ win32 {
         LIBS += -L$${VLC_PATH}/lib -llibvlc.x64 -llibvlccore.x64
         
         CONFIG(debug, debug|release) {
-            DESTDIR = $${HOME_PATH}/build/StreamEngine/bin/x64/Debug
+            DESTDIR = $${HOME_PATH}/build/x64/Debug
             LIBS += -L$${OPENCV_PATH}/lib -lopencv_core249d -lopencv_highgui249d
-            LIBS += -L$${HOME_PATH}/build/StreamEngine/bin/x64/Debug -lStreamEngine
+            LIBS += -L$${HOME_PATH}/build/x64/Debug -lStreamEngine
             QMAKE_LFLAGS_WINDOWS += /LARGEADDRESSAWARE
         }
         else {
-            DESTDIR = $${HOME_PATH}/build/StreamEngine/bin/x64/Release
+            DESTDIR = $${HOME_PATH}/build/x64/Release
             LIBS += -L$${OPENCV_PATH}/lib -lopencv_core249 -lopencv_highgui249
-            LIBS += -L$${HOME_PATH}/build/StreamEngine/bin/x64/Release -lStreamEngine
+            LIBS += -L$${HOME_PATH}/build/x64/Release -lStreamEngine
             QMAKE_LFLAGS_WINDOWS += /debug /opt:ref /MAP /MAPINFO:EXPORTS /LARGEADDRESSAWARE
         }
     }
@@ -41,11 +41,11 @@ win32 {
         #Require x86 lib
         #LIBS +=
 		CONFIG(debug, debug|release) {
-            DESTDIR = $${HOME_PATH}/build/StreamEngine/bin/Win32/Debug
+            DESTDIR = $${HOME_PATH}/build/Win32/Debug
             QMAKE_LFLAGS_WINDOWS += /LARGEADDRESSAWARE
         }
         else {
-            DESTDIR = $${HOME_PATH}/build/StreamEngine/bin/Win32/Release
+            DESTDIR = $${HOME_PATH}/build/Win32/Release
             QMAKE_LFLAGS_WINDOWS += /debug /opt:ref /MAP /MAPINFO:EXPORTS /LARGEADDRESSAWARE
         }
     }
