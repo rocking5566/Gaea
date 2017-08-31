@@ -18,9 +18,9 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
-      <widget class="QWidget" name="RegisterTab">
+      <widget class="CRegisterFaceWidget" name="RegisterTab">
        <attribute name="title">
         <string>Register</string>
        </attribute>
@@ -41,6 +41,14 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>CRegisterFaceWidget</class>
+   <extends>QWidget</extends>
+   <header>RegisterFaceWidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
