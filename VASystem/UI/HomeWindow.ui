@@ -30,7 +30,7 @@
         <string>LiveView</string>
        </attribute>
       </widget>
-      <widget class="QWidget" name="DeviceTab">
+      <widget class="CConfigDeviceWidget" name="DeviceTab">
        <attribute name="title">
         <string>IPCamera</string>
        </attribute>
@@ -46,6 +46,12 @@
    <class>CRegisterFaceWidget</class>
    <extends>QWidget</extends>
    <header>RegisterFaceWidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CConfigDeviceWidget</class>
+   <extends>QWidget</extends>
+   <header>ConfigDeviceWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
