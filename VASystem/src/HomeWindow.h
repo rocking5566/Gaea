@@ -4,8 +4,6 @@
 #include <QMainWindow>
 #include "ui_HomeWindow.h"
 
-class CConnectionListDock;
-
 class CHomeWindow : public QMainWindow
 {
     Q_OBJECT
