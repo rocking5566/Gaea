@@ -1,13 +1,13 @@
-SOURCES += ./src/ConfigDeviceWidget.cpp \
-           ./src/main.cpp \
+SOURCES += ./src/Device/ConfigDeviceWidget.cpp \
+           ./src/FaceConfig/RegisterFaceWidget.cpp \
            ./src/HomeWindow.cpp \
-           ./src/RenderWidget.cpp \
-           ./src/RegisterFaceWidget.cpp
+           ./src/main.cpp \
+           ./src/RenderWidget.cpp
 
-HEADERS += ./src/ConfigDeviceWidget.h \
+HEADERS += ./src/Device/ConfigDeviceWidget.h \
+           ./src/FaceConfig/RegisterFaceWidget.h \
            ./src/HomeWindow.h \
-           ./src/RenderWidget.h \
-           ./src/RegisterFaceWidget.h
+           ./src/RenderWidget.h
 
 FORMS   += ./UI/ConfigDeviceWidget.ui \
            ./UI/HomeWindow.ui \

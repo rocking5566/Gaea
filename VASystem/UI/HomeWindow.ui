@@ -45,13 +45,13 @@
   <customwidget>
    <class>CRegisterFaceWidget</class>
    <extends>QWidget</extends>
-   <header>RegisterFaceWidget.h</header>
+   <header>FaceConfig/RegisterFaceWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>CConfigDeviceWidget</class>
    <extends>QWidget</extends>
-   <header>ConfigDeviceWidget.h</header>
+   <header>Device/ConfigDeviceWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
