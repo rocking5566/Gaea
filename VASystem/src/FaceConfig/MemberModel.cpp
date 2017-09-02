@@ -23,10 +23,10 @@ CMemberModel::~CMemberModel()
 
 }
 
-int CMemberModel::AddFace(const SMemberProperty& rEnt)
+int CMemberModel::AddFace(const SMemberProperty& rMember)
 {
     // [TODO] update database
-    m_mapIdtoFace[m_maxID] = rEnt;
+    m_mapIdtoFace[m_maxID] = rMember;
     return m_maxID++;
 }
 
@@ -88,30 +88,17 @@ bool CMemberModel::EditVideoFrame(int id, const QList<CVideoFrame>& rFacePicture
     return bExist;
 }
 
-bool CMemberModel::GetFace(int id, SMemberProperty& rEnt) const
+bool CMemberModel::GetFace(int id, SMemberProperty& rMember) const
 {
     // [TODO] Get data from Database
     bool bExist = m_mapIdtoFace.contains(id);
 
     if (bExist)
     {
-        rEnt = m_mapIdtoFace[id];
+        rMember = m_mapIdtoFace[id];
     }
 
     return bExist;
 }
 
-QStringList CMemberModel::GetAllEntityName() const
-{
-    // [TODO] Get data from Database
-    QStringList ret;
-    auto iter = m_mapIdtoFace.constBegin();
-    while (iter != m_mapIdtoFace.constEnd())
-    {
-        ret << iter.value().m_name;
-        ++iter;
-    }
-
-    return ret;
-}
 

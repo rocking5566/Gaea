@@ -51,15 +51,14 @@ class CMemberModel
 {
 public:
     static CMemberModel* GetSingleTon();
-    int AddFace(const SMemberProperty& rEnt);   // return id
+    int AddFace(const SMemberProperty& rMember);   // return id
     void RemoveFace(int id);
     bool EditName(int id, const QString& rName);
     bool EditGender(int id, EGender gender);
     bool EditAge(int id, int age);
     bool EditVideoFrame(int id, const QList<CVideoFrame>& rFacePictures);
 
-    bool GetFace(int id, SMemberProperty& rEnt) const;
-    QStringList GetAllEntityName() const;
+    bool GetFace(int id, SMemberProperty& rMember) const;
 
 private:
     explicit CMemberModel();
