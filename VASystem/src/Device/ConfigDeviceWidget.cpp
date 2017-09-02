@@ -23,9 +23,6 @@ void CConfigDeviceWidget::SetDeviceEntityUIEnable(bool bEnable)
 {
     m_ui.leName->setEnabled(bEnable);
     m_ui.leUrl->setEnabled(bEnable);
-    m_ui.lePort->setEnabled(bEnable);
-    m_ui.leUser->setEnabled(bEnable);
-    m_ui.lePassword->setEnabled(bEnable);
     m_ui.renderWidget->setEnabled(bEnable);
     m_ui.btnPlay->setEnabled(bEnable);
 }
@@ -39,9 +36,6 @@ void CConfigDeviceWidget::ConnectUISignal()
 
     connect(m_ui.leName, SIGNAL(editingFinished()), this, SLOT(OnEditingFinished()));
     connect(m_ui.leUrl, SIGNAL(editingFinished()), this, SLOT(OnEditingFinished()));
-    connect(m_ui.lePort, SIGNAL(editingFinished()), this, SLOT(OnEditingFinished()));
-    connect(m_ui.leUser, SIGNAL(editingFinished()), this, SLOT(OnEditingFinished()));
-    connect(m_ui.lePassword, SIGNAL(editingFinished()), this, SLOT(OnEditingFinished()));
 
     connect(m_ui.btnPlay, SIGNAL(clicked()), this, SLOT(OnBtnPlayClicked()));
 }
