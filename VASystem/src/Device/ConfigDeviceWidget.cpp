@@ -1,4 +1,5 @@
 #include "ConfigDeviceWidget.h"
+#include "DeviceModel.h"
 
 CConfigDeviceWidget::CConfigDeviceWidget(QWidget *parent /*= 0*/)
     : QWidget(parent)
@@ -46,7 +47,9 @@ void CConfigDeviceWidget::OnAddDevice()
     QString itemName = "Device_" + QString::number(count);
     QTreeWidgetItem* pItem = new QTreeWidgetItem(QStringList(itemName));
 
-    // [TODO] update DeviceModel
+    SDeviceProperty dev(itemName, "");
+    int id = CDeviceModel::GetSingleTon()->AddDevice(dev);
+    pItem->setData(0, Qt::UserRole, id);
     m_ui.treeWidget->addTopLevelItem(pItem);
 }
 
@@ -56,20 +59,25 @@ void CConfigDeviceWidget::OnRemoveDevice()
 
     if (!itemList.empty())
     {
-        // [TODO] update DeviceModel
+        int id = itemList[0]->data(0, Qt::UserRole).toInt();
+        CDeviceModel::GetSingleTon()->RemoveDevice(id);
         SAFE_DELETE(itemList[0]);
     }
 }
 
 void CConfigDeviceWidget::OnTreeWidgetSelectionChanged()
 {
+    SDeviceProperty dev;
     QList<QTreeWidgetItem *> itemList = m_ui.treeWidget->selectedItems();
     m_pPlayerCtrl.DisConnect(m_curStreamId, true);
 
     if (!itemList.empty())
     {
         SetDeviceEntityUIEnable(true);
-        // [TODO] Get data from DeviceModel
+        int id = itemList[0]->data(0, Qt::UserRole).toInt();
+        CDeviceModel::GetSingleTon()->GetDevice(id, dev);
+        m_ui.leName->setText(dev.m_name);
+        m_ui.leUrl->setText(dev.m_url);
     }
     else
     {
@@ -90,10 +98,15 @@ void CConfigDeviceWidget::OnNameChanged(const QString& rText)
 void CConfigDeviceWidget::OnEditingFinished()
 {
     QList<QTreeWidgetItem *> itemList = m_ui.treeWidget->selectedItems();
+    SDeviceProperty dev;
 
     if (!itemList.empty())
     {
-        // [TODO] update DeviceModel
+        int id = itemList[0]->data(0, Qt::UserRole).toInt();
+        dev.m_name = m_ui.leName->text();
+        dev.m_url = m_ui.leUrl->text();
+
+        CDeviceModel::GetSingleTon()->EditDevice(id, dev);
     }
 }
 

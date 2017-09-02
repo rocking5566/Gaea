@@ -1,4 +1,5 @@
 SOURCES += ./src/Device/ConfigDeviceWidget.cpp \
+           ./src/Device/DeviceModel.cpp \
            ./src/FaceConfig/MemberModel.cpp \
            ./src/FaceConfig/RegisterFaceWidget.cpp \
            ./src/HomeWindow.cpp \
@@ -6,6 +7,7 @@ SOURCES += ./src/Device/ConfigDeviceWidget.cpp \
            ./src/RenderWidget.cpp
 
 HEADERS += ./src/Device/ConfigDeviceWidget.h \
+           ./src/Device/DeviceModel.h \
            ./src/FaceConfig/MemberModel.h \
            ./src/FaceConfig/RegisterFaceWidget.h \
            ./src/HomeWindow.h \
