@@ -64,9 +64,12 @@ void CStreamCtrl::DisConnect()
     {
     case eRTSP:
     case eWebCam:
-        m_pStreamClient->Stop();
-        m_pStreamClient->UnRegisterDecodeVideoCallback();
-        SAFE_DELETE(m_pStreamClient);
+        if (m_pStreamClient)
+        {
+            m_pStreamClient->Stop();
+            m_pStreamClient->UnRegisterDecodeVideoCallback();
+            SAFE_DELETE(m_pStreamClient);
+        }
         break;
 
     default:
