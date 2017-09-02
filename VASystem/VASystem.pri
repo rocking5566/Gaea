@@ -1,10 +1,12 @@
 SOURCES += ./src/Device/ConfigDeviceWidget.cpp \
+           ./src/FaceConfig/FaceDataBase.cpp \
            ./src/FaceConfig/RegisterFaceWidget.cpp \
            ./src/HomeWindow.cpp \
            ./src/main.cpp \
            ./src/RenderWidget.cpp
 
 HEADERS += ./src/Device/ConfigDeviceWidget.h \
+           ./src/FaceConfig/FaceDataBase.h \
            ./src/FaceConfig/RegisterFaceWidget.h \
            ./src/HomeWindow.h \
            ./src/RenderWidget.h

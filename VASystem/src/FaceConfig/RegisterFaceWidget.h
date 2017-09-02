@@ -16,9 +16,8 @@ private slots:
     void OnAddFace();
     void OnRemoveFace();
     void OnTreeWidgetSelectionChanged();
-    void OnEditingNameFinished();
-    void OnEditingGenderFinished();
-    void OnEditingAgeFinished();
+    void OnNameChanged(const QString& rText);
+    void OnEditingFinished();
     void OnBtnWebCamClicked();
     void OnBtnBrowseClicked();
 
