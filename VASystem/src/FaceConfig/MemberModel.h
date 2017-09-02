@@ -27,14 +27,14 @@ inline EGender StringToGender(const QString& rSGender)
     return eFemale;
 }
 
-struct SFaceEntity
+struct SMemberProperty
 {
-    SFaceEntity()
+    SMemberProperty()
         : m_gender(eMale)
         , m_age(0)
     {}
 
-    SFaceEntity(const QString& rName, EGender gender, int age)
+    SMemberProperty(const QString& rName, EGender gender, int age)
         : m_name(rName)
         , m_gender(gender)
         , m_age(age)
@@ -47,26 +47,26 @@ struct SFaceEntity
     QList<CVideoFrame> m_facePictures;
 };
 
-class CFaceDataBase
+class CMemberModel
 {
 public:
-    static CFaceDataBase* GetSingleTon();
-    int AddFace(const SFaceEntity& rEnt);   // return id
+    static CMemberModel* GetSingleTon();
+    int AddFace(const SMemberProperty& rEnt);   // return id
     void RemoveFace(int id);
     bool EditName(int id, const QString& rName);
     bool EditGender(int id, EGender gender);
     bool EditAge(int id, int age);
     bool EditVideoFrame(int id, const QList<CVideoFrame>& rFacePictures);
 
-    bool GetFace(int id, SFaceEntity& rEnt) const;
+    bool GetFace(int id, SMemberProperty& rEnt) const;
     QStringList GetAllEntityName() const;
 
 private:
-    explicit CFaceDataBase();
-    ~CFaceDataBase();
-    static CFaceDataBase* sm_Instance;
+    explicit CMemberModel();
+    ~CMemberModel();
+    static CMemberModel* sm_Instance;
 
     int m_maxID;
-    QMap<int, SFaceEntity> m_mapIdtoFace;
+    QMap<int, SMemberProperty> m_mapIdtoFace;
 };
 #endif // FaceDataBase_h__

@@ -1,42 +1,42 @@
-#include "FaceDataBase.h"
+#include "MemberModel.h"
 
-CFaceDataBase* CFaceDataBase::sm_Instance = NULL;
+CMemberModel* CMemberModel::sm_Instance = NULL;
 
-CFaceDataBase* CFaceDataBase::GetSingleTon()
+CMemberModel* CMemberModel::GetSingleTon()
 {
     if (sm_Instance == NULL)
     {
-        sm_Instance = new CFaceDataBase();
+        sm_Instance = new CMemberModel();
     }
 
     return sm_Instance;
 }
 
-CFaceDataBase::CFaceDataBase()
+CMemberModel::CMemberModel()
     : m_maxID(0)
 {
 
 }
 
-CFaceDataBase::~CFaceDataBase()
+CMemberModel::~CMemberModel()
 {
 
 }
 
-int CFaceDataBase::AddFace(const SFaceEntity& rEnt)
+int CMemberModel::AddFace(const SMemberProperty& rEnt)
 {
     // [TODO] update database
     m_mapIdtoFace[m_maxID] = rEnt;
     return m_maxID++;
 }
 
-void CFaceDataBase::RemoveFace(int id)
+void CMemberModel::RemoveFace(int id)
 {
     // [TODO] update database
     m_mapIdtoFace.remove(id);
 }
 
-bool CFaceDataBase::EditName(int id, const QString& rName)
+bool CMemberModel::EditName(int id, const QString& rName)
 {
     // [TODO] update database
     bool bExist = m_mapIdtoFace.contains(id);
@@ -49,7 +49,7 @@ bool CFaceDataBase::EditName(int id, const QString& rName)
     return bExist;
 }
 
-bool CFaceDataBase::EditGender(int id, EGender gender)
+bool CMemberModel::EditGender(int id, EGender gender)
 {
     // [TODO] update database
     bool bExist = m_mapIdtoFace.contains(id);
@@ -62,7 +62,7 @@ bool CFaceDataBase::EditGender(int id, EGender gender)
     return bExist;
 }
 
-bool CFaceDataBase::EditAge(int id, int age)
+bool CMemberModel::EditAge(int id, int age)
 {
     // [TODO] update database
     bool bExist = m_mapIdtoFace.contains(id);
@@ -75,7 +75,7 @@ bool CFaceDataBase::EditAge(int id, int age)
     return bExist;
 }
 
-bool CFaceDataBase::EditVideoFrame(int id, const QList<CVideoFrame>& rFacePictures)
+bool CMemberModel::EditVideoFrame(int id, const QList<CVideoFrame>& rFacePictures)
 {
     // [TODO] update database
     bool bExist = m_mapIdtoFace.contains(id);
@@ -88,7 +88,7 @@ bool CFaceDataBase::EditVideoFrame(int id, const QList<CVideoFrame>& rFacePictur
     return bExist;
 }
 
-bool CFaceDataBase::GetFace(int id, SFaceEntity& rEnt) const
+bool CMemberModel::GetFace(int id, SMemberProperty& rEnt) const
 {
     // [TODO] Get data from Database
     bool bExist = m_mapIdtoFace.contains(id);
@@ -101,7 +101,7 @@ bool CFaceDataBase::GetFace(int id, SFaceEntity& rEnt) const
     return bExist;
 }
 
-QStringList CFaceDataBase::GetAllEntityName() const
+QStringList CMemberModel::GetAllEntityName() const
 {
     // [TODO] Get data from Database
     QStringList ret;
