@@ -25,7 +25,7 @@ private slots:
 private:
     void ConnectUISignal();
     void InitTreeWidget();
-    void SetFaceConfigUIEnable(bool bEnable);
+    void SetFaceEntityUIEnable(bool bEnable);
 
 private:
     Ui::RegisterFaceWidget m_ui;

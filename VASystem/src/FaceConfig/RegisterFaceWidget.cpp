@@ -19,7 +19,7 @@ void CRegisterFaceWidget::InitTreeWidget()
     // [TODO] Get data from database
 }
 
-void CRegisterFaceWidget::SetFaceConfigUIEnable(bool bEnable)
+void CRegisterFaceWidget::SetFaceEntityUIEnable(bool bEnable)
 {
     m_ui.leName->setEnabled(bEnable);
     m_ui.cbGender->setEnabled(bEnable);
@@ -72,7 +72,7 @@ void CRegisterFaceWidget::OnTreeWidgetSelectionChanged()
 
     if (!itemList.empty())
     {
-        SetFaceConfigUIEnable(true);
+        SetFaceEntityUIEnable(true);
         int id = itemList[0]->data(0, Qt::UserRole).toInt();
         CFaceDataBase::GetSingleTon()->GetFace(id, ent);
         m_ui.leName->setText(ent.m_name);
@@ -81,7 +81,7 @@ void CRegisterFaceWidget::OnTreeWidgetSelectionChanged()
     }
     else
     {
-        SetFaceConfigUIEnable(false);
+        SetFaceEntityUIEnable(false);
     }
 }
 
