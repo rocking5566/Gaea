@@ -42,14 +42,14 @@
       </spacer>
      </item>
      <item row="1" column="3">
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="btnRemove">
        <property name="text">
         <string>Remove</string>
        </property>
       </widget>
      </item>
      <item row="1" column="2">
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="btnAdd">
        <property name="text">
         <string>Add</string>
        </property>
@@ -60,13 +60,24 @@
    <item>
     <layout class="QGridLayout" name="gridLayout_2" columnstretch="0,0,0,0">
      <item row="2" column="1" colspan="3">
-      <widget class="QLineEdit" name="lePort"/>
+      <widget class="QLineEdit" name="leAge">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+      </widget>
      </item>
      <item row="0" column="1" colspan="3">
-      <widget class="QLineEdit" name="leName"/>
+      <widget class="QLineEdit" name="leName">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+      </widget>
      </item>
      <item row="1" column="1" colspan="3">
-      <widget class="QLineEdit" name="leUrl">
+      <widget class="QLineEdit" name="leGender">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="toolTip">
         <string>rtsp://admin:admin@127.0.0.1:554/test.mkv</string>
        </property>
@@ -122,14 +133,20 @@
       </spacer>
      </item>
      <item row="3" column="3">
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="btnBrowse">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Browse</string>
        </property>
       </widget>
      </item>
      <item row="3" column="2">
-      <widget class="QPushButton" name="btnPlay">
+      <widget class="QPushButton" name="btnWebCam">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Web Cam</string>
        </property>

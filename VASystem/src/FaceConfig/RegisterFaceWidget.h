@@ -12,6 +12,21 @@ public:
     explicit CRegisterFaceWidget(QWidget *parent = 0);
     ~CRegisterFaceWidget();
 
+private slots:
+    void OnAddFace();
+    void OnRemoveFace();
+    void OnTreeWidgetSelectionChanged();
+    void OnEditingNameFinished();
+    void OnEditingGenderFinished();
+    void OnEditingAgeFinished();
+    void OnBtnWebCamClicked();
+    void OnBtnBrowseClicked();
+
+private:
+    void ConnectUISignal();
+    void InitTreeWidget();
+    void SetFaceConfigUIEnable(bool bEnable);
+
 private:
     Ui::RegisterFaceWidget m_ui;
 
