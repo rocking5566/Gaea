@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "ui_ConfigDeviceWidget.h"
 #include "PlayerCtrl.h"
+#include "VideoFrame.h"
 
 class CConfigDeviceWidget : public QWidget
 {
@@ -25,6 +26,8 @@ private:
     void ConnectUISignal();
     void InitTreeWidget();
     void SetDeviceEntityUIEnable(bool bEnable);
+
+    static void playerCallback(void *_this, int id, CVideoFrame frame);
 
 private:
     Ui::ConfigDeviceWidget m_ui;

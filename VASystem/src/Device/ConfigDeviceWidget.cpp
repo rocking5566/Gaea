@@ -11,7 +11,7 @@ CConfigDeviceWidget::CConfigDeviceWidget(QWidget *parent /*= 0*/)
 
 CConfigDeviceWidget::~CConfigDeviceWidget()
 {
-
+    m_pPlayerCtrl.DisConnect(m_curStreamId, false);
 }
 
 void CConfigDeviceWidget::InitTreeWidget()
@@ -70,6 +70,7 @@ void CConfigDeviceWidget::OnRemoveDevice()
 void CConfigDeviceWidget::OnTreeWidgetSelectionChanged()
 {
     QList<QTreeWidgetItem *> itemList = m_ui.treeWidget->selectedItems();
+    m_pPlayerCtrl.DisConnect(m_curStreamId, true);
 
     if (!itemList.empty())
     {
@@ -104,5 +105,19 @@ void CConfigDeviceWidget::OnEditingFinished()
 
 void CConfigDeviceWidget::OnBtnPlayClicked()
 {
-    // [TODO] Testing the RTSP 
+    // Disconnect previous stream first
+    m_pPlayerCtrl.DisConnect(m_curStreamId, true);
+
+    SConnectInfo info;
+    info.m_type = eRTSP;
+    info.m_sUrl = m_ui.leUrl->text();
+    m_curStreamId = m_pPlayerCtrl.Connect(info);
+    m_pPlayerCtrl.AttachStream(m_curStreamId, playerCallback, this);
+}
+
+void CConfigDeviceWidget::playerCallback(void *_this, int id, CVideoFrame frame)
+{
+    Q_UNUSED(id);
+    CConfigDeviceWidget* This = (CConfigDeviceWidget*)_this;
+    This->m_ui.renderWidget->Render(frame);
 }
