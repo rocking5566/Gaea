@@ -18,6 +18,7 @@ private slots:
     void OnTreeWidgetSelectionChanged();
     void OnNameChanged(const QString& rText);
     void OnEditingFinished();
+    void OnCbGenderChanged(const QString & text);
     void OnBtnWebCamClicked();
     void OnBtnBrowseClicked();
 

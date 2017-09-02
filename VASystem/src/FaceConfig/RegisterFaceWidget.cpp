@@ -22,7 +22,7 @@ void CRegisterFaceWidget::InitTreeWidget()
 void CRegisterFaceWidget::SetFaceConfigUIEnable(bool bEnable)
 {
     m_ui.leName->setEnabled(bEnable);
-    m_ui.leGender->setEnabled(bEnable);
+    m_ui.cbGender->setEnabled(bEnable);
     m_ui.leAge->setEnabled(bEnable);
     m_ui.btnWebCam->setEnabled(bEnable);
     m_ui.btnBrowse->setEnabled(bEnable);
@@ -35,7 +35,7 @@ void CRegisterFaceWidget::ConnectUISignal()
     connect(m_ui.treeWidget, SIGNAL(itemSelectionChanged()), this, SLOT(OnTreeWidgetSelectionChanged()));
     connect(m_ui.leName, SIGNAL(textChanged(const QString &)), this, SLOT(OnNameChanged(const QString &)));
     connect(m_ui.leName, SIGNAL(editingFinished()), this, SLOT(OnEditingFinished()));
-    connect(m_ui.leGender, SIGNAL(editingFinished()), this, SLOT(OnEditingFinished()));
+    connect(m_ui.cbGender, SIGNAL(currentIndexChanged(const QString&)), this, SLOT(OnCbGenderChanged(const QString&)));
     connect(m_ui.leAge, SIGNAL(editingFinished()), this, SLOT(OnEditingFinished()));
     connect(m_ui.btnWebCam, SIGNAL(clicked()), this, SLOT(OnBtnWebCamClicked()));
     connect(m_ui.btnBrowse, SIGNAL(clicked()), this, SLOT(OnBtnBrowseClicked()));
@@ -76,7 +76,7 @@ void CRegisterFaceWidget::OnTreeWidgetSelectionChanged()
         int id = itemList[0]->data(0, Qt::UserRole).toInt();
         CFaceDataBase::GetSingleTon()->GetFace(id, ent);
         m_ui.leName->setText(ent.m_name);
-        m_ui.leGender->setText(GenderToString(ent.m_gender));
+        m_ui.cbGender->setCurrentIndex(ent.m_gender);
         m_ui.leAge->setText(QString::number(ent.m_age));
     }
     else
@@ -108,15 +108,24 @@ void CRegisterFaceWidget::OnEditingFinished()
         {
             CFaceDataBase::GetSingleTon()->EditName(id, m_ui.leName->text());
         }
-        else if (sender() == m_ui.leGender)
-        {
-            CFaceDataBase::GetSingleTon()->EditGender(id, StringToGender(m_ui.leGender->text()));
-        }
+
         else if (sender() == m_ui.leAge)
         {
             CFaceDataBase::GetSingleTon()->EditAge(id, m_ui.leAge->text().toInt());
         }
 
+    }
+}
+
+void CRegisterFaceWidget::OnCbGenderChanged(const QString & text)
+{
+    QList<QTreeWidgetItem *> itemList = m_ui.treeWidget->selectedItems();
+    SFaceEntity ent;
+
+    if (!itemList.empty())
+    {
+        int id = itemList[0]->data(0, Qt::UserRole).toInt();
+        CFaceDataBase::GetSingleTon()->EditGender(id, StringToGender(text));
     }
 }
 

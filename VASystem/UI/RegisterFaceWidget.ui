@@ -59,33 +59,10 @@
    </item>
    <item>
     <layout class="QGridLayout" name="gridLayout_2" columnstretch="0,0,0,0">
-     <item row="2" column="1" colspan="3">
-      <widget class="QLineEdit" name="leAge">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="1" colspan="3">
       <widget class="QLineEdit" name="leName">
        <property name="enabled">
         <bool>false</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1" colspan="3">
-      <widget class="QLineEdit" name="leGender">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="toolTip">
-        <string>rtsp://admin:admin@127.0.0.1:554/test.mkv</string>
-       </property>
-       <property name="inputMask">
-        <string/>
-       </property>
-       <property name="text">
-        <string/>
        </property>
       </widget>
      </item>
@@ -164,6 +141,30 @@
         </size>
        </property>
       </spacer>
+     </item>
+     <item row="1" column="1" colspan="3">
+      <widget class="QComboBox" name="cbGender">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <item>
+        <property name="text">
+         <string>Male</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Female</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="2" column="1" colspan="3">
+      <widget class="QLineEdit" name="leAge">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
