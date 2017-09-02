@@ -1,5 +1,5 @@
 TARGET = VASystemNoLink
-HOME_PATH = $${PWD}/../..
+HOME_PATH = $${PWD}/..
 VLC_PATH = $${PWD}/../packages/libvlc-2.2.2
 OPENCV_PATH = $${PWD}/../packages/opencv249
 STREAM_ENGINE_PATH = $${PWD}/../StreamEngine
