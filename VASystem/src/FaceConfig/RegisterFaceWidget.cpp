@@ -48,7 +48,7 @@ void CRegisterFaceWidget::OnAddFace()
     QTreeWidgetItem* pItem = new QTreeWidgetItem(QStringList(itemName));
 
     SMemberProperty member(itemName, eMale, 0);
-    int id = CMemberModel::GetSingleTon()->AddFace(member);
+    int id = CMemberModel::GetSingleTon()->AddMember(member);
     pItem->setData(0, Qt::UserRole, id);
     m_ui.treeWidget->addTopLevelItem(pItem);
 }
@@ -60,7 +60,7 @@ void CRegisterFaceWidget::OnRemoveFace()
     if (!itemList.empty())
     {
         int id = itemList[0]->data(0, Qt::UserRole).toInt();
-        CMemberModel::GetSingleTon()->RemoveFace(id);
+        CMemberModel::GetSingleTon()->RemoveMember(id);
         SAFE_DELETE(itemList[0]);
     }
 }
@@ -74,7 +74,7 @@ void CRegisterFaceWidget::OnTreeWidgetSelectionChanged()
     {
         SetFaceEntityUIEnable(true);
         int id = itemList[0]->data(0, Qt::UserRole).toInt();
-        CMemberModel::GetSingleTon()->GetFace(id, member);
+        CMemberModel::GetSingleTon()->GetMember(id, member);
         m_ui.leName->setText(member.m_name);
         m_ui.cbGender->setCurrentIndex(member.m_gender);
         m_ui.leAge->setText(QString::number(member.m_age));

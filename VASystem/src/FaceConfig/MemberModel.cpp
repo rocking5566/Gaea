@@ -23,14 +23,14 @@ CMemberModel::~CMemberModel()
 
 }
 
-int CMemberModel::AddFace(const SMemberProperty& rMember)
+int CMemberModel::AddMember(const SMemberProperty& rMember)
 {
     // [TODO] update database
     m_mapIdtoMember[m_maxID] = rMember;
     return m_maxID++;
 }
 
-void CMemberModel::RemoveFace(int id)
+void CMemberModel::RemoveMember(int id)
 {
     // [TODO] update database
     m_mapIdtoMember.remove(id);
@@ -88,7 +88,7 @@ bool CMemberModel::EditVideoFrame(int id, const QList<CVideoFrame>& rFacePicture
     return bExist;
 }
 
-bool CMemberModel::GetFace(int id, SMemberProperty& rMember) const
+bool CMemberModel::GetMember(int id, SMemberProperty& rMember) const
 {
     // [TODO] Get data from Database
     bool bExist = m_mapIdtoMember.contains(id);
