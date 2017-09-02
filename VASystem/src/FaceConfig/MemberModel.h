@@ -66,6 +66,6 @@ private:
     static CMemberModel* sm_Instance;
 
     int m_maxID;
-    QMap<int, SMemberProperty> m_mapIdtoFace;
+    QMap<int, SMemberProperty> m_mapIdtoMember;
 };
 #endif // FaceDataBase_h__

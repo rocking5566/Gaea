@@ -26,24 +26,24 @@ CMemberModel::~CMemberModel()
 int CMemberModel::AddFace(const SMemberProperty& rMember)
 {
     // [TODO] update database
-    m_mapIdtoFace[m_maxID] = rMember;
+    m_mapIdtoMember[m_maxID] = rMember;
     return m_maxID++;
 }
 
 void CMemberModel::RemoveFace(int id)
 {
     // [TODO] update database
-    m_mapIdtoFace.remove(id);
+    m_mapIdtoMember.remove(id);
 }
 
 bool CMemberModel::EditName(int id, const QString& rName)
 {
     // [TODO] update database
-    bool bExist = m_mapIdtoFace.contains(id);
+    bool bExist = m_mapIdtoMember.contains(id);
 
     if (bExist)
     {
-        m_mapIdtoFace[id].m_name = rName;
+        m_mapIdtoMember[id].m_name = rName;
     }
 
     return bExist;
@@ -52,11 +52,11 @@ bool CMemberModel::EditName(int id, const QString& rName)
 bool CMemberModel::EditGender(int id, EGender gender)
 {
     // [TODO] update database
-    bool bExist = m_mapIdtoFace.contains(id);
+    bool bExist = m_mapIdtoMember.contains(id);
 
     if (bExist)
     {
-        m_mapIdtoFace[id].m_gender = gender;
+        m_mapIdtoMember[id].m_gender = gender;
     }
 
     return bExist;
@@ -65,11 +65,11 @@ bool CMemberModel::EditGender(int id, EGender gender)
 bool CMemberModel::EditAge(int id, int age)
 {
     // [TODO] update database
-    bool bExist = m_mapIdtoFace.contains(id);
+    bool bExist = m_mapIdtoMember.contains(id);
 
     if (bExist)
     {
-        m_mapIdtoFace[id].m_age = age;
+        m_mapIdtoMember[id].m_age = age;
     }
 
     return bExist;
@@ -78,11 +78,11 @@ bool CMemberModel::EditAge(int id, int age)
 bool CMemberModel::EditVideoFrame(int id, const QList<CVideoFrame>& rFacePictures)
 {
     // [TODO] update database
-    bool bExist = m_mapIdtoFace.contains(id);
+    bool bExist = m_mapIdtoMember.contains(id);
 
     if (bExist)
     {
-        m_mapIdtoFace[id].m_facePictures = rFacePictures;
+        m_mapIdtoMember[id].m_facePictures = rFacePictures;
     }
 
     return bExist;
@@ -91,11 +91,11 @@ bool CMemberModel::EditVideoFrame(int id, const QList<CVideoFrame>& rFacePicture
 bool CMemberModel::GetFace(int id, SMemberProperty& rMember) const
 {
     // [TODO] Get data from Database
-    bool bExist = m_mapIdtoFace.contains(id);
+    bool bExist = m_mapIdtoMember.contains(id);
 
     if (bExist)
     {
-        rMember = m_mapIdtoFace[id];
+        rMember = m_mapIdtoMember[id];
     }
 
     return bExist;
