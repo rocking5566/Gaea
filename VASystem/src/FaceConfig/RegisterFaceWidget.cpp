@@ -1,4 +1,5 @@
 #include "RegisterFaceWidget.h"
+#include "QFileDialog.h"
 #include "MemberModel.h"
 
 CRegisterFaceWidget::CRegisterFaceWidget(QWidget *parent /*= 0*/)
@@ -141,7 +142,12 @@ void CRegisterFaceWidget::OnBtnWebCamClicked()
 
 void CRegisterFaceWidget::OnBtnBrowseClicked()
 {
-    // [TODO] Design UI and update image database for local file
+    // [TODO] Pass images to register
+    QStringList files = QFileDialog::getOpenFileNames(
+        this,
+        "Select one or more images to register",
+        ".",
+        "Images (*.png *.jpg)");
 }
 
 void CRegisterFaceWidget::playerCallback(void *_this, int id, CVideoFrame frame)
