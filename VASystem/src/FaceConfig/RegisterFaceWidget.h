@@ -2,6 +2,8 @@
 #define RegisterFaceWidget_h__
 
 #include <QMainWindow>
+#include "PlayerCtrl.h"
+#include "VideoFrame.h"
 #include "ui_RegisterFaceWidget.h"
 
 class CRegisterFaceWidget : public QWidget
@@ -27,8 +29,12 @@ private:
     void InitTreeWidget();
     void SetFaceEntityUIEnable(bool bEnable);
 
+    static void playerCallback(void *_this, int id, CVideoFrame frame);
+
 private:
     Ui::RegisterFaceWidget m_ui;
+    CPlayerCtrl m_pPlayerCtrl;
+    int m_iWebCamStreamId;
 
 };
 #endif // RegisterFaceWidget_h__

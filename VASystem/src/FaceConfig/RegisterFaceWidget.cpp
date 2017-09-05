@@ -3,6 +3,7 @@
 
 CRegisterFaceWidget::CRegisterFaceWidget(QWidget *parent /*= 0*/)
     : QWidget(parent)
+    , m_iWebCamStreamId(-1)
 {
     m_ui.setupUi(this);
     ConnectUISignal();
@@ -11,7 +12,7 @@ CRegisterFaceWidget::CRegisterFaceWidget(QWidget *parent /*= 0*/)
 
 CRegisterFaceWidget::~CRegisterFaceWidget()
 {
-
+    m_pPlayerCtrl.DisConnect(m_iWebCamStreamId, false);
 }
 
 void CRegisterFaceWidget::InitTreeWidget()
@@ -129,10 +130,23 @@ void CRegisterFaceWidget::OnCbGenderChanged(const QString & text)
 
 void CRegisterFaceWidget::OnBtnWebCamClicked()
 {
-    // [TODO] Design UI and update image database for web cam
+    // [TODO] Disconnect and Enable the button when register completed
+    m_ui.btnWebCam->setDisabled(true);
+
+    SConnectInfo info;
+    info.m_type = eWebCam;
+    m_iWebCamStreamId = m_pPlayerCtrl.Connect(info);
+    m_pPlayerCtrl.AttachStream(m_iWebCamStreamId, playerCallback, this);
 }
 
 void CRegisterFaceWidget::OnBtnBrowseClicked()
 {
     // [TODO] Design UI and update image database for local file
+}
+
+void CRegisterFaceWidget::playerCallback(void *_this, int id, CVideoFrame frame)
+{
+    Q_UNUSED(id);
+    CRegisterFaceWidget* This = (CRegisterFaceWidget*)_this;
+    This->m_ui.renderWidget->Render(frame);
 }
