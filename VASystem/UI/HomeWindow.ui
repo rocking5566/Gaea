@@ -25,7 +25,7 @@
         <string>Register</string>
        </attribute>
       </widget>
-      <widget class="QWidget" name="LiveViewTab">
+      <widget class="CLiveViewWidget" name="LiveViewTab">
        <attribute name="title">
         <string>LiveView</string>
        </attribute>
@@ -52,6 +52,12 @@
    <class>CConfigDeviceWidget</class>
    <extends>QWidget</extends>
    <header>Device/ConfigDeviceWidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CLiveViewWidget</class>
+   <extends>QWidget</extends>
+   <header>LiveView/LiveViewWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
