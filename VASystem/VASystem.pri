@@ -18,6 +18,7 @@ HEADERS += ./src/Device/ConfigDeviceWidget.h \
            ./src/HomeWindow.h \
            ./src/RenderWidget.h \
            ./src/ViewPanel.cpp
+           ./src/ViewPanel.h
 
 FORMS   += ./UI/ConfigDeviceWidget.ui \
            ./UI/HomeWindow.ui \

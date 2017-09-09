@@ -1,3 +1,6 @@
+#ifndef ViewPanel_h__
+#define ViewPanel_h__
+
 #include <QWidget>
 
 class CViewPanel : public QWidget
@@ -9,3 +12,4 @@ public:
     ~CViewPanel();
 
 };
+#endif // ViewPanel_h__

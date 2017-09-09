@@ -1,3 +1,6 @@
+#ifndef FilmView_h__
+#define FilmView_h__
+
 #include <QWidget>
 
 class CFilmView : public QWidget
@@ -9,3 +12,4 @@ public:
     ~CFilmView();
 
 };
+#endif // FilmView_h__
