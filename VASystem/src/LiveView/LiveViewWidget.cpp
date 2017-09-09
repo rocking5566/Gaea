@@ -43,7 +43,7 @@ void CLiveViewWidget::SetupDeviceTree()
 
         // [TODO] Add API to Connect list of SConnectInfo in CPlayerCtrl simultaneously
         // Prevent block in worker thread, UI will also be blocked
-        m_pDeviceID2StreamID[iter.key()] = m_pPlayerCtrl.Connect(info);
+        m_mapDeviceID2StreamID[iter.key()] = m_pPlayerCtrl.Connect(info);
         ++iter;
     }
 }
@@ -60,14 +60,14 @@ void CLiveViewWidget::ConnectUISignal()
 
 void CLiveViewWidget::DisconnectAllStream(bool bIsAsync)
 {
-    auto iter = m_pDeviceID2StreamID.constBegin();
-    while (iter != m_pDeviceID2StreamID.constEnd())
+    auto iter = m_mapDeviceID2StreamID.constBegin();
+    while (iter != m_mapDeviceID2StreamID.constEnd())
     {
         m_pPlayerCtrl.DisConnect(iter.value(), bIsAsync);
         ++iter;
     }
 
-    m_pDeviceID2StreamID.clear();
+    m_mapDeviceID2StreamID.clear();
 }
 
 void CLiveViewWidget::OnCurrentItemChanged(QTreeWidgetItem *pCurrent, QTreeWidgetItem *pPrevious)
@@ -75,13 +75,13 @@ void CLiveViewWidget::OnCurrentItemChanged(QTreeWidgetItem *pCurrent, QTreeWidge
     if (pPrevious)
     {
         int deviceID = pPrevious->data(0, Qt::UserRole).toInt();
-        m_pPlayerCtrl.DetachStream(m_pDeviceID2StreamID[deviceID], this);
+        m_pPlayerCtrl.DetachStream(m_mapDeviceID2StreamID[deviceID], this);
     }
 
     if (pCurrent)
     {
         int deviceID = pCurrent->data(0, Qt::UserRole).toInt();
-        m_pPlayerCtrl.AttachStream(m_pDeviceID2StreamID[deviceID], playerCallback, this);
+        m_pPlayerCtrl.AttachStream(m_mapDeviceID2StreamID[deviceID], playerCallback, this);
     }
 }
 
