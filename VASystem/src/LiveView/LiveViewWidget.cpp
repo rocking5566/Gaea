@@ -15,7 +15,6 @@ CLiveViewWidget::~CLiveViewWidget()
 
 void CLiveViewWidget::Enter()
 {
-    DisconnectAllStream(false);
     ClearDeviceTree();
     SetupDeviceTree();
 }
