@@ -23,7 +23,7 @@ void CRegisterFaceWidget::Enter()
 
 void CRegisterFaceWidget::Leave()
 {
-    // [TODO]
+    m_pPlayerCtrl.DisConnect(m_iWebCamStreamId, false);
 }
 
 void CRegisterFaceWidget::InitTreeWidget()

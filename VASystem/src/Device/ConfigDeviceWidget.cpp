@@ -22,7 +22,7 @@ void CConfigDeviceWidget::Enter()
 
 void CConfigDeviceWidget::Leave()
 {
-    // [TODO]
+    m_pPlayerCtrl.DisConnect(m_curStreamId, false);
 }
 
 void CConfigDeviceWidget::InitTreeWidget()
