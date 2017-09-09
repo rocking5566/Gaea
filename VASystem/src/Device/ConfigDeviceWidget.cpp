@@ -7,7 +7,7 @@ CConfigDeviceWidget::CConfigDeviceWidget(QWidget *parent /*= 0*/)
 {
     m_ui.setupUi(this);
     ConnectUISignal();
-    InitTreeWidget();
+    InitDeviceTree();
 }
 
 CConfigDeviceWidget::~CConfigDeviceWidget()
@@ -25,7 +25,7 @@ void CConfigDeviceWidget::Leave()
     m_pPlayerCtrl.DisConnect(m_curStreamId, false);
 }
 
-void CConfigDeviceWidget::InitTreeWidget()
+void CConfigDeviceWidget::InitDeviceTree()
 {
     // [TODO] Get data from CDeviceModel
 }

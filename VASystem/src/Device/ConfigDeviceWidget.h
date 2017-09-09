@@ -28,7 +28,7 @@ private slots:
 
 private:
     void ConnectUISignal();
-    void InitTreeWidget();
+    void InitDeviceTree();
     void SetDeviceEntityUIEnable(bool bEnable);
 
     static void playerCallback(void *_this, int id, CVideoFrame frame);
