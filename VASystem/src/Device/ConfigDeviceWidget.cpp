@@ -2,7 +2,7 @@
 #include "DeviceModel.h"
 
 CConfigDeviceWidget::CConfigDeviceWidget(QWidget *parent /*= 0*/)
-    : QWidget(parent)
+    : CTabEntity(parent)
     , m_curStreamId(-1)
 {
     m_ui.setupUi(this);
@@ -13,6 +13,16 @@ CConfigDeviceWidget::CConfigDeviceWidget(QWidget *parent /*= 0*/)
 CConfigDeviceWidget::~CConfigDeviceWidget()
 {
     m_pPlayerCtrl.DisConnect(m_curStreamId, false);
+}
+
+void CConfigDeviceWidget::Enter()
+{
+    // [TODO]
+}
+
+void CConfigDeviceWidget::Leave()
+{
+    // [TODO]
 }
 
 void CConfigDeviceWidget::InitTreeWidget()

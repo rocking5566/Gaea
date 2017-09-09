@@ -3,7 +3,7 @@
 #include "MemberModel.h"
 
 CRegisterFaceWidget::CRegisterFaceWidget(QWidget *parent /*= 0*/)
-    : QWidget(parent)
+    : CTabEntity(parent)
     , m_iWebCamStreamId(-1)
 {
     m_ui.setupUi(this);
@@ -14,6 +14,16 @@ CRegisterFaceWidget::CRegisterFaceWidget(QWidget *parent /*= 0*/)
 CRegisterFaceWidget::~CRegisterFaceWidget()
 {
     m_pPlayerCtrl.DisConnect(m_iWebCamStreamId, false);
+}
+
+void CRegisterFaceWidget::Enter()
+{
+    // [TODO]
+}
+
+void CRegisterFaceWidget::Leave()
+{
+    // [TODO]
 }
 
 void CRegisterFaceWidget::InitTreeWidget()

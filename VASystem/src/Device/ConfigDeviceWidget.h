@@ -1,18 +1,22 @@
 #ifndef ConfigDeviceWidget_h__
 #define ConfigDeviceWidget_h__
 
-#include <QMainWindow>
+#include "TabEntity.h"
 #include "ui_ConfigDeviceWidget.h"
 #include "PlayerCtrl.h"
 #include "VideoFrame.h"
 
-class CConfigDeviceWidget : public QWidget
+class CConfigDeviceWidget : public CTabEntity
 {
     Q_OBJECT
 
 public:
     explicit CConfigDeviceWidget(QWidget *parent = 0);
     ~CConfigDeviceWidget();
+
+    // override CTabEntity
+    virtual void Enter();
+    virtual void Leave();
 
 private slots:
     void OnAddDevice();

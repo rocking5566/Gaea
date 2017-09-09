@@ -16,7 +16,7 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QTabWidget" name="tabWidget">
+     <widget class="CTabWidget" name="tabWidget">
       <property name="currentIndex">
        <number>0</number>
       </property>
@@ -58,6 +58,12 @@
    <class>CLiveViewWidget</class>
    <extends>QWidget</extends>
    <header>LiveView/LiveViewWidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CTabWidget</class>
+   <extends>QTabWidget</extends>
+   <header>TabWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
