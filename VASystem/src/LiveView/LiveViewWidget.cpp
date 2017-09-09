@@ -3,7 +3,6 @@
 
 CLiveViewWidget::CLiveViewWidget(QWidget *parent)
     : CTabEntity(parent)
-    , m_curStreamId(-1)
 {
     m_ui.setupUi(this);
     ConnectUISignal();
@@ -11,59 +10,79 @@ CLiveViewWidget::CLiveViewWidget(QWidget *parent)
 
 CLiveViewWidget::~CLiveViewWidget()
 {
-    m_pPlayerCtrl.DisConnect(m_curStreamId, false);
+    DisconnectAllStream(false);
 }
 
 void CLiveViewWidget::Enter()
 {
-    InitDeviceTree();
+    DisconnectAllStream(false);
+    ClearDeviceTree();
+    SetupDeviceTree();
 }
 
 void CLiveViewWidget::Leave()
 {
-    m_pPlayerCtrl.DisConnect(m_curStreamId, false);
+    DisconnectAllStream(true);
+    ClearDeviceTree();
 }
 
-void CLiveViewWidget::InitDeviceTree()
+void CLiveViewWidget::SetupDeviceTree()
 {
-    m_ui.treeWidget->clear();
-
     QMap<int, SDeviceProperty> deviceMap;
     CDeviceModel::GetSingleTon()->GetDevices(deviceMap);
 
     auto iter = deviceMap.constBegin();
     while (iter != deviceMap.constEnd())
     {
+        SConnectInfo info;
         QTreeWidgetItem* pItem = new QTreeWidgetItem(QStringList(iter.value().m_name));
         pItem->setData(0, Qt::UserRole, iter.key());
         m_ui.treeWidget->addTopLevelItem(pItem);
+
+        info.m_type = eRTSP;
+        info.m_sUrl = iter.value().m_url;
+
+        // [TODO] Add API to Connect list of SConnectInfo in CPlayerCtrl simultaneously
+        // Prevent block in worker thread, UI will also be blocked
+        m_pDeviceID2StreamID[iter.key()] = m_pPlayerCtrl.Connect(info);
         ++iter;
     }
 }
 
-void CLiveViewWidget::ConnectUISignal()
+void CLiveViewWidget::ClearDeviceTree()
 {
-    connect(m_ui.treeWidget, SIGNAL(itemSelectionChanged()), this, SLOT(OnTreeWidgetSelectionChanged()));
+    m_ui.treeWidget->clear();
 }
 
-void CLiveViewWidget::OnTreeWidgetSelectionChanged()
+void CLiveViewWidget::ConnectUISignal()
 {
-    SConnectInfo info;
-    SDeviceProperty dev;
-    QList<QTreeWidgetItem *> itemList = m_ui.treeWidget->selectedItems();
-    m_pPlayerCtrl.DisConnect(m_curStreamId, true);
+    connect(m_ui.treeWidget, SIGNAL(currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *)), this, SLOT(OnCurrentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *)));
+}
 
-    if (!itemList.empty())
+void CLiveViewWidget::DisconnectAllStream(bool bIsAsync)
+{
+    auto iter = m_pDeviceID2StreamID.constBegin();
+    while (iter != m_pDeviceID2StreamID.constEnd())
     {
-        int id = itemList[0]->data(0, Qt::UserRole).toInt();
-        CDeviceModel::GetSingleTon()->GetDevice(id, dev);
+        m_pPlayerCtrl.DisConnect(iter.value(), bIsAsync);
+        ++iter;
+    }
 
-        info.m_type = eRTSP;
-        info.m_sUrl = dev.m_url;
+    m_pDeviceID2StreamID.clear();
+}
 
-        // [TODO] Connect all the streams when initializing device tree
-        m_curStreamId = m_pPlayerCtrl.Connect(info);
-        m_pPlayerCtrl.AttachStream(m_curStreamId, playerCallback, this);
+void CLiveViewWidget::OnCurrentItemChanged(QTreeWidgetItem *pCurrent, QTreeWidgetItem *pPrevious)
+{
+    if (pPrevious)
+    {
+        int deviceID = pPrevious->data(0, Qt::UserRole).toInt();
+        m_pPlayerCtrl.DetachStream(m_pDeviceID2StreamID[deviceID], this);
+    }
+
+    if (pCurrent)
+    {
+        int deviceID = pCurrent->data(0, Qt::UserRole).toInt();
+        m_pPlayerCtrl.AttachStream(m_pDeviceID2StreamID[deviceID], playerCallback, this);
     }
 }
 

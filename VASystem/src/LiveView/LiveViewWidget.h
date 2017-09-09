@@ -16,16 +16,18 @@ public:
     virtual void Leave();
 
 private slots:
-    void OnTreeWidgetSelectionChanged();
+    void OnCurrentItemChanged(QTreeWidgetItem *pCurrent, QTreeWidgetItem *pPrevious);
 
 private:
     void ConnectUISignal();
-    void InitDeviceTree();
+    void SetupDeviceTree();
+    void ClearDeviceTree();
+    void DisconnectAllStream(bool bIsAsync);
 
     static void playerCallback(void *_this, int id, CVideoFrame frame);
 
 private:
     Ui::LiveViewWidget m_ui;
     CPlayerCtrl m_pPlayerCtrl;
-    int m_curStreamId;
+    QMap<int, int> m_pDeviceID2StreamID;
 };
