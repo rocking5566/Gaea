@@ -28,6 +28,7 @@ public:
     bool EditDevice(int id, const SDeviceProperty& rDev);
 
     bool GetDevice(int id, SDeviceProperty& rMember) const;
+    bool GetDevices(QMap<int, SDeviceProperty>& rDeviceMap) const;
 
 private:
     explicit CDeviceModel();

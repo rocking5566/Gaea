@@ -62,3 +62,9 @@ bool CDeviceModel::GetDevice(int id, SDeviceProperty& rMember) const
     return bExist;
 }
 
+bool CDeviceModel::GetDevices(QMap<int, SDeviceProperty>& rDeviceMap) const
+{
+    rDeviceMap = m_mapIdtoDevice;
+    return true;
+}
+

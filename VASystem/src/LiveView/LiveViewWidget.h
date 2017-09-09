@@ -14,5 +14,8 @@ public:
     virtual void Leave();
 
 private:
+    void InitDeviceTree();
+
+private:
     Ui::LiveViewWidget m_ui;
 };
