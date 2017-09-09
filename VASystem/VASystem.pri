@@ -8,8 +8,7 @@ SOURCES += ./src/Device/ConfigDeviceWidget.cpp \
            ./src/main.cpp \
            ./src/RenderWidget.cpp \
            ./src/TabEntity.cpp \
-           ./src/TabWidget.cpp \
-           ./src/ViewPanel.cpp
+           ./src/TabWidget.cpp
 
 HEADERS += ./src/Device/ConfigDeviceWidget.h \
            ./src/Device/DeviceModel.h \
@@ -20,8 +19,7 @@ HEADERS += ./src/Device/ConfigDeviceWidget.h \
            ./src/HomeWindow.h \
            ./src/RenderWidget.h \
            ./src/TabEntity.h \
-           ./src/TabWidget.h \
-           ./src/ViewPanel.h
+           ./src/TabWidget.h
 
 FORMS   += ./UI/ConfigDeviceWidget.ui \
            ./UI/HomeWindow.ui \
