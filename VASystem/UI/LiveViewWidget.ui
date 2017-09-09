@@ -56,43 +56,15 @@
     </widget>
    </item>
    <item row="0" column="1">
-    <widget class="CViewPanel" name="LiveViewPanel" native="true">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>0</height>
-      </size>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <property name="leftMargin">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="rightMargin">
-       <number>0</number>
-      </property>
-      <property name="bottomMargin">
-       <number>0</number>
-      </property>
-     </layout>
-    </widget>
+    <widget class="CRenderWidget" name="renderWidget"/>
    </item>
   </layout>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>CViewPanel</class>
-   <extends>QWidget</extends>
-   <header>ViewPanel.h</header>
-   <container>1</container>
+   <class>CRenderWidget</class>
+   <extends>QOpenGLWidget</extends>
+   <header>RenderWidget.h</header>
   </customwidget>
   <customwidget>
    <class>CFilmView</class>
