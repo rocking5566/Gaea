@@ -94,7 +94,7 @@
   <customwidget>
    <class>CFilmView</class>
    <extends>QWidget</extends>
-   <header>FilmView.h</header>
+   <header>LiveView/FilmView.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

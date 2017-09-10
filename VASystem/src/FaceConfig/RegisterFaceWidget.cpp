@@ -1,5 +1,5 @@
 #include "RegisterFaceWidget.h"
-#include "QFileDialog.h"
+#include <QFileDialog>
 #include "MemberModel.h"
 
 CRegisterFaceWidget::CRegisterFaceWidget(QWidget *parent /*= 0*/)
