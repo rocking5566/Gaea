@@ -20,7 +20,7 @@ private slots:
     void OnDetachAllStream();
 
 private:
-    static void playerCallback(void *_this, int id, CVideoFrame frame);
+    static void playerCallback(void *_this, int id, CImageAdaptor frame);
 
 private:
     Ui::PlayerWidget m_ui;

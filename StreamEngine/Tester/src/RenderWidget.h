@@ -10,13 +10,13 @@ class CRenderWidget : public QOpenGLWidget
     Q_OBJECT
 public:
     CRenderWidget(QWidget *parent = 0);
-    void Render(const CVideoFrame &frame);
+    void Render(const CImageAdaptor &frame);
 
 private:
     virtual void paintEvent(QPaintEvent *ev);
 
 private:
-    CVideoFrame m_currentFrame;
+    CImageAdaptor m_currentFrame;
     QMutex m_frameMutex;
 };
 #endif // RenderWidget_h__
