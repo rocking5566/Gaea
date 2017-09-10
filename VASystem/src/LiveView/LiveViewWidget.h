@@ -17,6 +17,7 @@ public:
 
 private slots:
     void OnCurrentItemChanged(QTreeWidgetItem *pCurrent, QTreeWidgetItem *pPrevious);
+    void OnSnapshot();
 
 private:
     void ConnectUISignal();

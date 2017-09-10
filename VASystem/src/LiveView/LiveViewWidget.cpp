@@ -56,6 +56,7 @@ void CLiveViewWidget::ClearDeviceTree()
 void CLiveViewWidget::ConnectUISignal()
 {
     connect(m_ui.treeWidget, SIGNAL(currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *)), this, SLOT(OnCurrentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *)));
+    connect(m_ui.btnSnapshot, SIGNAL(clicked()), this, SLOT(OnSnapshot()));
 }
 
 void CLiveViewWidget::DisconnectAllStream(bool bIsAsync)
@@ -83,6 +84,11 @@ void CLiveViewWidget::OnCurrentItemChanged(QTreeWidgetItem *pCurrent, QTreeWidge
         int deviceID = pCurrent->data(0, Qt::UserRole).toInt();
         m_pPlayerCtrl.AttachStream(m_mapDeviceID2StreamID[deviceID], playerCallback, this);
     }
+}
+
+void CLiveViewWidget::OnSnapshot()
+{
+    m_ui.filmView->PushImage(m_ui.renderWidget->currentFrame());
 }
 
 void CLiveViewWidget::playerCallback(void *_this, int id, CVideoFrame frame)
