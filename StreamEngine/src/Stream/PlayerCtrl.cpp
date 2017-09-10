@@ -61,7 +61,7 @@ void CPlayerCtrl::DetachStream(int iStreamID, void* pListener)
     }
 }
 
-void CPlayerCtrl::StreamCallback(void *_this, CStreamCtrl* pSrcStream, CVideoFrame frame)
+void CPlayerCtrl::StreamCallback(void *_this, CStreamCtrl* pSrcStream, CImageAdaptor frame)
 {
     CPlayerCtrl* This = (CPlayerCtrl*)_this;
     QMutexLocker locker(&This->m_StreamsMutex);

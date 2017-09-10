@@ -7,7 +7,7 @@
 #include "VideoFrame.h"
 
 class CStreamCtrl;
-typedef void(*VideoCb)(void *pListener, int streamId, CVideoFrame frame);
+typedef void(*VideoCb)(void *pListener, int streamId, CImageAdaptor frame);
 
 /*!
     This class provide interfaces to play multiple streams simultaneously.
@@ -27,7 +27,7 @@ public:
     void DisConnect(int iStreamIndex, bool bIsAsync);
 
 private:
-    static void StreamCallback(void *_this, CStreamCtrl* pSrcStream, CVideoFrame frame);
+    static void StreamCallback(void *_this, CStreamCtrl* pSrcStream, CImageAdaptor frame);
 
     // override CWorkerThread
     virtual void HandleRequest(SRequest request);

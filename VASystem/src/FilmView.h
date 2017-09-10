@@ -13,8 +13,8 @@ public:
     explicit CFilmView(QWidget *parent = 0, int rowCount = 1, int colCount = 5);
     ~CFilmView();
 
-    void PushImage(CVideoFrame img);
-    void InsertImage(CVideoFrame img, int row, int col);
+    void PushImage(CImageAdaptor img);
+    void InsertImage(CImageAdaptor img, int row, int col);
 
 private:
     QGridLayout m_GridLayout;

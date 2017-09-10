@@ -25,7 +25,7 @@ private:
     void ClearDeviceTree();
     void DisconnectAllStream(bool bIsAsync);
 
-    static void playerCallback(void *_this, int id, CVideoFrame frame);
+    static void playerCallback(void *_this, int id, CImageAdaptor frame);
 
 private:
     Ui::LiveViewWidget m_ui;

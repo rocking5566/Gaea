@@ -79,7 +79,7 @@ void CStreamCtrl::DisConnect()
     m_SessionType = eNone;
 }
 
-void CStreamCtrl::VideoDecodeCallback(void* _this, CVideoFrame frame)
+void CStreamCtrl::VideoDecodeCallback(void* _this, CImageAdaptor frame)
 {
     // TODO - Congestion control
 
@@ -116,7 +116,7 @@ void CStreamCtrl::run()
 
 void CStreamCtrl::DeliverVideo()
 {
-    CVideoFrame frame = m_DeliveringDecodeImgQueue.front();
+    CImageAdaptor frame = m_DeliveringDecodeImgQueue.front();
 
     for (auto iter = m_listenerCallbackList.begin(); iter != m_listenerCallbackList.end(); ++iter)
     {

@@ -91,7 +91,7 @@ void CLiveViewWidget::OnSnapshot()
     m_ui.filmView->PushImage(m_ui.renderWidget->currentFrame());
 }
 
-void CLiveViewWidget::playerCallback(void *_this, int id, CVideoFrame frame)
+void CLiveViewWidget::playerCallback(void *_this, int id, CImageAdaptor frame)
 {
     Q_UNUSED(id);
     CLiveViewWidget* This = (CLiveViewWidget*)_this;

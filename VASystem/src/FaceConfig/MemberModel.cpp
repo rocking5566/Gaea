@@ -75,7 +75,7 @@ bool CMemberModel::EditAge(int id, int age)
     return bExist;
 }
 
-bool CMemberModel::EditVideoFrame(int id, const QList<CVideoFrame>& rFacePictures)
+bool CMemberModel::EditVideoFrame(int id, const QList<CImageAdaptor>& rFacePictures)
 {
     // [TODO] update database
     bool bExist = m_mapIdtoMember.contains(id);

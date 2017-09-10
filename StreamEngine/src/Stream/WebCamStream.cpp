@@ -42,7 +42,7 @@ void CWebCamStream::run()
             Mat cvframe;
             m_vCap.read(cvframe);
 
-            CVideoFrame frame(cvframe);
+            CImageAdaptor frame(cvframe);
             m_CbDecodeVideo(m_pListener, frame);
             msleep(1000 / m_dFps);
         }

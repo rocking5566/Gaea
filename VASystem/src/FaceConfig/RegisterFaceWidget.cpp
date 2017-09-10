@@ -160,7 +160,7 @@ void CRegisterFaceWidget::OnBtnBrowseClicked()
         "Images (*.png *.jpg)");
 }
 
-void CRegisterFaceWidget::playerCallback(void *_this, int id, CVideoFrame frame)
+void CRegisterFaceWidget::playerCallback(void *_this, int id, CImageAdaptor frame)
 {
     Q_UNUSED(id);
     CRegisterFaceWidget* This = (CRegisterFaceWidget*)_this;

@@ -7,14 +7,14 @@ CRenderWidget::CRenderWidget(QWidget *parent)
     : QOpenGLWidget(parent)
 {}
 
-void CRenderWidget::Render(const CVideoFrame &frame)
+void CRenderWidget::Render(const CImageAdaptor &frame)
 {
     QMutexLocker lock(&m_frameMutex);
     m_currentFrame = frame;
     update();
 }
 
-CVideoFrame CRenderWidget::currentFrame()
+CImageAdaptor CRenderWidget::currentFrame()
 {
     QMutexLocker lock(&m_frameMutex);
     return m_currentFrame;

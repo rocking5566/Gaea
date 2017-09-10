@@ -44,7 +44,7 @@ struct SMemberProperty
     QString m_name;
     EGender m_gender;
     int m_age;
-    QList<CVideoFrame> m_facePictures;
+    QList<CImageAdaptor> m_facePictures;
 };
 
 class CMemberModel
@@ -56,7 +56,7 @@ public:
     bool EditName(int id, const QString& rName);
     bool EditGender(int id, EGender gender);
     bool EditAge(int id, int age);
-    bool EditVideoFrame(int id, const QList<CVideoFrame>& rFacePictures);
+    bool EditVideoFrame(int id, const QList<CImageAdaptor>& rFacePictures);
 
     bool GetMember(int id, SMemberProperty& rMember) const;
 

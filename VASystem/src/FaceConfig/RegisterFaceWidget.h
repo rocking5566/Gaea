@@ -33,7 +33,7 @@ private:
     void InitTreeWidget();
     void SetFaceEntityUIEnable(bool bEnable);
 
-    static void playerCallback(void *_this, int id, CVideoFrame frame);
+    static void playerCallback(void *_this, int id, CImageAdaptor frame);
 
 private:
     Ui::RegisterFaceWidget m_ui;

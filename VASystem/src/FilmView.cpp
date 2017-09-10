@@ -26,7 +26,7 @@ CFilmView::~CFilmView()
 
 }
 
-void CFilmView::PushImage(CVideoFrame img)
+void CFilmView::PushImage(CImageAdaptor img)
 {
     int row = m_curIndex / m_iColCount;
     int col = m_curIndex % m_iColCount;
@@ -34,7 +34,7 @@ void CFilmView::PushImage(CVideoFrame img)
     m_curIndex = (m_curIndex + 1) % (m_iRowCount * m_iColCount);
 }
 
-void CFilmView::InsertImage(CVideoFrame img, int row, int col)
+void CFilmView::InsertImage(CImageAdaptor img, int row, int col)
 {
     if (row < m_iRowCount && col < m_iColCount)
     {

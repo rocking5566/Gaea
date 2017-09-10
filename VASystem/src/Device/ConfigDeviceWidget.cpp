@@ -132,7 +132,7 @@ void CConfigDeviceWidget::OnBtnPlayClicked()
     m_pPlayerCtrl.AttachStream(m_curStreamId, playerCallback, this);
 }
 
-void CConfigDeviceWidget::playerCallback(void *_this, int id, CVideoFrame frame)
+void CConfigDeviceWidget::playerCallback(void *_this, int id, CImageAdaptor frame)
 {
     Q_UNUSED(id);
     CConfigDeviceWidget* This = (CConfigDeviceWidget*)_this;

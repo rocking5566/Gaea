@@ -3,7 +3,7 @@
 
 #include "VideoFrame.h"
 
-typedef void(*DecodeVideoCb)(void *pListener, CVideoFrame frame);
+typedef void(*DecodeVideoCb)(void *pListener, CImageAdaptor frame);
 
 struct SVideoProfile
 {
