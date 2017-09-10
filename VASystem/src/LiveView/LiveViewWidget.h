@@ -1,4 +1,4 @@
-#include "TabEntity.h"
+#include "Tab/TabEntity.h"
 #include "ui_LiveViewWidget.h"
 #include "PlayerCtrl.h"
 #include "VideoFrame.h"

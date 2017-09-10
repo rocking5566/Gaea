@@ -1,7 +1,7 @@
 #ifndef RegisterFaceWidget_h__
 #define RegisterFaceWidget_h__
 
-#include "TabEntity.h"
+#include "Tab/TabEntity.h"
 #include "PlayerCtrl.h"
 #include "VideoFrame.h"
 #include "ui_RegisterFaceWidget.h"

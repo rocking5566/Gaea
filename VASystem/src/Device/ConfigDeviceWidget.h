@@ -1,7 +1,7 @@
 #ifndef ConfigDeviceWidget_h__
 #define ConfigDeviceWidget_h__
 
-#include "TabEntity.h"
+#include "Tab/TabEntity.h"
 #include "ui_ConfigDeviceWidget.h"
 #include "PlayerCtrl.h"
 #include "VideoFrame.h"

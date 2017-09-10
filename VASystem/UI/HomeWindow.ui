@@ -63,7 +63,7 @@
   <customwidget>
    <class>CTabWidget</class>
    <extends>QTabWidget</extends>
-   <header>TabWidget.h</header>
+   <header>Tab/TabWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

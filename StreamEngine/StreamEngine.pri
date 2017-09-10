@@ -1,4 +1,9 @@
 STREAM_ENGINE_PATH = $${PWD}
+INCLUDEPATH += $${VLC_PATH}/include \
+               $${OPENCV_PATH}/include \
+               $${STREAM_ENGINE_PATH}/include \
+               $${STREAM_ENGINE_PATH}/src
+
 
 SOURCES += $${STREAM_ENGINE_PATH}/src/Stream/PlayerCtrl.cpp \
            $${STREAM_ENGINE_PATH}/src/Stream/RtspStream.cpp \

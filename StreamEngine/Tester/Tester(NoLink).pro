@@ -13,12 +13,6 @@ CONFIG += c++11
 include(Tester.pri)
 include($${STREAM_ENGINE_PATH}/StreamEngine.pri)
 
-INCLUDEPATH += $${VLC_PATH}/include \
-               $${OPENCV_PATH}/include \
-               $${STREAM_ENGINE_PATH}/include \
-               $${STREAM_ENGINE_PATH}/src \
-               $${PWD}/src
-
 win32 {
     QMAKE_CXXFLAGS += /Zi
     contains(QMAKE_TARGET.arch, x86_64) {
