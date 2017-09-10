@@ -6,6 +6,7 @@ CFilmView::CFilmView(QWidget *parent, int rowCount, int colCount)
     , m_iRowCount(rowCount)
     , m_iColCount(colCount)
     , m_curIndex(0)
+    , m_GridLayout(this)
 {
     m_GridLayout.setSpacing(10);
     m_GridLayout.setMargin(0);
