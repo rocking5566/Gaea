@@ -1,7 +1,7 @@
 #include "Tab/TabEntity.h"
 #include "ui_LiveViewWidget.h"
 #include "PlayerCtrl.h"
-#include "VideoFrame.h"
+#include "ImageAdaptor.h"
 
 class CLiveViewWidget : public CTabEntity
 {

@@ -1,7 +1,7 @@
 #include "PlayerWidget.h"
 #include <QInputDialog>
 #include "PlayerCtrl.h"
-#include "VideoFrame.h"
+#include "ImageAdaptor.h"
 #include "Util.h"
 #include "opencv2/opencv.hpp"
 

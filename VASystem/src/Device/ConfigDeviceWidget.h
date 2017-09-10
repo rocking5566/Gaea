@@ -4,7 +4,7 @@
 #include "Tab/TabEntity.h"
 #include "ui_ConfigDeviceWidget.h"
 #include "PlayerCtrl.h"
-#include "VideoFrame.h"
+#include "ImageAdaptor.h"
 
 class CConfigDeviceWidget : public CTabEntity
 {

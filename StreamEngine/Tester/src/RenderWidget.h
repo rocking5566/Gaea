@@ -3,7 +3,7 @@
 
 #include <QOpenGLWidget>
 #include <QMutex>
-#include "VideoFrame.h"
+#include "ImageAdaptor.h"
 
 class CRenderWidget : public QOpenGLWidget
 {

@@ -4,7 +4,7 @@
 #include <QReadWriteLock>
 #include "WorkerThread.h"
 #include "StreamEngineTypes.h"
-#include "VideoFrame.h"
+#include "ImageAdaptor.h"
 
 class CStreamCtrl;
 typedef void(*VideoCb)(void *pListener, int streamId, CImageAdaptor frame);

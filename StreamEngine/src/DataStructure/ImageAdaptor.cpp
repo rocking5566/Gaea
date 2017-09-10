@@ -1,4 +1,4 @@
-#include "VideoFrame.h"
+#include "ImageAdaptor.h"
 
 using namespace cv;
 

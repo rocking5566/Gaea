@@ -3,7 +3,7 @@
 #include <QString>
 #include <QList>
 #include <QMap>
-#include "VideoFrame.h"
+#include "ImageAdaptor.h"
 
 enum EGender
 {

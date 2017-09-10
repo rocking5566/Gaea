@@ -6,7 +6,7 @@
 #include <QMap>
 #include <QMutex>
 #include "StreamEngineTypes.h"
-#include "VideoFrame.h"
+#include "ImageAdaptor.h"
 
 class CStreamClient;
 class CStreamCtrl;

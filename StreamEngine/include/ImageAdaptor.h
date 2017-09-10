@@ -1,5 +1,5 @@
-#ifndef VideoFrame_h__
-#define VideoFrame_h__
+#ifndef ImageAdaptor_h__
+#define ImageAdaptor_h__
 
 #include <opencv2/core/core.hpp>
 #include <QImage>
@@ -65,4 +65,4 @@ private:
     unsigned int m_height;
     unsigned int m_width;
 };
-#endif // VideoFrame_h__
+#endif // ImageAdaptor_h__

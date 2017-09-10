@@ -3,7 +3,7 @@
 
 #include <QGridLayout>
 #include <QWidget>
-#include "VideoFrame.h"
+#include "ImageAdaptor.h"
 
 class CFilmView : public QWidget
 {

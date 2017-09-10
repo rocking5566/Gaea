@@ -2,7 +2,7 @@
 #define PlayerWidget_h__
 
 #include <QWidget>
-#include "VideoFrame.h"
+#include "ImageAdaptor.h"
 #include "ui_PlayerWidget.h"
 
 class CPlayerCtrl;

@@ -3,7 +3,7 @@
 
 #include "Tab/TabEntity.h"
 #include "PlayerCtrl.h"
-#include "VideoFrame.h"
+#include "ImageAdaptor.h"
 #include "ui_RegisterFaceWidget.h"
 
 class CRegisterFaceWidget : public CTabEntity
