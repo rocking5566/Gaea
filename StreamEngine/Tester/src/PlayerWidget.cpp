@@ -1,7 +1,7 @@
 #include "PlayerWidget.h"
 #include <QInputDialog>
 #include "PlayerCtrl.h"
-#include "VideoFrame.h"
+#include "ImageAdaptor.h"
 #include "Util.h"
 #include "opencv2/opencv.hpp"
 
@@ -38,7 +38,7 @@ void CPlayerWidget::OnDetachAllStream()
     }
 }
 
-void CPlayerWidget::playerCallback(void *_this, int id, CVideoFrame frame)
+void CPlayerWidget::playerCallback(void *_this, int id, CImageAdaptor frame)
 {
     Q_UNUSED(id);
     CPlayerWidget* This = (CPlayerWidget*)_this;

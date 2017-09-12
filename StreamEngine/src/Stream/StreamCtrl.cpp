@@ -64,9 +64,12 @@ void CStreamCtrl::DisConnect()
     {
     case eRTSP:
     case eWebCam:
-        m_pStreamClient->Stop();
-        m_pStreamClient->UnRegisterDecodeVideoCallback();
-        SAFE_DELETE(m_pStreamClient);
+        if (m_pStreamClient)
+        {
+            m_pStreamClient->Stop();
+            m_pStreamClient->UnRegisterDecodeVideoCallback();
+            SAFE_DELETE(m_pStreamClient);
+        }
         break;
 
     default:
@@ -76,7 +79,7 @@ void CStreamCtrl::DisConnect()
     m_SessionType = eNone;
 }
 
-void CStreamCtrl::VideoDecodeCallback(void* _this, CVideoFrame frame)
+void CStreamCtrl::VideoDecodeCallback(void* _this, CImageAdaptor frame)
 {
     // TODO - Congestion control
 
@@ -113,7 +116,7 @@ void CStreamCtrl::run()
 
 void CStreamCtrl::DeliverVideo()
 {
-    CVideoFrame frame = m_DeliveringDecodeImgQueue.front();
+    CImageAdaptor frame = m_DeliveringDecodeImgQueue.front();
 
     for (auto iter = m_listenerCallbackList.begin(); iter != m_listenerCallbackList.end(); ++iter)
     {

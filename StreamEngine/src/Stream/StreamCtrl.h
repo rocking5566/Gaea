@@ -6,11 +6,11 @@
 #include <QMap>
 #include <QMutex>
 #include "StreamEngineTypes.h"
-#include "VideoFrame.h"
+#include "ImageAdaptor.h"
 
 class CStreamClient;
 class CStreamCtrl;
-typedef void (*StreamCb)(void *pListener, CStreamCtrl* pSrcStream, CVideoFrame frame);
+typedef void (*StreamCb)(void *pListener, CStreamCtrl* pSrcStream, CImageAdaptor frame);
 
 /*!
     This class responsible for congestion control, error handle for the stream.
@@ -32,7 +32,7 @@ public:
     void Detach(void* pListener);
 
 private:
-    static void VideoDecodeCallback(void* _this, CVideoFrame frame);
+    static void VideoDecodeCallback(void* _this, CImageAdaptor frame);
     void DeliverVideo();
 
     virtual void run();
@@ -47,8 +47,8 @@ private:
     int m_iStreamID;
     CStreamClient* m_pStreamClient;
     EConnectType m_SessionType;
-    QList<CVideoFrame> m_DecodeImgQueue;
-    QList<CVideoFrame> m_DeliveringDecodeImgQueue;
+    QList<CImageAdaptor> m_DecodeImgQueue;
+    QList<CImageAdaptor> m_DeliveringDecodeImgQueue;
     QList<QPair<void*, StreamCb> > m_listenerCallbackList;
 };
 #endif // StreamSession_h__

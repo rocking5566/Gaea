@@ -2,7 +2,7 @@
 #define PlayerWidget_h__
 
 #include <QWidget>
-#include "VideoFrame.h"
+#include "ImageAdaptor.h"
 #include "ui_PlayerWidget.h"
 
 class CPlayerCtrl;
@@ -20,7 +20,7 @@ private slots:
     void OnDetachAllStream();
 
 private:
-    static void playerCallback(void *_this, int id, CVideoFrame frame);
+    static void playerCallback(void *_this, int id, CImageAdaptor frame);
 
 private:
     Ui::PlayerWidget m_ui;

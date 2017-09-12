@@ -1,8 +1,8 @@
-#include "VideoFrame.h"
+#include "ImageAdaptor.h"
 
 using namespace cv;
 
-CVideoFrame::CVideoFrame()
+CImageAdaptor::CImageAdaptor()
     : m_width(0)
     , m_height(0)
     , m_pData(NULL)
@@ -12,7 +12,7 @@ CVideoFrame::CVideoFrame()
 
 }
 
-CVideoFrame::CVideoFrame(uchar* uData, int iWidth, int iHeight, Format format)
+CImageAdaptor::CImageAdaptor(uchar* uData, int iWidth, int iHeight, Format format)
     : m_width(iWidth)
     , m_height(iHeight)
     , m_pData(uData)
@@ -23,7 +23,7 @@ CVideoFrame::CVideoFrame(uchar* uData, int iWidth, int iHeight, Format format)
     // Only support 32-bit ARGB format (0xAARRGGBB) so far.
 }
 
-CVideoFrame::CVideoFrame(QImage& src)
+CImageAdaptor::CImageAdaptor(QImage& src)
     : m_width(src.width())
     , m_height(src.height())
     , m_pData(NULL)
@@ -34,7 +34,7 @@ CVideoFrame::CVideoFrame(QImage& src)
 
 }
 
-CVideoFrame::CVideoFrame(cv::Mat& src)
+CImageAdaptor::CImageAdaptor(cv::Mat& src)
     : m_width(src.cols)
     , m_height(src.rows)
     , m_pData(NULL)
@@ -45,18 +45,18 @@ CVideoFrame::CVideoFrame(cv::Mat& src)
 
 }
 
-CVideoFrame::~CVideoFrame()
+CImageAdaptor::~CImageAdaptor()
 {
 
 }
 
-CVideoFrame CVideoFrame::CopyFromMat(const cv::Mat& src)
+CImageAdaptor CImageAdaptor::CopyFromMat(const cv::Mat& src)
 {
     Mat _src = src.clone();
-    return CVideoFrame(_src);
+    return CImageAdaptor(_src);
 }
 
-uchar* CVideoFrame::Data()
+uchar* CImageAdaptor::Data()
 {
     switch(m_dataType)
     {
@@ -71,7 +71,7 @@ uchar* CVideoFrame::Data()
     }
 }
 
-Mat CVideoFrame::ToMat()
+Mat CImageAdaptor::ToMat()
 {
     if (m_dataType == eMat)
     {
@@ -81,7 +81,7 @@ Mat CVideoFrame::ToMat()
     return Mat(cv::Size(m_width, m_height), CV_8UC4, Data());
 }
 
-QImage CVideoFrame::ToQImage()
+QImage CImageAdaptor::ToQImage()
 {
     if (m_dataType == eQImage)
     {

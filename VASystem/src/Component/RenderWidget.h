@@ -11,6 +11,7 @@ class CRenderWidget : public QOpenGLWidget
 public:
     CRenderWidget(QWidget *parent = 0);
     void Render(const CImageAdaptor &frame);
+    CImageAdaptor currentFrame();
 
 private:
     virtual void paintEvent(QPaintEvent *ev);

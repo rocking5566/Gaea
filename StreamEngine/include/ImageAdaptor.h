@@ -1,5 +1,5 @@
-#ifndef VideoFrame_h__
-#define VideoFrame_h__
+#ifndef ImageAdaptor_h__
+#define ImageAdaptor_h__
 
 #include <opencv2/core/core.hpp>
 #include <QImage>
@@ -11,7 +11,7 @@
     In addition, provide adapter for QImage & Mat data type.
 */
 
-class GAEA_EXPORTS CVideoFrame
+class GAEA_EXPORTS CImageAdaptor
 {
     enum EDataSrc
     {
@@ -28,17 +28,17 @@ public:
         Format_ARGB32   // (0xAARRGGBB)
     };
 
-    CVideoFrame();
+    CImageAdaptor();
     //! Data will be deleted at destruction when reference count is zero.
     //! Only support 32-bit ARGB format (0xAARRGGBB).
-    CVideoFrame(uchar* uData, int iWidth, int iHeight, Format format);
+    CImageAdaptor(uchar* uData, int iWidth, int iHeight, Format format);
     //! Data will not be deleted at destruction, handle life cycle by outside.
-    CVideoFrame(QImage& src);
+    CImageAdaptor(QImage& src);
     //! Data will not be deleted at destruction, handle life cycle by outside.
-    CVideoFrame(cv::Mat& src);
-    ~CVideoFrame();
+    CImageAdaptor(cv::Mat& src);
+    ~CImageAdaptor();
 
-    static CVideoFrame CopyFromMat(const cv::Mat& src);
+    static CImageAdaptor CopyFromMat(const cv::Mat& src);
 
     inline unsigned int Height()
     {
@@ -65,4 +65,4 @@ private:
     unsigned int m_height;
     unsigned int m_width;
 };
-#endif // VideoFrame_h__
+#endif // ImageAdaptor_h__

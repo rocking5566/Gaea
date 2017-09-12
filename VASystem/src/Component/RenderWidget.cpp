@@ -14,6 +14,12 @@ void CRenderWidget::Render(const CImageAdaptor &frame)
     update();
 }
 
+CImageAdaptor CRenderWidget::currentFrame()
+{
+    QMutexLocker lock(&m_frameMutex);
+    return m_currentFrame;
+}
+
 void CRenderWidget::paintEvent(QPaintEvent *ev)
 {
     QOpenGLWidget::paintEvent(ev);

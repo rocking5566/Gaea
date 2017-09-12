@@ -1,9 +1,9 @@
 #ifndef CStreamClient_h__
 #define CStreamClient_h__
 
-#include "VideoFrame.h"
+#include "ImageAdaptor.h"
 
-typedef void(*DecodeVideoCb)(void *pListener, CVideoFrame frame);
+typedef void(*DecodeVideoCb)(void *pListener, CImageAdaptor frame);
 
 struct SVideoProfile
 {

@@ -1,3 +1,8 @@
+INCLUDEPATH += $${VLC_PATH}/include \
+               $${OPENCV_PATH}/include \
+               $${STREAM_ENGINE_PATH}/include \
+               $${PWD}/src
+
 SOURCES += ./src/ConnectionListDock.cpp \
            ./src/main.cpp \
            ./src/HomeWindow.cpp \

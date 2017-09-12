@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>HomeWindow</class>
+ <widget class="QMainWindow" name="HomeWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>VASystem</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="CTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="CRegisterFaceWidget" name="RegisterTab">
+       <attribute name="title">
+        <string>Register</string>
+       </attribute>
+      </widget>
+      <widget class="CLiveViewWidget" name="LiveViewTab">
+       <attribute name="title">
+        <string>LiveView</string>
+       </attribute>
+      </widget>
+      <widget class="CConfigDeviceWidget" name="DeviceTab">
+       <attribute name="title">
+        <string>IPCamera</string>
+       </attribute>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>CRegisterFaceWidget</class>
+   <extends>QWidget</extends>
+   <header>FaceConfig/RegisterFaceWidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CConfigDeviceWidget</class>
+   <extends>QWidget</extends>
+   <header>Device/ConfigDeviceWidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CLiveViewWidget</class>
+   <extends>QWidget</extends>
+   <header>LiveView/LiveViewWidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CTabWidget</class>
+   <extends>QTabWidget</extends>
+   <header>Tab/TabWidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
