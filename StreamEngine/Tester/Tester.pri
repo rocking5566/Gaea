@@ -1,18 +1,21 @@
-INCLUDEPATH += $${VLC_PATH}/include \
-               $${OPENCV_PATH}/include \
-               $${STREAM_ENGINE_PATH}/include \
-               $${PWD}/src
+COMMON_PATH = $${PWD}/../../Common
 
-SOURCES += ./src/ConnectionListDock.cpp \
+INCLUDEPATH += $${COMMON_PATH} \
+               $${OPENCV_PATH}/include \
+               $${PWD}/src \
+               $${STREAM_ENGINE_PATH}/include \
+               $${VLC_PATH}/include
+
+SOURCES += $${COMMON_PATH}/RenderWidget.cpp \
+           ./src/ConnectionListDock.cpp \
            ./src/main.cpp \
            ./src/HomeWindow.cpp \
-           ./src/PlayerWidget.cpp \
-           ./src/RenderWidget.cpp
+           ./src/PlayerWidget.cpp
 
-HEADERS += ./src/ConnectionListDock.h \
+HEADERS += ./$${COMMON_PATH}/RenderWidget.h \
+           ./src/ConnectionListDock.h \
            ./src/HomeWindow.h \
-           ./src/PlayerWidget.h \
-           ./src/RenderWidget.h
+           ./src/PlayerWidget.h
 
 FORMS   += ./UI/ConnectionListWidget.ui \
            ./UI/HomeWindow.ui \

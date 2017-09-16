@@ -1,10 +1,13 @@
-INCLUDEPATH += $${VLC_PATH}/include \
-               $${OPENCV_PATH}/include \
-               $${STREAM_ENGINE_PATH}/include \
-               $${PWD}/src \
-               $${PWD}/src/Component
+COMMON_PATH = $${PWD}/../Common
 
-SOURCES += ./src/Component/RenderWidget.cpp \
+INCLUDEPATH += $${COMMON_PATH} \
+               $${OPENCV_PATH}/include \
+               $${PWD}/src \
+               $${PWD}/src/Component \
+               $${STREAM_ENGINE_PATH}/include \
+               $${VLC_PATH}/include
+
+SOURCES += $${COMMON_PATH}/RenderWidget.cpp \
            ./src/Component/Tab/TabEntity.cpp \
            ./src/Component/Tab/TabWidget.cpp \
            ./src/Device/ConfigDeviceWidget.cpp \
@@ -16,7 +19,7 @@ SOURCES += ./src/Component/RenderWidget.cpp \
            ./src/HomeWindow.cpp \
            ./src/main.cpp
 
-HEADERS += ./src/Component/RenderWidget.h \
+HEADERS += $${COMMON_PATH}/RenderWidget.h \
            ./src/Component/Tab/TabEntity.h \
            ./src/Component/Tab/TabWidget.h \
            ./src/Device/ConfigDeviceWidget.h \
