@@ -3,6 +3,8 @@
 #include "PlayerCtrl.h"
 #include "ImageAdaptor.h"
 
+class CFacialInfoWidget;
+
 class CLiveViewWidget : public CTabEntity
 {
     Q_OBJECT
@@ -14,6 +16,9 @@ public:
     // override CTabEntity
     virtual void Enter();
     virtual void Leave();
+
+protected:
+    virtual void hideEvent(QHideEvent *event);
 
 private slots:
     void OnCurrentItemChanged(QTreeWidgetItem *pCurrent, QTreeWidgetItem *pPrevious);
@@ -30,5 +35,6 @@ private:
 private:
     Ui::LiveViewWidget m_ui;
     CPlayerCtrl m_pPlayerCtrl;
+    CFacialInfoWidget* m_pFacialWidget;
     QMap<int, int> m_mapDeviceID2StreamID;
 };

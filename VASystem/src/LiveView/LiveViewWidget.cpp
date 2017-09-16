@@ -1,26 +1,32 @@
 #include "LiveViewWidget.h"
 #include "Device/DeviceModel.h"
+#include "FacialInfoWidget.h"
 
 CLiveViewWidget::CLiveViewWidget(QWidget *parent)
     : CTabEntity(parent)
+    , m_pFacialWidget(NULL)
 {
     m_ui.setupUi(this);
     ConnectUISignal();
+    m_pFacialWidget = new CFacialInfoWidget(parent);
 }
 
 CLiveViewWidget::~CLiveViewWidget()
 {
     DisconnectAllStream(false);
+    SAFE_DELETE(m_pFacialWidget);
 }
 
 void CLiveViewWidget::Enter()
 {
+    m_pFacialWidget->show();
     ClearDeviceTree();
     SetupDeviceTree();
 }
 
 void CLiveViewWidget::Leave()
 {
+    m_pFacialWidget->hide();
     DisconnectAllStream(true);
     ClearDeviceTree();
 }
@@ -88,7 +94,7 @@ void CLiveViewWidget::OnCurrentItemChanged(QTreeWidgetItem *pCurrent, QTreeWidge
 
 void CLiveViewWidget::OnSnapshot()
 {
-    m_ui.filmView->PushImage(m_ui.renderWidget->currentFrame());
+    m_pFacialWidget->PushImage(m_ui.renderWidget->currentFrame());
 }
 
 void CLiveViewWidget::playerCallback(void *_this, int id, CImageAdaptor frame)
@@ -96,4 +102,10 @@ void CLiveViewWidget::playerCallback(void *_this, int id, CImageAdaptor frame)
     Q_UNUSED(id);
     CLiveViewWidget* This = (CLiveViewWidget*)_this;
     This->m_ui.renderWidget->Render(frame);
+}
+
+void CLiveViewWidget::hideEvent(QHideEvent *event)
+{
+    m_pFacialWidget->hide();
+    CTabEntity::hideEvent(event);
 }
