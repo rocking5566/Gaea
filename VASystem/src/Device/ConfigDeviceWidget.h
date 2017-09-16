@@ -35,7 +35,7 @@ private:
 
 private:
     Ui::ConfigDeviceWidget m_ui;
-    CPlayerCtrl m_pPlayerCtrl;
+    CPlayerCtrl m_playerCtrl;
     int m_curStreamId;
 };
 #endif // ConfigDeviceWidget_h__

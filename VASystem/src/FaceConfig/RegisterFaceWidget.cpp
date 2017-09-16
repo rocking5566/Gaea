@@ -13,7 +13,7 @@ CRegisterFaceWidget::CRegisterFaceWidget(QWidget *parent /*= 0*/)
 
 CRegisterFaceWidget::~CRegisterFaceWidget()
 {
-    m_pPlayerCtrl.DisConnect(m_iWebCamStreamId, false);
+    m_playerCtrl.DisConnect(m_iWebCamStreamId, false);
 }
 
 void CRegisterFaceWidget::Enter()
@@ -23,7 +23,7 @@ void CRegisterFaceWidget::Enter()
 
 void CRegisterFaceWidget::Leave()
 {
-    m_pPlayerCtrl.DisConnect(m_iWebCamStreamId, false);
+    m_playerCtrl.DisConnect(m_iWebCamStreamId, false);
 }
 
 void CRegisterFaceWidget::InitTreeWidget()
@@ -146,8 +146,8 @@ void CRegisterFaceWidget::OnBtnWebCamClicked()
 
     SConnectInfo info;
     info.m_type = eWebCam;
-    m_iWebCamStreamId = m_pPlayerCtrl.Connect(info);
-    m_pPlayerCtrl.AttachStream(m_iWebCamStreamId, playerCallback, this);
+    m_iWebCamStreamId = m_playerCtrl.Connect(info);
+    m_playerCtrl.AttachStream(m_iWebCamStreamId, playerCallback, this);
 }
 
 void CRegisterFaceWidget::OnBtnBrowseClicked()

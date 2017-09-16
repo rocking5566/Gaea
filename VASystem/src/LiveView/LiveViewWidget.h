@@ -34,7 +34,7 @@ private:
 
 private:
     Ui::LiveViewWidget m_ui;
-    CPlayerCtrl m_pPlayerCtrl;
+    CPlayerCtrl m_playerCtrl;
     CFacialInfoWidget* m_pFacialWidget;
     QMap<int, int> m_mapDeviceID2StreamID;
 };

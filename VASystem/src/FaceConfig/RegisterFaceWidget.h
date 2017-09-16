@@ -37,7 +37,7 @@ private:
 
 private:
     Ui::RegisterFaceWidget m_ui;
-    CPlayerCtrl m_pPlayerCtrl;
+    CPlayerCtrl m_playerCtrl;
     int m_iWebCamStreamId;
 
 };

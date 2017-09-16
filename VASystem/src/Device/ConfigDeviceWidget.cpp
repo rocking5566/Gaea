@@ -12,7 +12,7 @@ CConfigDeviceWidget::CConfigDeviceWidget(QWidget *parent /*= 0*/)
 
 CConfigDeviceWidget::~CConfigDeviceWidget()
 {
-    m_pPlayerCtrl.DisConnect(m_curStreamId, false);
+    m_playerCtrl.DisConnect(m_curStreamId, false);
 }
 
 void CConfigDeviceWidget::Enter()
@@ -22,7 +22,7 @@ void CConfigDeviceWidget::Enter()
 
 void CConfigDeviceWidget::Leave()
 {
-    m_pPlayerCtrl.DisConnect(m_curStreamId, false);
+    m_playerCtrl.DisConnect(m_curStreamId, false);
 }
 
 void CConfigDeviceWidget::InitDeviceTree()
@@ -79,7 +79,7 @@ void CConfigDeviceWidget::OnTreeWidgetSelectionChanged()
 {
     SDeviceProperty dev;
     QList<QTreeWidgetItem *> itemList = m_ui.treeWidget->selectedItems();
-    m_pPlayerCtrl.DisConnect(m_curStreamId, true);
+    m_playerCtrl.DisConnect(m_curStreamId, true);
 
     if (!itemList.empty())
     {
@@ -123,13 +123,13 @@ void CConfigDeviceWidget::OnEditingFinished()
 void CConfigDeviceWidget::OnBtnPlayClicked()
 {
     // Disconnect previous stream first
-    m_pPlayerCtrl.DisConnect(m_curStreamId, true);
+    m_playerCtrl.DisConnect(m_curStreamId, true);
 
     SConnectInfo info;
     info.m_type = eRTSP;
     info.m_sUrl = m_ui.leUrl->text();
-    m_curStreamId = m_pPlayerCtrl.Connect(info);
-    m_pPlayerCtrl.AttachStream(m_curStreamId, playerCallback, this);
+    m_curStreamId = m_playerCtrl.Connect(info);
+    m_playerCtrl.AttachStream(m_curStreamId, playerCallback, this);
 }
 
 void CConfigDeviceWidget::playerCallback(void *_this, int id, CImageAdaptor frame)
