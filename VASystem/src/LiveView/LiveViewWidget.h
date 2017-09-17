@@ -3,7 +3,7 @@
 #include "PlayerCtrl.h"
 #include "ImageAdaptor.h"
 
-class CFacialInfoWidget;
+class CFacialInfoBoard;
 
 class CLiveViewWidget : public CTabEntity
 {
@@ -35,6 +35,6 @@ private:
 private:
     Ui::LiveViewWidget m_ui;
     CPlayerCtrl m_playerCtrl;
-    CFacialInfoWidget* m_pFacialWidget;
+    CFacialInfoBoard* m_pFacialWidget;
     QMap<int, int> m_mapDeviceID2StreamID;
 };

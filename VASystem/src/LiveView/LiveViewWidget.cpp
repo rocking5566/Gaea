@@ -1,6 +1,6 @@
 #include "LiveViewWidget.h"
 #include "Device/DeviceModel.h"
-#include "FacialInfoWidget.h"
+#include "FacialInfoBoard.h"
 
 CLiveViewWidget::CLiveViewWidget(QWidget *parent)
     : CTabEntity(parent)
@@ -8,7 +8,7 @@ CLiveViewWidget::CLiveViewWidget(QWidget *parent)
 {
     m_ui.setupUi(this);
     ConnectUISignal();
-    m_pFacialWidget = new CFacialInfoWidget(parent);
+    m_pFacialWidget = new CFacialInfoBoard(parent);
 }
 
 CLiveViewWidget::~CLiveViewWidget()
