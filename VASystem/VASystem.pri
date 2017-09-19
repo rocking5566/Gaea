@@ -14,7 +14,7 @@ SOURCES += $${COMMON_PATH}/RenderWidget.cpp \
            ./src/Device/DeviceModel.cpp \
            ./src/FaceConfig/MemberModel.cpp \
            ./src/FaceConfig/RegisterFaceWidget.cpp \
-           ./src/LiveView/FacialInfoWidget.cpp \
+           ./src/LiveView/FacialInfoBoard.cpp \
            ./src/LiveView/FilmView.cpp \
            ./src/LiveView/LiveViewWidget.cpp \
            ./src/HomeWindow.cpp \
@@ -27,13 +27,13 @@ HEADERS += $${COMMON_PATH}/RenderWidget.h \
            ./src/Device/DeviceModel.h \
            ./src/FaceConfig/MemberModel.h \
            ./src/FaceConfig/RegisterFaceWidget.h \
-           ./src/LiveView/FacialInfoWidget.h \
+           ./src/LiveView/FacialInfoBoard.h \
            ./src/LiveView/FilmView.h \
            ./src/LiveView/LiveViewWidget.h \
            ./src/HomeWindow.h
 
 FORMS   += ./UI/ConfigDeviceWidget.ui \
-           ./UI/FacialInfoWidget.ui \
+           ./UI/FacialInfoBoard.ui \
            ./UI/HomeWindow.ui \
            ./UI/LiveViewWidget.ui \
            ./UI/RegisterFaceWidget.ui
