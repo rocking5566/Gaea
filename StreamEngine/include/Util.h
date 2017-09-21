@@ -1,10 +1,6 @@
 #ifndef Util_h__
 #define Util_h__
 
-#include <opencv2/core/core.hpp>
-#include <QImage>
-#include <QVector>
-#include <QColor>
 #ifdef WIN32
 #define NOMINMAX    // Fix compile for std::min and std::max
 #include <windows.h>
