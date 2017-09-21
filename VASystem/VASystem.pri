@@ -16,6 +16,7 @@ SOURCES += $${COMMON_PATH}/RenderWidget.cpp \
            ./src/FaceConfig/MemberModel.cpp \
            ./src/FaceConfig/RegisterFaceWidget.cpp \
            ./src/LiveView/FacialInfoBoard.cpp \
+           ./src/LiveView/FilmUnit.cpp \
            ./src/LiveView/FilmView.cpp \
            ./src/LiveView/LiveViewWidget.cpp \
            ./src/HomeWindow.cpp \
@@ -30,6 +31,7 @@ HEADERS += $${COMMON_PATH}/RenderWidget.h \
            ./src/FaceConfig/MemberModel.h \
            ./src/FaceConfig/RegisterFaceWidget.h \
            ./src/LiveView/FacialInfoBoard.h \
+           ./src/LiveView/FilmUnit.h \
            ./src/LiveView/FilmView.h \
            ./src/LiveView/LiveViewWidget.h \
            ./src/HomeWindow.h
