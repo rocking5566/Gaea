@@ -5,7 +5,7 @@ OPENCV_PATH = $${PWD}/../packages/opencv249
 STREAM_ENGINE_PATH = $${PWD}/../StreamEngine
 
 # Project setting
-QT += core gui opengl network widgets
+QT += core gui opengl network widgets charts
 CONFIG -= flat
 CONFIG += c++11
 

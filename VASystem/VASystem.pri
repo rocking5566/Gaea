@@ -8,6 +8,7 @@ INCLUDEPATH += $${COMMON_PATH} \
                $${VLC_PATH}/include
 
 SOURCES += $${COMMON_PATH}/RenderWidget.cpp \
+           ./src/Component/BarChart.cpp \
            ./src/Component/Tab/TabEntity.cpp \
            ./src/Component/Tab/TabWidget.cpp \
            ./src/Device/ConfigDeviceWidget.cpp \
@@ -21,6 +22,7 @@ SOURCES += $${COMMON_PATH}/RenderWidget.cpp \
            ./src/main.cpp
 
 HEADERS += $${COMMON_PATH}/RenderWidget.h \
+           ./src/Component/BarChart.h \
            ./src/Component/Tab/TabEntity.h \
            ./src/Component/Tab/TabWidget.h \
            ./src/Device/ConfigDeviceWidget.h \

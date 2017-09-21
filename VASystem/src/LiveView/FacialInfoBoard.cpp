@@ -11,8 +11,8 @@ CFacialInfoBoard::~CFacialInfoBoard()
 
 }
 
-void CFacialInfoBoard::PushImage(CImageAdaptor img)
+void CFacialInfoBoard::PushData(CImageAdaptor img, const QList<qreal>& values)
 {
-    m_ui.filmView->PushImage(img);
+    m_ui.filmView->PushData(img, values);
 }
 

@@ -1,5 +1,6 @@
 #include "FilmView.h"
 #include "RenderWidget.h"
+#include "FilmUnit.h"
 
 CFilmView::CFilmView(QWidget *parent, int rowCount, int colCount)
     : QWidget(parent)
@@ -16,8 +17,8 @@ CFilmView::CFilmView(QWidget *parent, int rowCount, int colCount)
     {
         for (int c = 0; c < colCount; ++c)
         {
-            CRenderWidget* pRenderWidget = new CRenderWidget(this);
-            m_GridLayout.addWidget(pRenderWidget, r, c);
+            CFilmUnit* pFilmWidget = new CFilmUnit(this);
+            m_GridLayout.addWidget(pFilmWidget, r, c);
         }
     }
 }
@@ -27,19 +28,19 @@ CFilmView::~CFilmView()
 
 }
 
-void CFilmView::PushImage(CImageAdaptor img)
+void CFilmView::PushData(CImageAdaptor img, const QList<qreal>& values)
 {
     int row = m_curIndex / m_iColCount;
     int col = m_curIndex % m_iColCount;
-    InsertImage(img, row, col);
+    InsertData(img, values, row, col);
     m_curIndex = (m_curIndex + 1) % (m_iRowCount * m_iColCount);
 }
 
-void CFilmView::InsertImage(CImageAdaptor img, int row, int col)
+void CFilmView::InsertData(CImageAdaptor img, const QList<qreal>& values, int row, int col)
 {
     if (row < m_iRowCount && col < m_iColCount)
     {
-        CRenderWidget* pRenderWidget = dynamic_cast<CRenderWidget*>(m_GridLayout.itemAtPosition(row, col)->widget());
-        pRenderWidget->Render(img);
+        CFilmUnit* pFilmWidget = dynamic_cast<CFilmUnit*>(m_GridLayout.itemAtPosition(row, col)->widget());
+        pFilmWidget->RenderData(img, values);
     }
 }

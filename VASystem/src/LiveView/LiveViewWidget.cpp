@@ -94,7 +94,7 @@ void CLiveViewWidget::OnCurrentItemChanged(QTreeWidgetItem *pCurrent, QTreeWidge
 
 void CLiveViewWidget::OnSnapshot()
 {
-    m_pFacialWidget->PushImage(m_ui.renderWidget->currentFrame());
+    m_pFacialWidget->PushData(m_ui.renderWidget->currentFrame(), { 1, 4, 2, 3, 4, 5, 8});
 }
 
 void CLiveViewWidget::playerCallback(void *_this, int id, CImageAdaptor frame)

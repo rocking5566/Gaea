@@ -13,7 +13,7 @@ public:
     explicit CFacialInfoBoard(QWidget *parent = 0);
     ~CFacialInfoBoard();
 
-    void PushImage(CImageAdaptor img);
+    void PushData(CImageAdaptor img, const QList<qreal>& values);
 
 private:
     Ui::FacialInfoBoard m_ui;
