@@ -8,7 +8,7 @@ CLiveViewWidget::CLiveViewWidget(QWidget *parent)
 {
     m_ui.setupUi(this);
     ConnectUISignal();
-    m_pFacialWidget = new CFacialInfoBoard(parent);
+    m_pFacialWidget = new CFacialInfoBoard();
 }
 
 CLiveViewWidget::~CLiveViewWidget()
