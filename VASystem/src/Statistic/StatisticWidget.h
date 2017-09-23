@@ -21,6 +21,7 @@ private:
 
 private:
     Ui::StatisticWidget m_ui;
+    CBarChart* m_pEmotionKPIBarChart;
     CBarChart* m_pEmotionBarChart;
     CBarChart* m_pGenderBarChart;
 };
