@@ -26,6 +26,7 @@ public:
     explicit CBarChart(BarType type, const QStringList& categories, QWidget *parent = 0);
     ~CBarChart();
     void PushData(const QList<qreal>& values, const QString& legendName = "");
+    void PushData(const QList<int>& values, const QString& legendName = "");
     void Clear();
     void SetLegendVisible(bool bVisible);
 

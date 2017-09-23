@@ -56,6 +56,18 @@ void CBarChart::PushData(const QList<qreal>& values, const QString& legendName)
     UpdateBarSeries({pSet});
 }
 
+void CBarChart::PushData(const QList<int>& values, const QString& legendName /*= ""*/)
+{
+    QList<qreal> doubleValues;
+
+    foreach (int i, values)
+    {
+        doubleValues << i;
+    }
+
+    PushData(doubleValues, legendName);
+}
+
 void CBarChart::UpdateBarSeries(const QList<QBarSet*>& barSetList)
 {
     m_pChartModel->removeSeries(m_pBarSeries);
