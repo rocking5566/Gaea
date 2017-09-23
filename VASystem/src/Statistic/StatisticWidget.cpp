@@ -7,7 +7,7 @@ CStatisticWidget::CStatisticWidget(QWidget *parent /*= 0*/)
 {
     m_ui.setupUi(this);
 
-    m_pBarChart = new CBarChart(eVertical, { "angry", "disgust", "fear", "happy", "sad", "surprise" }, this);
+    m_pBarChart = new CBarChart(eVertical, { "angry", "disgust", "fear", "happy", "sad", "surprise", "neutral" }, this);
     m_ui.contentLayout->addWidget(m_pBarChart, 1, 0);
 
     m_ui.dtEditFrom->setDate(QDate::currentDate());

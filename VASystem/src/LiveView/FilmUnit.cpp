@@ -15,7 +15,7 @@ CFilmUnit::CFilmUnit(QWidget *parent /*= 0*/)
     m_pRenderWidget = new CRenderWidget(this);
     m_pRenderWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    m_pBarChart = new CBarChart(eHorizontal, {"angry", "disgust", "fear", "happy", "sad", "surprise"}, this);
+    m_pBarChart = new CBarChart(eHorizontal, {"angry", "disgust", "fear", "happy", "sad", "surprise", "neutral"}, this);
     m_pBarChart->setMaximumSize(350, 250);
 
     m_GridLayout.addWidget(m_pRenderWidget, 0, 0);
