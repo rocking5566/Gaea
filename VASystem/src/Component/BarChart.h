@@ -31,7 +31,8 @@ public:
     void PushData(const QList<int>& values, const QString& legendName = "");
     void Clear();
     void SetLegendVisible(bool bVisible);
-    void SetTitle(const QString& );
+    void SetTitle(const QString&);
+    void SetTitleFont(const QFont &font);
 
 private:
     void InitCharUI(BarType type, const QStringList& categories);

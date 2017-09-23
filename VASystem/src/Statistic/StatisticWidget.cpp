@@ -19,7 +19,8 @@ CStatisticWidget::~CStatisticWidget()
 void CStatisticWidget::InitUI()
 {
     m_pBarChart = new CBarChart(eVertical, {"angry", "disgust", "fear", "happy", "sad", "surprise", "neutral"}, this);
-    m_pBarChart->SetTitle("Emotion Statistic");
+    m_pBarChart->SetTitleFont(QFont("Times", 16, QFont::Bold));
+    m_pBarChart->SetTitle("Total customers: Sentimental & Emotional analysis");
     m_ui.contentLayout->addWidget(m_pBarChart, 0, 0);
 
     m_ui.dtEditFrom->setDate(QDate::currentDate());

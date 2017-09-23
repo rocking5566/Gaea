@@ -111,3 +111,8 @@ void CBarChart::SetTitle(const QString& title)
 {
     m_pChartModel->setTitle(title);
 }
+
+void CBarChart::SetTitleFont(const QFont &font)
+{
+    m_pChartModel->setTitleFont(font);
+}
