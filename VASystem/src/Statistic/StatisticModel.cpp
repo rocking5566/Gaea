@@ -24,6 +24,19 @@ CStatisticModel::~CStatisticModel()
 
 }
 
+void CStatisticModel::QueryAllEmotionsStatistic(const QDateTime& dtFrom, const QDateTime& dtTo, QList<int>& outEmotionStatistic, EmotionKPI& outKpi)
+{
+    const QList<Emotion> query = {eAngry, eDisgust, eFear, eHappy, eSad, eSurprise, eNeutral};
+    outEmotionStatistic = QueryEmotionsStatistic(dtFrom, dtTo, query);
+
+    // [TODO] Calculate KPI
+    qsrand((unsigned)time(NULL) + qApp->applicationPid());
+    outKpi.m_Detractors = qrand() % 100 + 1;
+    outKpi.m_Passives = qrand() % 100 + 1;
+    outKpi.m_Promoters = qrand() % 100 + 1;
+    outKpi.m_NetPromoterScore = qrand() % 100 + 1;
+}
+
 QList<int> CStatisticModel::QueryEmotionsStatistic(const QDateTime& dtFrom, const QDateTime& dtTo, const QList<Emotion>& queryEmotions)
 {
     // [TODO] Get data from Database
