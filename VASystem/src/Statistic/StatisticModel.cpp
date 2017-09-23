@@ -24,7 +24,7 @@ CStatisticModel::~CStatisticModel()
 
 }
 
-QList<int> CStatisticModel::QueryEmotionsCount(const QDateTime& dtFrom, const QDateTime& dtTo, const QList<Emotion>& queryEmotions)
+QList<int> CStatisticModel::QueryEmotionsStatistic(const QDateTime& dtFrom, const QDateTime& dtTo, const QList<Emotion>& queryEmotions)
 {
     // [TODO] Get data from Database
     // Following code just generate random number list

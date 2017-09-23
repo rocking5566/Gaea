@@ -50,7 +50,7 @@ void CStatisticWidget::UpdateData()
     const QDateTime& dtTo = QDateTime::currentDateTime();
     const QList<Emotion> query = {eAngry, eDisgust, eFear, eHappy, eSad, eSurprise, eNeutral};
 
-    const QList<int> emotionStatistic = CStatisticModel::GetSingleTon()->QueryEmotionsCount(dtFrom, dtTo, query);
+    const QList<int> emotionStatistic = CStatisticModel::GetSingleTon()->QueryEmotionsStatistic(dtFrom, dtTo, query);
     const QPair<int, int> genderStatistic = CStatisticModel::GetSingleTon()->QueryGenderStatistic(dtFrom, dtTo);
 
     m_pEmotionBarChart->Clear();

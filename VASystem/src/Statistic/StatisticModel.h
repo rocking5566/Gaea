@@ -16,7 +16,7 @@ class CStatisticModel
 {
 public:
     static CStatisticModel* GetSingleTon();
-    QList<int> QueryEmotionsCount(const QDateTime& dtFrom, const QDateTime& dtTo, const QList<Emotion>& queryEmotions);
+    QList<int> QueryEmotionsStatistic(const QDateTime& dtFrom, const QDateTime& dtTo, const QList<Emotion>& queryEmotions);
     QPair<int, int> QueryGenderStatistic(const QDateTime& dtFrom, const QDateTime& dtTo);   //First: Female, Second: Male
 
 private:
