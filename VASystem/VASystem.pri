@@ -20,7 +20,8 @@ SOURCES += $${COMMON_PATH}/RenderWidget.cpp \
            ./src/LiveView/FilmView.cpp \
            ./src/LiveView/LiveViewWidget.cpp \
            ./src/HomeWindow.cpp \
-           ./src/main.cpp
+           ./src/main.cpp \
+           ./src/Statistic/StatisticWidget.cpp
 
 HEADERS += $${COMMON_PATH}/RenderWidget.h \
            ./src/Component/BarChart.h \
@@ -34,10 +35,12 @@ HEADERS += $${COMMON_PATH}/RenderWidget.h \
            ./src/LiveView/FilmUnit.h \
            ./src/LiveView/FilmView.h \
            ./src/LiveView/LiveViewWidget.h \
-           ./src/HomeWindow.h
+           ./src/HomeWindow.h \
+           ./src/Statistic/StatisticWidget.h
 
 FORMS   += ./UI/ConfigDeviceWidget.ui \
            ./UI/FacialInfoBoard.ui \
            ./UI/HomeWindow.ui \
            ./UI/LiveViewWidget.ui \
-           ./UI/RegisterFaceWidget.ui
+           ./UI/RegisterFaceWidget.ui \
+           ./UI/StatisticWidget.ui

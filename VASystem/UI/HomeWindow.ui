@@ -35,6 +35,11 @@
         <string>IPCamera</string>
        </attribute>
       </widget>
+      <widget class="CStatisticWidget" name="StatisticTab">
+       <attribute name="title">
+        <string>Statistic</string>
+       </attribute>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -64,6 +69,12 @@
    <class>CTabWidget</class>
    <extends>QTabWidget</extends>
    <header>Tab/TabWidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CStatisticWidget</class>
+   <extends>QWidget</extends>
+   <header>Statistic/StatisticWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
