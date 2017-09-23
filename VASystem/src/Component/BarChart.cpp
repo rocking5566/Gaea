@@ -86,3 +86,8 @@ void CBarChart::Clear()
     m_pBarSeries->clear();
     m_pChartModel->addSeries(m_pBarSeries);
 }
+
+void CBarChart::SetTitle(const QString& title)
+{
+    m_pChartModel->setTitle(title);
+}

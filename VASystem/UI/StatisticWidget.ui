@@ -57,21 +57,7 @@
     </layout>
    </item>
    <item>
-    <layout class="QGridLayout" name="contentLayout">
-     <item row="0" column="0">
-      <widget class="QLabel" name="label_3">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string>Emotion Statictic</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <layout class="QGridLayout" name="contentLayout"/>
    </item>
   </layout>
  </widget>
