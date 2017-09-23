@@ -42,3 +42,18 @@ QList<int> CStatisticModel::QueryEmotionsCount(const QDateTime& dtFrom, const QD
     return std::move(ret);
 }
 
+QPair<int, int> CStatisticModel::QueryGenderStatistic(const QDateTime& dtFrom, const QDateTime& dtTo)
+{
+    // [TODO] Get data from Database
+    // Following code just generate random number
+    Q_UNUSED(dtFrom);
+    Q_UNUSED(dtTo);
+
+    QPair<int, int> ret;
+    qsrand((unsigned)time(NULL) + qApp->applicationPid());
+    ret.first = qrand() % 100 + 1;
+    ret.second = qrand() % 100 + 1;
+
+    return std::move(ret);
+}
+
