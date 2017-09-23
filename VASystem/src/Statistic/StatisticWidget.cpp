@@ -5,8 +5,8 @@
 CStatisticWidget::CStatisticWidget(QWidget *parent /*= 0*/)
     : CTabEntity(parent)
     , m_pEmotionKPIBarChart(NULL)
-    , m_pEmotionBarChart(NULL)
-    , m_pGenderBarChart(NULL)
+    , m_pEmotionStatisticBarChart(NULL)
+    , m_pGenderStatisticBarChart(NULL)
 {
     m_ui.setupUi(this);
 
@@ -24,15 +24,15 @@ void CStatisticWidget::InitUI()
     m_pEmotionKPIBarChart->SetTitleFont(QFont("Times", 16, QFont::Bold));
     m_ui.contentLayout->addWidget(m_pEmotionKPIBarChart, 0, 0);
 
-    m_pEmotionBarChart = new CBarChart(eVertical, { "angry", "disgust", "fear", "happy", "sad", "surprise", "neutral" }, this);
-    m_pEmotionBarChart->SetTitleFont(QFont("Times", 16, QFont::Bold));
-    m_pEmotionBarChart->SetTitle("Total customers: Sentimental & Emotional analysis");
-    m_ui.contentLayout->addWidget(m_pEmotionBarChart, 0, 1);
+    m_pEmotionStatisticBarChart = new CBarChart(eVertical, { "angry", "disgust", "fear", "happy", "sad", "surprise", "neutral" }, this);
+    m_pEmotionStatisticBarChart->SetTitleFont(QFont("Times", 16, QFont::Bold));
+    m_pEmotionStatisticBarChart->SetTitle("Total customers: Sentimental & Emotional analysis");
+    m_ui.contentLayout->addWidget(m_pEmotionStatisticBarChart, 0, 1);
 
-    m_pGenderBarChart = new CBarChart(eVertical, { "Female", "Male" }, this);
-    m_pGenderBarChart->SetTitleFont(QFont("Times", 16, QFont::Bold));
-    m_pGenderBarChart->SetTitle("Total customers: Female & Male analysis");
-    m_ui.contentLayout->addWidget(m_pGenderBarChart, 0, 2);
+    m_pGenderStatisticBarChart = new CBarChart(eVertical, { "Female", "Male" }, this);
+    m_pGenderStatisticBarChart->SetTitleFont(QFont("Times", 16, QFont::Bold));
+    m_pGenderStatisticBarChart->SetTitle("Total customers: Female & Male analysis");
+    m_ui.contentLayout->addWidget(m_pGenderStatisticBarChart, 0, 2);
 
     m_ui.dtEditFrom->setDate(QDate::currentDate());
     m_ui.dtEditTo->setDateTime(QDateTime::currentDateTime());
@@ -63,10 +63,10 @@ void CStatisticWidget::UpdateData()
     m_pEmotionKPIBarChart->PushData(QList<double>({kpi.m_Promoters, kpi.m_Passives, kpi.m_Detractors}));
     m_pEmotionKPIBarChart->SetTitle("NPS Score = " + QString::number(kpi.m_NetPromoterScore));
 
-    m_pEmotionBarChart->Clear();
-    m_pEmotionBarChart->PushData(emotionStatistic);
+    m_pEmotionStatisticBarChart->Clear();
+    m_pEmotionStatisticBarChart->PushData(emotionStatistic);
 
-    m_pGenderBarChart->Clear();
-    m_pGenderBarChart->PushData(QList<int>({genderStatistic.first, genderStatistic.second}));
+    m_pGenderStatisticBarChart->Clear();
+    m_pGenderStatisticBarChart->PushData(QList<int>({genderStatistic.first, genderStatistic.second}));
 }
 
