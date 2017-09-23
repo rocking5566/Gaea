@@ -21,5 +21,5 @@ private:
 
 private:
     Ui::StatisticWidget m_ui;
-    CBarChart* m_pBarChart;
+    CBarChart* m_pEmotionBarChart;
 };
