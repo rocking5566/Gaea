@@ -21,6 +21,7 @@ SOURCES += $${COMMON_PATH}/RenderWidget.cpp \
            ./src/LiveView/LiveViewWidget.cpp \
            ./src/HomeWindow.cpp \
            ./src/main.cpp \
+           ./src/Statistic/StatisticModel.cpp \
            ./src/Statistic/StatisticWidget.cpp
 
 HEADERS += $${COMMON_PATH}/RenderWidget.h \
@@ -36,6 +37,7 @@ HEADERS += $${COMMON_PATH}/RenderWidget.h \
            ./src/LiveView/FilmView.h \
            ./src/LiveView/LiveViewWidget.h \
            ./src/HomeWindow.h \
+           ./src/Statistic/StatisticModel.h \
            ./src/Statistic/StatisticWidget.h
 
 FORMS   += ./UI/ConfigDeviceWidget.ui \

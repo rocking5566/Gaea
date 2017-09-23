@@ -16,6 +16,10 @@ public:
     virtual void Leave();
 
 private:
+    void InitUI();
+    void UpdateData();
+
+private:
     Ui::StatisticWidget m_ui;
     CBarChart* m_pBarChart;
 };
