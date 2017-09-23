@@ -10,6 +10,8 @@
 #include <QLegend>
 #include <QBarCategoryAxis>
 #include <QHorizontalBarSeries>
+#include <QValueAxis>
+
 QT_CHARTS_USE_NAMESPACE
 
 enum BarType
@@ -29,16 +31,18 @@ public:
     void PushData(const QList<int>& values, const QString& legendName = "");
     void Clear();
     void SetLegendVisible(bool bVisible);
-    void SetTitle(const QString& title);
+    void SetTitle(const QString& );
 
 private:
     void InitCharUI(BarType type, const QStringList& categories);
     void UpdateBarSeries(const QList<QBarSet*>& barSetList);
+    void UpdateValueAxisRange();
 
 private:
     QAbstractBarSeries* m_pBarSeries;
     QChart* m_pChartModel;
     QChartView* m_pChartView;
+    QValueAxis* m_pAxisVal;
     QGridLayout m_GridLayout;
 };
 #endif // BarChart_h__

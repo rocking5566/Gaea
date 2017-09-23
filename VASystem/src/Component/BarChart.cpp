@@ -7,6 +7,7 @@ CBarChart::CBarChart(BarType type, const QStringList& categories, QWidget *paren
     , m_GridLayout(this)
     , m_pChartModel(new QChart)
     , m_pChartView(new QChartView)
+    , m_pAxisVal(new QValueAxis)
 {
     m_GridLayout.setSpacing(10);
     m_GridLayout.setMargin(0);
@@ -26,18 +27,20 @@ void CBarChart::InitCharUI(BarType type, const QStringList& categories)
     m_pChartView->setRenderHint(QPainter::Antialiasing);
     m_pChartView->setChart(m_pChartModel);
 
-    QBarCategoryAxis *axis = new QBarCategoryAxis();
-    axis->append(categories);
+    QBarCategoryAxis *pAxisCategory = new QBarCategoryAxis();
+    pAxisCategory->append(categories);
 
     switch (type)
     {
     case eVertical:
         m_pBarSeries = new QBarSeries();
-        m_pChartModel->setAxisX(axis, m_pBarSeries);
+        m_pChartModel->setAxisX(pAxisCategory, m_pBarSeries);
+        m_pChartModel->setAxisY(m_pAxisVal, m_pBarSeries);
         break;
     case eHorizontal:
         m_pBarSeries = new QHorizontalBarSeries();
-        m_pChartModel->setAxisY(axis, m_pBarSeries);
+        m_pChartModel->setAxisX(m_pAxisVal, m_pBarSeries);
+        m_pChartModel->setAxisY(pAxisCategory, m_pBarSeries);
         break;
     }
 
@@ -73,6 +76,23 @@ void CBarChart::UpdateBarSeries(const QList<QBarSet*>& barSetList)
     m_pChartModel->removeSeries(m_pBarSeries);
     m_pBarSeries->append(barSetList);
     m_pChartModel->addSeries(m_pBarSeries);
+    UpdateValueAxisRange();
+}
+
+void CBarChart::UpdateValueAxisRange()
+{
+    const QList<QBarSet*>& barSetList = m_pBarSeries->barSets();
+
+    int max = 0;
+    foreach(QBarSet* pBarSet, barSetList)
+    {
+        for (int i = 0; i < pBarSet->count(); ++i)
+        {
+            max = pBarSet->at(i) > max ? pBarSet->at(i) : max;
+        }
+    }
+
+    m_pAxisVal->setMax(max);
 }
 
 void CBarChart::SetLegendVisible(bool bVisible)
