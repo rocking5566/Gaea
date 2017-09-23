@@ -5,6 +5,7 @@
 CStatisticWidget::CStatisticWidget(QWidget *parent /*= 0*/)
     : CTabEntity(parent)
     , m_pEmotionBarChart(NULL)
+    , m_pGenderBarChart(NULL)
 {
     m_ui.setupUi(this);
 
@@ -22,6 +23,11 @@ void CStatisticWidget::InitUI()
     m_pEmotionBarChart->SetTitleFont(QFont("Times", 16, QFont::Bold));
     m_pEmotionBarChart->SetTitle("Total customers: Sentimental & Emotional analysis");
     m_ui.contentLayout->addWidget(m_pEmotionBarChart, 0, 0);
+
+    m_pGenderBarChart = new CBarChart(eVertical, { "Female", "Male" }, this);
+    m_pGenderBarChart->SetTitleFont(QFont("Times", 16, QFont::Bold));
+    m_pGenderBarChart->SetTitle("Total customers: Female & Male analysis");
+    m_ui.contentLayout->addWidget(m_pGenderBarChart, 0, 1);
 
     m_ui.dtEditFrom->setDate(QDate::currentDate());
     m_ui.dtEditTo->setDateTime(QDateTime::currentDateTime());
@@ -44,8 +50,13 @@ void CStatisticWidget::UpdateData()
     const QDateTime& dtTo = QDateTime::currentDateTime();
     const QList<Emotion> query = {eAngry, eDisgust, eFear, eHappy, eSad, eSurprise, eNeutral};
 
-    const QList<int> data = CStatisticModel::GetSingleTon()->QueryEmotionsCount(dtFrom, dtTo, query);
+    const QList<int> emotionStatistic = CStatisticModel::GetSingleTon()->QueryEmotionsCount(dtFrom, dtTo, query);
+    const QPair<int, int> genderStatistic = CStatisticModel::GetSingleTon()->QueryGenderStatistic(dtFrom, dtTo);
+
     m_pEmotionBarChart->Clear();
-    m_pEmotionBarChart->PushData(data);
+    m_pEmotionBarChart->PushData(emotionStatistic);
+
+    m_pGenderBarChart->Clear();
+    m_pGenderBarChart->PushData(QList<int>({genderStatistic.first, genderStatistic.second}));
 }
 
