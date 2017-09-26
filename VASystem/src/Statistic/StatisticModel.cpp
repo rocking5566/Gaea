@@ -70,3 +70,30 @@ QPair<int, int> CStatisticModel::QueryGenderStatistic(const QDateTime& dtFrom, c
     return std::move(ret);
 }
 
+QStringList CStatisticModel::GetAgesInterval()
+{
+    // [TODO] Get age interval string from Database config file
+
+    QStringList ret;
+    ret = { "0-2", "4-6", "8-12", "15-20", "25-32", "38-43", "48-53", "60-100" };
+    return std::move(ret);
+}
+
+QList<int> CStatisticModel::QueryAgesStatistic(const QDateTime& dtFrom, const QDateTime& dtTo)
+{
+    // [TODO] Get data from Database
+    // Following code just generate random number list
+    Q_UNUSED(dtFrom);
+    Q_UNUSED(dtTo);
+
+    QList<int> ret;
+    qsrand((unsigned)time(NULL) + qApp->applicationPid());
+
+    for (int i = 0; i < 8; ++i)
+    {
+        ret << qrand() % 10 + 1;
+    }
+
+    return std::move(ret);
+}
+

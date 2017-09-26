@@ -31,6 +31,8 @@ public:
     void QueryAllEmotionsStatistic(const QDateTime& dtFrom, const QDateTime& dtTo, QList<int>& outEmotionStatistic, EmotionKPI& outKpi);   //All data
     QList<int> QueryEmotionsStatistic(const QDateTime& dtFrom, const QDateTime& dtTo, const QList<Emotion>& queryEmotions);
     QPair<int, int> QueryGenderStatistic(const QDateTime& dtFrom, const QDateTime& dtTo);   //First: Female, Second: Male
+    QStringList GetAgesInterval(); //Age Bar chart category
+    QList<int> QueryAgesStatistic(const QDateTime& dtFrom, const QDateTime& dtTo);
 
 private:
     explicit CStatisticModel();
