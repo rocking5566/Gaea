@@ -24,4 +24,5 @@ private:
     CBarChart* m_pEmotionKPIBarChart;
     CBarChart* m_pEmotionStatisticBarChart;
     CBarChart* m_pGenderStatisticBarChart;
+    CBarChart* m_pAgeStatisticBarChart;
 };
