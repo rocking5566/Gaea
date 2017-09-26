@@ -23,22 +23,23 @@ void CStatisticWidget::InitUI()
 {
     m_pEmotionKPIBarChart = new CBarChart(eVertical, {"Promoters", "Passives", "Detractors"}, this);
     m_pEmotionKPIBarChart->SetTitleFont(QFont("Times", 16, QFont::Bold));
-    m_ui.contentLayout->addWidget(m_pEmotionKPIBarChart, 0, 0);
 
     m_pEmotionStatisticBarChart = new CBarChart(eVertical, { "angry", "disgust", "fear", "happy", "sad", "surprise", "neutral" }, this);
     m_pEmotionStatisticBarChart->SetTitleFont(QFont("Times", 16, QFont::Bold));
     m_pEmotionStatisticBarChart->SetTitle("Total customers: Sentimental & Emotional analysis");
-    m_ui.contentLayout->addWidget(m_pEmotionStatisticBarChart, 0, 1);
 
     m_pGenderStatisticBarChart = new CBarChart(eVertical, { "Female", "Male" }, this);
     m_pGenderStatisticBarChart->SetTitleFont(QFont("Times", 16, QFont::Bold));
     m_pGenderStatisticBarChart->SetTitle("Total customers: Female & Male analysis");
-    m_ui.contentLayout->addWidget(m_pGenderStatisticBarChart, 1, 0);
 
     QStringList agesInterval = CStatisticModel::GetSingleTon()->GetAgesInterval();
     m_pAgeStatisticBarChart = new CBarChart(eVertical, agesInterval, this);
     m_pAgeStatisticBarChart->SetTitleFont(QFont("Times", 16, QFont::Bold));
     m_pAgeStatisticBarChart->SetTitle("Total customers: Age analysis");
+
+    m_ui.contentLayout->addWidget(m_pEmotionKPIBarChart, 0, 0);
+    m_ui.contentLayout->addWidget(m_pEmotionStatisticBarChart, 0, 1);
+    m_ui.contentLayout->addWidget(m_pGenderStatisticBarChart, 1, 0);
     m_ui.contentLayout->addWidget(m_pAgeStatisticBarChart, 1, 1);
 
     m_ui.dtEditFrom->setDate(QDate::currentDate());
