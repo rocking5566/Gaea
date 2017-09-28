@@ -24,7 +24,8 @@ void CStatisticWidget::InitUI()
     m_pEmotionKPIBarChart = new CBarChart(eVertical, {"Promoters", "Passives", "Detractors"}, this);
     m_pEmotionKPIBarChart->SetTitleFont(QFont("Times", 16, QFont::Bold));
 
-    m_pEmotionStatisticBarChart = new CBarChart(eVertical, { "angry", "disgust", "fear", "happy", "sad", "surprise", "neutral" }, this);
+    QStringList emotionCategory = CStatisticModel::GetSingleTon()->GetEmotionCategory();
+    m_pEmotionStatisticBarChart = new CBarChart(eVertical, emotionCategory, this);
     m_pEmotionStatisticBarChart->SetTitleFont(QFont("Times", 16, QFont::Bold));
     m_pEmotionStatisticBarChart->SetTitle("Total customers: Sentimental & Emotional analysis");
 

@@ -1,6 +1,7 @@
 #include "FilmUnit.h"
 #include "RenderWidget.h"
 #include "BarChart.h"
+#include "Statistic/StatisticModel.h"
 #include <QLabel>
 
 CFilmUnit::CFilmUnit(QWidget *parent /*= 0*/)
@@ -16,7 +17,8 @@ CFilmUnit::CFilmUnit(QWidget *parent /*= 0*/)
     m_pRenderWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     m_pRenderWidget->setMinimumSize(250, 250);
 
-    m_pBarChart = new CBarChart(eHorizontal, {"angry", "disgust", "fear", "happy", "sad", "surprise", "neutral"}, this);
+    QStringList emotionCategory = CStatisticModel::GetSingleTon()->GetEmotionCategory();
+    m_pBarChart = new CBarChart(eHorizontal, emotionCategory, this);
     m_pBarChart->setMaximumSize(350, 250);
 
     m_GridLayout.addWidget(m_pRenderWidget, 0, 0);

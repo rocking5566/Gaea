@@ -1,17 +1,6 @@
 #include <QString>
 #include <QDatetime>
 
-enum Emotion
-{
-    eAngry,
-    eDisgust,
-    eFear,
-    eHappy,
-    eSad,
-    eSurprise,
-    eNeutral,
-};
-
 struct EmotionKPI
 {
     double m_Promoters;
@@ -28,10 +17,11 @@ class CStatisticModel
 {
 public:
     static CStatisticModel* GetSingleTon();
+    QStringList GetEmotionCategory();   //Supported
     void QueryAllEmotionsStatistic(const QDateTime& dtFrom, const QDateTime& dtTo, QList<int>& outEmotionStatistic, EmotionKPI& outKpi);   //All data
-    QList<int> QueryEmotionsStatistic(const QDateTime& dtFrom, const QDateTime& dtTo, const QList<Emotion>& queryEmotions);
+    QList<int> QueryEmotionsStatistic(const QDateTime& dtFrom, const QDateTime& dtTo, const QStringList& queryEmotions);
     QPair<int, int> QueryGenderStatistic(const QDateTime& dtFrom, const QDateTime& dtTo);   //First: Female, Second: Male
-    QStringList GetAgesInterval(); //Age Bar chart category
+    QStringList GetAgesInterval();   //Age Bar chart category
     QList<int> QueryAgesStatistic(const QDateTime& dtFrom, const QDateTime& dtTo);
 
 private:

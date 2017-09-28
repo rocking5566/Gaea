@@ -24,9 +24,15 @@ CStatisticModel::~CStatisticModel()
 
 }
 
+QStringList CStatisticModel::GetEmotionCategory()
+{
+    // [TODO] Get age interval string from Database config file
+    return { "angry", "disgust", "fear", "happy", "sad", "surprise", "neutral" };
+}
+
 void CStatisticModel::QueryAllEmotionsStatistic(const QDateTime& dtFrom, const QDateTime& dtTo, QList<int>& outEmotionStatistic, EmotionKPI& outKpi)
 {
-    const QList<Emotion> query = {eAngry, eDisgust, eFear, eHappy, eSad, eSurprise, eNeutral};
+    const QStringList query = GetEmotionCategory();
     outEmotionStatistic = QueryEmotionsStatistic(dtFrom, dtTo, query);
 
     // [TODO] Calculate KPI
@@ -37,7 +43,7 @@ void CStatisticModel::QueryAllEmotionsStatistic(const QDateTime& dtFrom, const Q
     outKpi.m_NetPromoterScore = qrand() % 100 + 1;
 }
 
-QList<int> CStatisticModel::QueryEmotionsStatistic(const QDateTime& dtFrom, const QDateTime& dtTo, const QList<Emotion>& queryEmotions)
+QList<int> CStatisticModel::QueryEmotionsStatistic(const QDateTime& dtFrom, const QDateTime& dtTo, const QStringList& queryEmotions)
 {
     // [TODO] Get data from Database
     // Following code just generate random number list
@@ -96,4 +102,3 @@ QList<int> CStatisticModel::QueryAgesStatistic(const QDateTime& dtFrom, const QD
 
     return std::move(ret);
 }
-
