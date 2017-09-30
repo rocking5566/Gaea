@@ -95,7 +95,7 @@ void CBarChart::UpdateValueAxisRange()
 
     if (max < 10)
     {
-        //prevent
+        // when value is smaller than 10, precision issue looks conspicuous
         m_pAxisVal->setTickCount(max + 1);
     }
 
