@@ -44,6 +44,7 @@ void CBarChart::InitCharUI(BarType type, const QStringList& categories)
         break;
     }
 
+    m_pAxisVal->setLabelFormat("%d");
     m_pChartModel->addSeries(m_pBarSeries);
 }
 
@@ -90,6 +91,12 @@ void CBarChart::UpdateValueAxisRange()
         {
             max = pBarSet->at(i) > max ? pBarSet->at(i) : max;
         }
+    }
+
+    if (max < 10)
+    {
+        //prevent
+        m_pAxisVal->setTickCount(max + 1);
     }
 
     m_pAxisVal->setMax(max);
