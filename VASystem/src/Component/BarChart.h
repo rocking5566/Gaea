@@ -33,6 +33,7 @@ public:
     void SetLegendVisible(bool bVisible);
     void SetTitle(const QString&);
     void SetTitleFont(const QFont &font);
+    void SetValueAxisInteger(bool isInteger);
 
 private:
     void InitCharUI(BarType type, const QStringList& categories);
@@ -45,5 +46,6 @@ private:
     QChartView* m_pChartView;
     QValueAxis* m_pAxisVal;
     QGridLayout m_GridLayout;
+    bool m_bValueAxisIsInteger;
 };
 #endif // BarChart_h__

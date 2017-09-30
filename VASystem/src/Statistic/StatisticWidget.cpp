@@ -26,15 +26,18 @@ void CStatisticWidget::InitUI()
 
     QStringList emotionCategory = CStatisticModel::GetSingleTon()->GetEmotionCategory();
     m_pEmotionStatisticBarChart = new CBarChart(eVertical, emotionCategory, this);
+    m_pEmotionStatisticBarChart->SetValueAxisInteger(true);
     m_pEmotionStatisticBarChart->SetTitleFont(QFont("Times", 16, QFont::Bold));
     m_pEmotionStatisticBarChart->SetTitle("Total customers: Sentimental & Emotional analysis");
 
     m_pGenderStatisticBarChart = new CBarChart(eVertical, { "Female", "Male" }, this);
+    m_pGenderStatisticBarChart->SetValueAxisInteger(true);
     m_pGenderStatisticBarChart->SetTitleFont(QFont("Times", 16, QFont::Bold));
     m_pGenderStatisticBarChart->SetTitle("Total customers: Female & Male analysis");
 
     QStringList agesInterval = CStatisticModel::GetSingleTon()->GetAgesInterval();
     m_pAgeStatisticBarChart = new CBarChart(eVertical, agesInterval, this);
+    m_pAgeStatisticBarChart->SetValueAxisInteger(true);
     m_pAgeStatisticBarChart->SetTitleFont(QFont("Times", 16, QFont::Bold));
     m_pAgeStatisticBarChart->SetTitle("Total customers: Age analysis");
 

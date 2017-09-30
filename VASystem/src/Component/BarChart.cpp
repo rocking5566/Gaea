@@ -8,6 +8,7 @@ CBarChart::CBarChart(BarType type, const QStringList& categories, QWidget *paren
     , m_pChartModel(new QChart)
     , m_pChartView(new QChartView)
     , m_pAxisVal(new QValueAxis)
+    , m_bValueAxisIsInteger(false)
 {
     m_GridLayout.setSpacing(10);
     m_GridLayout.setMargin(0);
@@ -44,7 +45,6 @@ void CBarChart::InitCharUI(BarType type, const QStringList& categories)
         break;
     }
 
-    m_pAxisVal->setLabelFormat("%d");
     m_pChartModel->addSeries(m_pBarSeries);
 }
 
@@ -93,7 +93,7 @@ void CBarChart::UpdateValueAxisRange()
         }
     }
 
-    if (max < 10)
+    if (m_bValueAxisIsInteger && max < 10)
     {
         // when value is smaller than 10, precision issue looks conspicuous
         m_pAxisVal->setTickCount(max + 1);
@@ -122,4 +122,18 @@ void CBarChart::SetTitle(const QString& title)
 void CBarChart::SetTitleFont(const QFont &font)
 {
     m_pChartModel->setTitleFont(font);
+}
+
+void CBarChart::SetValueAxisInteger(bool isInteger)
+{
+    m_bValueAxisIsInteger = isInteger;
+
+    if (isInteger)
+    {
+        m_pAxisVal->setLabelFormat("%d");
+    }
+    else
+    {
+        m_pAxisVal->setLabelFormat("%.1f");
+    }
 }
