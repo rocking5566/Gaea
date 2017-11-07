@@ -1,3 +1,14 @@
+/**
+ *  @author Rocking Lai
+ *  @version 1.0 2017.11.08
+ *  @date    2017.11.08
+ *  @section DESCRIPTION
+ *
+ *  This class handle the life cycle of the frame data.
+ *  In addition, provide adapter for QImage & Mat data type.
+ */
+
+
 #ifndef ImageAdaptor_h__
 #define ImageAdaptor_h__
 
@@ -5,11 +16,6 @@
 #include <QImage>
 #include <QSharedPointer>
 #include "Util.h"
-
-/*!
-    This class handle the life cycle of the frame data.
-    In addition, provide adapter for QImage & Mat data type.
-*/
 
 class GAEA_EXPORTS CImageAdaptor
 {
