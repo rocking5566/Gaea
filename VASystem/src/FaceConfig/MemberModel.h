@@ -51,21 +51,21 @@ class CMemberModel
 {
 public:
     static CMemberModel* GetSingleTon();
-    int AddMember(const SMemberProperty& rMember);   // return id
-    void RemoveMember(int id);
-    bool EditName(int id, const QString& rName);
-    bool EditGender(int id, EGender gender);
-    bool EditAge(int id, int age);
-    bool EditVideoFrame(int id, const QList<CImageAdaptor>& rFacePictures);
+    int AddMember(const SMemberProperty& rMember);   // return member id
+    void RemoveMember(int memberId);
+    bool EditName(int memberId, const QString& rName);
+    bool EditGender(int memberId, EGender gender);
+    bool EditAge(int memberId, int age);
+    bool EditVideoFrame(int memberId, const QList<CImageAdaptor>& rFacePictures);
 
-    bool GetMember(int id, SMemberProperty& rMember) const;
+    bool GetMember(int memberId, SMemberProperty& rMember) const;
 
 private:
     explicit CMemberModel();
     ~CMemberModel();
     static CMemberModel* sm_Instance;
 
-    int m_maxID;
+    int m_maxMemberID;
     QMap<int, SMemberProperty> m_mapIdtoMember;
 };
 #endif // FaceDataBase_h__

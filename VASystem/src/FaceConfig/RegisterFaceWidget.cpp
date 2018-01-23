@@ -60,8 +60,8 @@ void CRegisterFaceWidget::OnAddFace()
     QTreeWidgetItem* pItem = new QTreeWidgetItem(QStringList(itemName));
 
     SMemberProperty member(itemName, eMale, 0);
-    int id = CMemberModel::GetSingleTon()->AddMember(member);
-    pItem->setData(0, Qt::UserRole, id);
+    int memberId = CMemberModel::GetSingleTon()->AddMember(member);
+    pItem->setData(0, Qt::UserRole, memberId);
     m_ui.treeWidget->addTopLevelItem(pItem);
 }
 
@@ -71,8 +71,8 @@ void CRegisterFaceWidget::OnRemoveFace()
 
     if (!itemList.empty())
     {
-        int id = itemList[0]->data(0, Qt::UserRole).toInt();
-        CMemberModel::GetSingleTon()->RemoveMember(id);
+        int memberId = itemList[0]->data(0, Qt::UserRole).toInt();
+        CMemberModel::GetSingleTon()->RemoveMember(memberId);
         SAFE_DELETE(itemList[0]);
     }
 }
@@ -85,8 +85,8 @@ void CRegisterFaceWidget::OnTreeWidgetSelectionChanged()
     if (!itemList.empty())
     {
         SetFaceEntityUIEnable(true);
-        int id = itemList[0]->data(0, Qt::UserRole).toInt();
-        CMemberModel::GetSingleTon()->GetMember(id, member);
+        int memberId = itemList[0]->data(0, Qt::UserRole).toInt();
+        CMemberModel::GetSingleTon()->GetMember(memberId, member);
         m_ui.leName->setText(member.m_name);
         m_ui.cbGender->setCurrentIndex(member.m_gender);
         m_ui.leAge->setText(QString::number(member.m_age));
@@ -134,8 +134,8 @@ void CRegisterFaceWidget::OnCbGenderChanged(const QString & text)
 
     if (!itemList.empty())
     {
-        int id = itemList[0]->data(0, Qt::UserRole).toInt();
-        CMemberModel::GetSingleTon()->EditGender(id, StringToGender(text));
+        int memberId = itemList[0]->data(0, Qt::UserRole).toInt();
+        CMemberModel::GetSingleTon()->EditGender(memberId, StringToGender(text));
     }
 }
 
@@ -160,9 +160,9 @@ void CRegisterFaceWidget::OnBtnBrowseClicked()
         "Images (*.png *.jpg)");
 }
 
-void CRegisterFaceWidget::playerCallback(void *_this, int id, CImageAdaptor frame)
+void CRegisterFaceWidget::playerCallback(void *_this, int streamId, CImageAdaptor frame)
 {
-    Q_UNUSED(id);
+    Q_UNUSED(streamId);
     CRegisterFaceWidget* This = (CRegisterFaceWidget*)_this;
     This->m_ui.renderWidget->Render(frame);
 }
