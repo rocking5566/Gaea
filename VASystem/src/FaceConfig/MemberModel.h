@@ -32,6 +32,7 @@ struct SMemberProperty
 {
     SMemberProperty()
         : m_gender(eMale)
+        , m_bankAreaCode(0)
     {}
 
     SMemberProperty(const QString& rIdentityCardId, const QString& rName, qulonglong bankAreaCode, const QDate& rBirthday, EGender gender)
