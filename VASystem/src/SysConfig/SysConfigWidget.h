@@ -24,6 +24,5 @@ private:
 
 private:
     Ui::SysConfigWidget m_ui;
-    int x;
 };
 #endif // SysConfigWidget_h__
