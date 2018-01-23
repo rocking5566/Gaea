@@ -180,7 +180,7 @@
       </widget>
      </item>
      <item row="2" column="1" colspan="3">
-      <widget class="QLineEdit" name="leBankCode">
+      <widget class="QLineEdit" name="leBankAreaCode">
        <property name="enabled">
         <bool>false</bool>
        </property>

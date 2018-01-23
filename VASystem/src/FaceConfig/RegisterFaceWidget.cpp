@@ -33,7 +33,10 @@ void CRegisterFaceWidget::InitTreeWidget()
 
 void CRegisterFaceWidget::SetFaceEntityUIEnable(bool bEnable)
 {
+    m_ui.leId->setEnabled(bEnable);
     m_ui.leName->setEnabled(bEnable);
+    m_ui.leBankAreaCode->setEnabled(bEnable);
+    m_ui.deBirthday->setEnabled(bEnable);
     m_ui.cbGender->setEnabled(bEnable);
     m_ui.btnWebCam->setEnabled(bEnable);
     m_ui.btnBrowse->setEnabled(bEnable);
@@ -44,8 +47,11 @@ void CRegisterFaceWidget::ConnectUISignal()
     connect(m_ui.btnAdd, SIGNAL(clicked()), this, SLOT(OnAddFace()));
     connect(m_ui.btnRemove, SIGNAL(clicked()), this, SLOT(OnRemoveFace()));
     connect(m_ui.treeWidget, SIGNAL(itemSelectionChanged()), this, SLOT(OnTreeWidgetSelectionChanged()));
+    connect(m_ui.leId, SIGNAL(editingFinished()), this, SLOT(OnEditingFinished()));
     connect(m_ui.leName, SIGNAL(textChanged(const QString &)), this, SLOT(OnNameChanged(const QString &)));
     connect(m_ui.leName, SIGNAL(editingFinished()), this, SLOT(OnEditingFinished()));
+    connect(m_ui.leBankAreaCode, SIGNAL(editingFinished()), this, SLOT(OnEditingFinished()));
+    connect(m_ui.deBirthday, SIGNAL(editingFinished()), this, SLOT(OnEditingFinished()));
     connect(m_ui.cbGender, SIGNAL(currentIndexChanged(const QString&)), this, SLOT(OnCbGenderChanged(const QString&)));
     connect(m_ui.btnWebCam, SIGNAL(clicked()), this, SLOT(OnBtnWebCamClicked()));
     connect(m_ui.btnBrowse, SIGNAL(clicked()), this, SLOT(OnBtnBrowseClicked()));
@@ -57,7 +63,7 @@ void CRegisterFaceWidget::OnAddFace()
     QString itemName = "Face_" + QString::number(count);
     QTreeWidgetItem* pItem = new QTreeWidgetItem(QStringList(itemName));
 
-    SMemberProperty member(itemName, eMale, 0);
+    SMemberProperty member(QString(), itemName, 0, QDate(), eMale);
     int memberId = CMemberModel::GetSingleTon()->AddMember(member);
     pItem->setData(0, Qt::UserRole, memberId);
     m_ui.treeWidget->addTopLevelItem(pItem);
@@ -85,7 +91,10 @@ void CRegisterFaceWidget::OnTreeWidgetSelectionChanged()
         SetFaceEntityUIEnable(true);
         int memberId = itemList[0]->data(0, Qt::UserRole).toInt();
         CMemberModel::GetSingleTon()->GetMember(memberId, member);
+        m_ui.leId->setText(member.m_identityCardId);
         m_ui.leName->setText(member.m_name);
+        m_ui.leBankAreaCode->setText(QString::number(member.m_bankAreaCode));
+        m_ui.deBirthday->setDate(member.m_birthday);
         m_ui.cbGender->setCurrentIndex(member.m_gender);
     }
     else
@@ -112,9 +121,21 @@ void CRegisterFaceWidget::OnEditingFinished()
     {
         int id = itemList[0]->data(0, Qt::UserRole).toInt();
 
-        if (sender() == m_ui.leName)
+        if (sender() == m_ui.leId)
+        {
+            CMemberModel::GetSingleTon()->EditIdentityCardId(id, m_ui.leId->text());
+        }
+        else if (sender() == m_ui.leName)
         {
             CMemberModel::GetSingleTon()->EditName(id, m_ui.leName->text());
+        }
+        else if (sender() == m_ui.leBankAreaCode)
+        {
+            CMemberModel::GetSingleTon()->EditBankAreaCode(id, m_ui.leBankAreaCode->text().toULongLong());
+        }
+        else if (sender() == m_ui.deBirthday)
+        {
+            CMemberModel::GetSingleTon()->EditBirthday(id, m_ui.deBirthday->date());
         }
     }
 }
