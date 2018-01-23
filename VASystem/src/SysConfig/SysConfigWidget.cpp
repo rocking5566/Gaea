@@ -38,7 +38,7 @@ void CSysConfigWidget::OnBtnClearAllSysDataClicked()
 
     if (ret == QMessageBox::Yes)
     {
-        // TODO
+        // [TODO] Clear Data
         // Remove data from CMemberModel, CDeviceModel, CSysConfigModel, Algorithm result
     }
 }

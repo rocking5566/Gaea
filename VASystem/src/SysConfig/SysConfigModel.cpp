@@ -14,6 +14,7 @@ CSysConfigModel* CSysConfigModel::GetSingleTon()
 
 void CSysConfigModel::SetBankAreaCode(qulonglong sysBankAreaCode)
 {
+    // [TODO] update config file
     m_sysBankAreaCode = sysBankAreaCode;
 }
 
