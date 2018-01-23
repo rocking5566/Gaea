@@ -36,6 +36,12 @@ void CMemberModel::RemoveMember(int memberId)
     m_mapIdtoMember.remove(memberId);
 }
 
+void CMemberModel::Clear()
+{
+    // [TODO] update database
+    m_mapIdtoMember.clear();
+}
+
 bool CMemberModel::EditIdentityCardId(int memberId, const QString& rIdentityCardId)
 {
     // [TODO] update database

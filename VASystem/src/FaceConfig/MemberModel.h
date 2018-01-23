@@ -58,6 +58,7 @@ public:
     static CMemberModel* GetSingleTon();
     int AddMember(const SMemberProperty& rMember);   // return member id
     void RemoveMember(int memberId);
+    void Clear();
     bool EditIdentityCardId(int memberId, const QString& rIdentityCardId);
     bool EditName(int memberId, const QString& rName);
     bool EditBankAreaCode(int memberId, qulonglong bankAreaCode);

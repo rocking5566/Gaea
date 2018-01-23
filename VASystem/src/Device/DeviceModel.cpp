@@ -36,6 +36,12 @@ void CDeviceModel::RemoveDevice(int id)
     m_mapIdtoDevice.remove(id);
 }
 
+void CDeviceModel::Clear()
+{
+    // [TODO] update config file
+    m_mapIdtoDevice.clear();
+}
+
 bool CDeviceModel::EditDevice(int id, const SDeviceProperty& rDev)
 {
     // [TODO] update config file

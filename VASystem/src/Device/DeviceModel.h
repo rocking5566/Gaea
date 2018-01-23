@@ -25,6 +25,7 @@ public:
     static CDeviceModel* GetSingleTon();
     int AddDevice(const SDeviceProperty& rDev);   // return id
     void RemoveDevice(int id);
+    void Clear();
     bool EditDevice(int id, const SDeviceProperty& rDev);
 
     bool GetDevice(int id, SDeviceProperty& rMember) const;

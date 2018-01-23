@@ -12,6 +12,12 @@ CSysConfigModel* CSysConfigModel::GetSingleTon()
     return sm_Instance;
 }
 
+void CSysConfigModel::Clear()
+{
+    // [TODO] update config file
+    m_sysBankAreaCode = 0;
+}
+
 void CSysConfigModel::SetBankAreaCode(qulonglong sysBankAreaCode)
 {
     // [TODO] update config file

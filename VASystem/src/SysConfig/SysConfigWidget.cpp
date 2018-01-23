@@ -1,5 +1,7 @@
 #include "SysConfigWidget.h"
 #include "SysConfigModel.h"
+#include "FaceConfig/MemberModel.h"
+#include "Device/DeviceModel.h"
 #include <QMessageBox>
 
 CSysConfigWidget::CSysConfigWidget(QWidget *parent /*= 0*/)
@@ -38,8 +40,10 @@ void CSysConfigWidget::OnBtnClearAllSysDataClicked()
 
     if (ret == QMessageBox::Yes)
     {
-        // [TODO] Clear Data
-        // Remove data from CMemberModel, CDeviceModel, CSysConfigModel, Algorithm result
+        CMemberModel::GetSingleTon()->Clear();
+        CDeviceModel::GetSingleTon()->Clear();
+        CSysConfigModel::GetSingleTon()->Clear();
+        // [TODO] Clear Data from Algorithm result
     }
 }
 
