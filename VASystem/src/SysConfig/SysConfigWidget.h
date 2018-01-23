@@ -16,8 +16,14 @@ public:
     virtual void Enter();
     virtual void Leave();
 
+private slots:
+    void OnBtnClearAllSysDataClicked();
+
+private:
+    void ConnectUISignal();
+
 private:
     Ui::SysConfigWidget m_ui;
-
+    int x;
 };
 #endif // SysConfigWidget_h__
