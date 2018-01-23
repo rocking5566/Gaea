@@ -17,6 +17,7 @@ SOURCES += $${COMMON_PATH}/RenderWidget.cpp \
            ./src/LiveView/FilmView.cpp \
            ./src/LiveView/LiveViewWidget.cpp \
            ./src/HomeWindow.cpp \
+           ./src/SysConfig/SysConfigWidget.cpp \
            ./src/main.cpp
 
 HEADERS += $${COMMON_PATH}/RenderWidget.h \
@@ -28,9 +29,11 @@ HEADERS += $${COMMON_PATH}/RenderWidget.h \
            ./src/FaceConfig/RegisterFaceWidget.h \
            ./src/LiveView/FilmView.h \
            ./src/LiveView/LiveViewWidget.h \
+           ./src/SysConfig/SysConfigWidget.h \
            ./src/HomeWindow.h
 
 FORMS   += ./UI/ConfigDeviceWidget.ui \
            ./UI/HomeWindow.ui \
            ./UI/LiveViewWidget.ui \
-           ./UI/RegisterFaceWidget.ui
+           ./UI/RegisterFaceWidget.ui \
+           ./UI/SysConfigWidget.ui

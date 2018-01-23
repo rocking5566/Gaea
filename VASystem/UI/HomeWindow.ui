@@ -35,6 +35,11 @@
         <string>IPCamera</string>
        </attribute>
       </widget>
+      <widget class="CSysConfigWidget" name="SysConfigtab">
+       <attribute name="title">
+        <string>Configuration</string>
+       </attribute>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -64,6 +69,12 @@
    <class>CTabWidget</class>
    <extends>QTabWidget</extends>
    <header>Tab/TabWidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CSysConfigWidget</class>
+   <extends>QWidget</extends>
+   <header>SysConfig/SysConfigwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
