@@ -3,6 +3,7 @@
 #include <QString>
 #include <QList>
 #include <QMap>
+#include <QDate>
 #include "ImageAdaptor.h"
 
 enum EGender
@@ -33,13 +34,19 @@ struct SMemberProperty
         : m_gender(eMale)
     {}
 
-    SMemberProperty(const QString& rName, EGender gender, int age)
-        : m_name(rName)
+    SMemberProperty(const QString& rIdentityCardId, const QString& rName, qulonglong bankAreaCode, const QDate& rBirthday, EGender gender)
+        : m_identityCardId(rIdentityCardId)
+        , m_name(rName)
+        , m_bankAreaCode(bankAreaCode)
+        , m_birthday(rBirthday)
         , m_gender(gender)
     {
     }
 
+    QString m_identityCardId;
     QString m_name;
+    qulonglong m_bankAreaCode;
+    QDate m_birthday;
     EGender m_gender;
     QList<CImageAdaptor> m_facePictures;
 };
@@ -50,7 +57,10 @@ public:
     static CMemberModel* GetSingleTon();
     int AddMember(const SMemberProperty& rMember);   // return member id
     void RemoveMember(int memberId);
+    bool EditIdentityCardId(int memberId, const QString& rIdentityCardId);
     bool EditName(int memberId, const QString& rName);
+    bool EditBankAreaCode(int memberId, qulonglong bankAreaCode);
+    bool EditBirthday(int memberId, const QDate& rBirthday);
     bool EditGender(int memberId, EGender gender);
     bool EditVideoFrame(int memberId, const QList<CImageAdaptor>& rFacePictures);
 

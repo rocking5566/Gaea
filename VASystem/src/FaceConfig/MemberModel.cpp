@@ -36,6 +36,19 @@ void CMemberModel::RemoveMember(int memberId)
     m_mapIdtoMember.remove(memberId);
 }
 
+bool CMemberModel::EditIdentityCardId(int memberId, const QString& rIdentityCardId)
+{
+    // [TODO] update database
+    bool bExist = m_mapIdtoMember.contains(memberId);
+
+    if (bExist)
+    {
+        m_mapIdtoMember[memberId].m_identityCardId = rIdentityCardId;
+    }
+
+    return bExist;
+}
+
 bool CMemberModel::EditName(int memberId, const QString& rName)
 {
     // [TODO] update database
@@ -44,6 +57,32 @@ bool CMemberModel::EditName(int memberId, const QString& rName)
     if (bExist)
     {
         m_mapIdtoMember[memberId].m_name = rName;
+    }
+
+    return bExist;
+}
+
+bool CMemberModel::EditBankAreaCode(int memberId, qulonglong bankAreaCode)
+{
+    // [TODO] update database
+    bool bExist = m_mapIdtoMember.contains(memberId);
+
+    if (bExist)
+    {
+        m_mapIdtoMember[memberId].m_bankAreaCode = bankAreaCode;
+    }
+
+    return bExist;
+}
+
+bool CMemberModel::EditBirthday(int memberId, const QDate& rBirthday)
+{
+    // [TODO] update database
+    bool bExist = m_mapIdtoMember.contains(memberId);
+
+    if (bExist)
+    {
+        m_mapIdtoMember[memberId].m_birthday = rBirthday;
     }
 
     return bExist;
