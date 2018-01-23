@@ -35,7 +35,6 @@ void CRegisterFaceWidget::SetFaceEntityUIEnable(bool bEnable)
 {
     m_ui.leName->setEnabled(bEnable);
     m_ui.cbGender->setEnabled(bEnable);
-    m_ui.leAge->setEnabled(bEnable);
     m_ui.btnWebCam->setEnabled(bEnable);
     m_ui.btnBrowse->setEnabled(bEnable);
 }
@@ -48,7 +47,6 @@ void CRegisterFaceWidget::ConnectUISignal()
     connect(m_ui.leName, SIGNAL(textChanged(const QString &)), this, SLOT(OnNameChanged(const QString &)));
     connect(m_ui.leName, SIGNAL(editingFinished()), this, SLOT(OnEditingFinished()));
     connect(m_ui.cbGender, SIGNAL(currentIndexChanged(const QString&)), this, SLOT(OnCbGenderChanged(const QString&)));
-    connect(m_ui.leAge, SIGNAL(editingFinished()), this, SLOT(OnEditingFinished()));
     connect(m_ui.btnWebCam, SIGNAL(clicked()), this, SLOT(OnBtnWebCamClicked()));
     connect(m_ui.btnBrowse, SIGNAL(clicked()), this, SLOT(OnBtnBrowseClicked()));
 }
@@ -89,7 +87,6 @@ void CRegisterFaceWidget::OnTreeWidgetSelectionChanged()
         CMemberModel::GetSingleTon()->GetMember(memberId, member);
         m_ui.leName->setText(member.m_name);
         m_ui.cbGender->setCurrentIndex(member.m_gender);
-        m_ui.leAge->setText(QString::number(member.m_age));
     }
     else
     {
@@ -119,12 +116,6 @@ void CRegisterFaceWidget::OnEditingFinished()
         {
             CMemberModel::GetSingleTon()->EditName(id, m_ui.leName->text());
         }
-
-        else if (sender() == m_ui.leAge)
-        {
-            CMemberModel::GetSingleTon()->EditAge(id, m_ui.leAge->text().toInt());
-        }
-
     }
 }
 

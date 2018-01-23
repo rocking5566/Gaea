@@ -62,19 +62,6 @@ bool CMemberModel::EditGender(int memberId, EGender gender)
     return bExist;
 }
 
-bool CMemberModel::EditAge(int memberId, int age)
-{
-    // [TODO] update database
-    bool bExist = m_mapIdtoMember.contains(memberId);
-
-    if (bExist)
-    {
-        m_mapIdtoMember[memberId].m_age = age;
-    }
-
-    return bExist;
-}
-
 bool CMemberModel::EditVideoFrame(int memberId, const QList<CImageAdaptor>& rFacePictures)
 {
     // [TODO] update database

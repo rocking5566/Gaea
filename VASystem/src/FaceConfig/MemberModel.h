@@ -31,19 +31,16 @@ struct SMemberProperty
 {
     SMemberProperty()
         : m_gender(eMale)
-        , m_age(0)
     {}
 
     SMemberProperty(const QString& rName, EGender gender, int age)
         : m_name(rName)
         , m_gender(gender)
-        , m_age(age)
     {
     }
 
     QString m_name;
     EGender m_gender;
-    int m_age;
     QList<CImageAdaptor> m_facePictures;
 };
 
@@ -55,7 +52,6 @@ public:
     void RemoveMember(int memberId);
     bool EditName(int memberId, const QString& rName);
     bool EditGender(int memberId, EGender gender);
-    bool EditAge(int memberId, int age);
     bool EditVideoFrame(int memberId, const QList<CImageAdaptor>& rFacePictures);
 
     bool GetMember(int memberId, SMemberProperty& rMember) const;
